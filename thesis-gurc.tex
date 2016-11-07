@@ -8,6 +8,22 @@
 \usepackage[utf8]{inputenc}
 \usepackage[swedish, english, french, spanish]{babel}
 
+%\usepackage{xcolor}
+%\usepackage{tikz}
+
+% *** enables full bibliographic entries within text ***
+\usepackage{bibentry}
+\nobibliography*
+
+% *** citation numbers will be sorted and properly "compressed/ranged" ***
+\usepackage[noadjust]{cite}
+% *** allowed for \citeauthor and \citeyear commands ***
+\usepackage[authoryear,numbers,square]{natbib}
+
+% DEBUG
+% *** provides random text to fill up boxes, etc ***
+\usepackage{lipsum}
+
 \usepackage{mfirstuc}
 \usepackage{acro}
 
@@ -16,9 +32,133 @@
 % *** acronyms file loading ***
 \input{data/acronyms}
 
-\input{template/doc/latex/kthesis/kth-bibl}
+% *** adds a space unless the macro is followed by certain punctuation characters ***
+\usepackage{xspace}
+
+\usepackage{cleveref}
+
+%\usepackage{algorithm}
+
+\usepackage{hyperxmp}
+% == load hyperref last ==
+%\usepackage[hidelinks, pagebackref=true]{hyperref}
+\usepackage[colorlinks=true, pagebackref=true, linktocpage=true]{hyperref}
+
+% *** customisation for pagebackref option in hyperref package ***
+% http://tex.stackexchange.com/questions/38149/removing-double-entries-from-hyperrefs-pagebackref
+\renewcommand*{\backreflastsep}{, }
+\renewcommand*{\backreftwosep}{, }
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 %
+    No citations.% use \relax if you do not want the "No citations" message
+  \or
+    (Cited in page #2).%
+  \else
+    (Cited in pages #2).%
+  \fi%
+}
+
+\input{data/kth-bibl}
+
+\usepackage[many]{tcolorbox}
+\newtcolorbox{ppBox}[1][]{
+    breakable,
+    enhanced,
+    skin=enhancedmiddle,
+    frame hidden,
+    interior hidden,
+    title=#1,
+    arc=0pt,
+    outer arc=0pt,
+    top=0pt,
+    bottom=0pt,
+    boxsep=1mm,
+    borderline={1.5pt}{0mm}{black},
+    fonttitle=\sffamily\footnotesize,
+    fontupper=\sffamily\footnotesize,
+    fontlower=\sffamily\footnotesize,
+    colframe=black,
+    colback=white,
+    colbacktitle=white,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0pt,
+    bottomrule=0pt,
+    toprule=0pt,
+  % leftrule=3pt,
+  % rightrule=3pt,
+    titlerule=0pt,
+    width=8\linewidth/10,
+    valign=center,
+}
+
+% colored dogear marks
+\usepackage[pages=some,contents={},opacity=1.0,scale=1,angle=90]{background}
+\usepackage{tikz}
+\newcommand*\VerBar[1]{%
+	\begin{tikzpicture}
+	\fill[#1] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
+	\draw[white] (0.5,0.5)node{\rotatebox{-90}{\Huge \textbf \thechapter}};
+	\end{tikzpicture}
+}
+\newcounter{DogearHShift}
+\newcommand{\dogear}[1]{%
+  \backgroundsetup{position={current page.north east},vshift=0.5cm,%
+    hshift=-\theDogearHShift cm,contents={\VerBar{#1}}}%
+  \BgThispage%
+  \addtocounter{DogearHShift}{1}
+}
+\newcommand{\dogearRGB}[1]{%
+  \definecolor{dogearColor}{RGB}{#1}%
+  \dogear{dogearColor}%
+}
+%usage: \dogear{COLOR}, e.g. \dogear{red}
+%   or: \dogearRGB{RED,GREEN,BLUE}, e.g. \dogearRGB{255,0,0}
+% ------------------------------------
+
+%%%
+% CONFIG: Meta-data properties for PDF and XMP
+%
+% Notes: Load after kth-bibl (as variables used come from there)
+%
+\hypersetup{
+    pdftitle        = {\thesistitle},
+    pdfauthor       = {\thesisauthor},
+%    pdfauthortitle={},%
+    pdfsubject      = {Doctoral thesis},
+%    pdfsubject      = {\thesistype~(\degree),~\department,~\university},
+    pdfkeywords     = {\thesiskeywords},
+    pdfcreator      = {\thesisauthor~(Supervised~by~\thesissupervisor)},
+    pdfproducer     = {\thesisauthor~powered~by~\LaTeX},
+%    pdfcontactaddress={},
+%    pdfcontactcity={Lentini (SR)},
+%    pdfcontactpostcode={},
+%    pdfcontactcountry={},
+%    pdfcontactphone={},
+%    pdfcontactemail={},
+%    pdfcontacturl={},
+%    pdfcaptionwriter={},
+    pdflang={en},
+%    pdfcopyright    = {\thesiscopyright},
+    pdflicenseurl   = {\thesislicenseurl},
+    pdfstartview    = FitB,
+    colorlinks=true,
+    breaklinks,
+    linkcolor={blue},
+    citecolor={red},
+    urlcolor={blue}
+}
+
+
+
+% *** 
+\input{data/commands}
+% ***
+\input{data/abbreviations}
 
 \begin{document}
+
 \frontmatter
 % \maketitle
 % \input{template/doc/latex/kthesis/kth-abs}
@@ -38,6 +178,24 @@
 %      Pang Ping
 % \end{abstract}
 \clearpage
+\chapter*{Acknowledgements}
+I acknowledge the acknowledgement of having written this :)
+
+\section*{Funding}
+The research leading to this thesis has been supported by the following projects:
+\begin{itemize}
+    \item Protection of personal information in social networks (Skydd av personlig information för sociala nätverk)\\
+    Funded by the \acl{ssf} grant: SSF FFL09-0086.\\
+    \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
+    \item Privacy-preserving social and community networks\\
+    Funded by the \Acl{vr} grant: VR 2009-3793.\\
+    \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
+\end{itemize}
+
+We are grateful to the Swedish taxpayers for their funding.
+
+\clearpage
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
 \tableofcontents
 \mainmatter
 \chapter{Introduction}
@@ -63,7 +221,7 @@ the parallelism in the digital era to such physical letters.
 Such evolution in the means of communication among individuals and other entities 
 has also happened at other societal levels. For example, the social structures that 
 individuals form when sharing similar interests or activities, namely social networks, 
-have also seen a transposition in the digital era. The Internet and the \ac{www} 
+have also seen a transposition in the digital era. The \Internet and the \ac{www} 
 have taken the leading role as tools to convey different types of information from 
 one party to another, expanding the boundaries of the concept of social networks, 
 heavily based on tangible activity between individuals and entities.
@@ -73,6 +231,44 @@ of social sciences to study and describe the social structures determined by the
 relationships between individuals, groups, and other types of entities such as societies; 
 the technological developments of the digital era have popularised its virtual counterpart 
 term: \aclp{osn}.
+
+define osns in a brief manner (proper definition is in background). Maybe break 
+down in chunks? (Or this is better to move to the background... looks like if there 
+is the case).
+
+give examples of osns and evolution
+
+point out to what is the business model (start leaning to privacy issues here). 
+Use Oleksandr's examples of TOS from Facebook and Google (also take the one from 
+Twitter, LinkedIn etc to show the differences).
+Check at the end of: \url{https://en.wikipedia.org/wiki/Ello_(social_network)} for 
+a list of services (pick a few... try to find )
+
+talk about the importance of privacy (in general) (mention snowden?)
+
+talk about the particular privacy issues of osns (give examples from media)
+
+discuss possible scenarios for solutions (from no technology, that is, no osns, 
+and so no advancements in society to full control of technology, that is, governmental 
+espionage: great wall of china and delaying the inevitable progress of society). 
+(argue why a middle term solution is best, that is: user controls 
+its data, give examples of how business is possible, for example, apple and differential 
+privacy in the recent iOS).
+
+Offer some solutions (maybe in categories). Point to decentralization as a key solution
+(use \url{https://diasporafoundation.org/about#privacy} idea with the pictures too).
+
+introduce the solutions presented 
+in this thesis. Describe them briefly.
+
+There are also some other valid solutions outside the realm of OSNs (introduce DSS 
+and describe).
+
+Discuss that these are not the only solutions, nor the best ones: these are some 
+of many solutions.
+
+End with a summary of our goal with this thesis (longer version and so description of the title?)
+
 
 % \acp{osn}, although thought a
 %
@@ -98,25 +294,54 @@ term: \aclp{osn}.
 % people to build social networks or social relations with other people who share similar personal or career interests,[1] activities, backgrounds or real-life connections. The variety of stand-alone and built-in
 
 \section{Motivation}
+
 \section{Outline}
+
 \section{Conventions}
-\section{Funding}
+Gender used in papers and thesis (we are neutral but papers and/or thesis may not 
+be to ease reading though each paper is consistent in gender on its own anyways)
+
+Although data and information can be considered synonyms in the broader sense 
+--- the definition of data is a piece of information --- in the context of this 
+thesis we will use the latter --- information --- as the abstract fact about something 
+while the former --- data --- as the encoded form of such information that can be 
+transferred over a network.
+
 
 \chapter{Research problem}
+Main idea of the problem we are trying to solve (or shortlist of them but try to come up with a general idea first)
+- Practical methods to preserve privacy
+
 \section{Challenges addressed}
+Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
+
+Talk about delimitations as well
+
 
 \chapter{Background}
 The field of \acp{sn} is an extremely vast domain of knowledge and research. It 
 has influenced dozens of domains, spanning from the most traditional ones such as 
 ethnography or anthropology to more contemporanean ones such as genomics or astrophysics.
 
-With the explosion of large scale \acp{osn} new challenges have emerged in connection 
-with the sudden availability of new types of data. Moreover, the inherent increase 
-in the amount of data poses a technological challenge because there is a need to 
-cope with such size, and there is as well a scientifical challenge as to finding 
-methods that can answer questions in such large space of data. 
+% TODO: Do I need to include something here to make the transititon from SNs to OSNs? Otherwise, rephrase the next paragraph and start with such transition?
 
-At the same time, the collection of all this data affects privacy.
+With the explosion of large scale \acp{osn} new challenges have emerged in connection 
+with the sudden availability of new types of data. The inherent increase in the 
+amount of data poses a technological challenge because there is a need to cope with 
+such size. Moreover, there is a need to investigate and develop efficient methods 
+that can answer questions in such large space of data within a reasonable amount 
+of time.
+
+At the same time, the collection of such amount of data in \acp{osn} is having a great 
+impact on the privacy of the users who use these networks to share information among 
+them. Because the data is usually stored by a single centralised entity --- the 
+owner of the \ac{osn} --- there is a risk for unintentional, and also intentional, 
+wrong-doing of the data without knowledge of the users such as misuse, data leakages 
+or even censorship.
+
+% http://dictionary.cambridge.org/dictionary/english/be-two-sides-of-the-same-coin
+That is to say, data and privacy seem to be the two sides of the same coin --- \acp{osn}. 
+
 
 
 \section{Information systems: on the importance of capabilities}
@@ -125,13 +350,41 @@ At the same time, the collection of all this data affects privacy.
 % Short summary: The IS research drawing on social networks can be divided into the following streams: 1) network awareness at both individual and organizational levels, 2) uses of social network analysis related to IS use, and 3) conceptual and technological change in the fast evolving platforms to manage social networks
 
 
-\section{Online social networks: centralised vs decentralised}
+\section{\Aclp{osn}: centralisation vs decentralisation}
 
-What a social network is
-defintion
+While there is a wide understanding among researchers and practitioners on what 
+a \ac{sn} is and, by extension, a \ac{osn}, there is not a canonical definition 
+of neither of them in the literature. Authors seem to define their own ``interpretation'' 
+as they see fit to their particular problem to solve or topic to discuss without 
+much general consensus.
+
+In our work, we have opted for the definition by \citeauthor{boydE07} because we 
+believe that is the most representative for the recent works in the field of \acp{osn} 
+--- an \ac{osn} site is a ``web-based service that allows individuals to construct 
+a public or semi-public profile within a bounded system, articulate a list of other 
+users with whom they share a connection, and view and traverse their list of connections 
+and those made by others within the system'' --- \cite{boydE07}. 
+
+The two most important parts of the previous definition are the means of communication 
+--- the \ac{www} --- and the administration of the users' profiles and their connections 
+in a system. It is this system what we need to clarify in fact because the \ac{www} 
+is, by construction, an interconnected set of systems thus inherently distributed. 
+But the \ac{osn} is a traditionally centralised system as opposed to distributed 
+systems such as the \ac{www}.
+
+There are many reasons for which most \acp{osn} designs are centralised --- define here centralised --- 
+lie more on the side of data control towards business value \cite{look-for-reference}.
+Popular \acp{osn} such as \Facebook, \Twitter, etc take different approaches in the 
+way they have designed their users' profiles and the mechanisms for which they share 
+and traverse the connections among them and, exchange information. However, most 
+of the data, if not all, is stored under the control of the owner of the network\footnote{The 
+owner may still use a distributed system to provide the service while still keep 
+full control of all the nodes in such distributed setup}.
+
+
 
 How most designs are centralised (and why)
-What it means decentralised
+What it means to be decentralised
 How we can decentralise such centralisation
 Trade off (this leads to the main point of privacy that comes now)
 
@@ -139,14 +392,44 @@ Trade off (this leads to the main point of privacy that comes now)
 
 What privacy is
 
-Privacy is a fundamental human right recognized in the UN Declaration of Human Rights, the International Convenant on Civil and Political Rights and in many other international and regional treaties.
+Privacy is a fundamental human right recognized in the UN Declaration of Human Rights, 
+the International Convenant on Civil and Political Rights and in many other international 
+and regional treaties.
 
 What it implies
 Why is it important
 How it can be breached or attacked or diminished
-What can we do
+What can we do: crypto
 
-\chapter{Methodology and approach}
+\section{Analytics: from raw data to information}
+TODO: Develop for PhD kappa
+
+Raw data is a set of unorganized facts about something that when processed, organized 
+and structured can be presented in some meaningful manner resulting in information.
+Such information is key to get conclusions via a process: analysis.
+
+Analysis of data in OSNs is important from a business perspective but doing so will 
+necessarily breach the boundaries of user privacy. Can we do business in a privacy-preserving 
+manner? (This is the key question).
+
+\section{Related work}
+%NOTE: Undecided, whether this best fit as a subsection or part of the introduction or simply not exist.
+
+Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that try to 
+use OSNs in a privacy-preserving manner (that is, using an overlay of encryption 
+or perhaps a link to a third party that is under the user's control?).
+
+\chapter{Methodology}
+Computer science is the study of the phenomena that surrounds computers by means 
+of the theory, experiments and design that leads to the actual construction of computers. 
+That is, the computer is not only a collection of interconnected pieces of hardware 
+but also a programmed ``living'' device --- the studied ``organism'' --- \cite{NewellS76}.
+
+As such, and derived from the natural sciences as a continuous process, we take 
+the scientific method as the main approach to address our research problem by systematic 
+observation, measurement, experimentation, induction and formulation of hypotheses, 
+testing of our deductions, and possibly the modification of such hypotheses \cite{Oxford14}.
+
 
 Design science research methodology
 
@@ -160,28 +443,66 @@ Parts of systems designed and/or analyzed
 
 Prototyping or such
 
+Break down these parts (analysis, design, protocol/theory, prototyping) for each 
+paper?
 
 
 \chapter{Contributions}
-\section{Paper A}
+\renewcommand\thesection{\Alph{section}}
+% P2P
+\section{\ppPTP}
+\begingroup\centering
+\begin{ppBox}
+    \bibentry{KreitzBGRB12}
+\end{ppBox}
+\endgroup
+
 \subsection{Summary}
 \subsection{Contributions}
 %\subsection{Changes for the thesis}
-\section{Paper B}
+
+% EI
+\section{\ppEI}
+\begingroup\centering
+\begin{ppBox}
+    \bibentry{RodriguezCanoG14}
+\end{ppBox}
+\endgroup
+
 \subsection{Summary}
 \subsection{Contributions}
 %\subsection{Changes for the thesis}
-\section{Paper C}
+
+% DSS
+\section{\ppDSS}
+\begingroup\centering
+\begin{ppBox}
+    \bibentry{GreschbachREB15}
+\end{ppBox}
+\endgroup
+
 \subsection{Summary}
 \subsection{Contributions}
 %\subsection{Changes for the thesis}
 
 
 \chapter{Conclusions}
+\renewcommand\thesection{\thechapter.\arabic{section}}
+I conclude I am not yet done... will I ever be...? :/
 
 \section{Future work}
+Space: the final frontier. These are the voyages of the starship Enterprise. Its 
+continuing mission: to explore strange new worlds, to seek out new life and new 
+civilizations, to boldly go where no one has gone before. (Star Trek: The Next Generation)
+
+
+%\chapter*{Bibliography}
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\dogearRGB{118,118,118}
+
+\bibliographystyle{acm}
+\bibliography{data/bibliography}
 
 \end{document}
 \endinput
-%%
-%% End of file `kth-demo.tex'.
+
