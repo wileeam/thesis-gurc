@@ -18,19 +18,21 @@
 % *** citation numbers will be sorted and properly "compressed/ranged" ***
 \usepackage[noadjust]{cite}
 % *** allowed for \citeauthor and \citeyear commands ***
-\usepackage[authoryear,numbers,square]{natbib}
+\usepackage[authoryear, numbers, square]{natbib}
 
 % DEBUG
 % *** provides random text to fill up boxes, etc ***
 \usepackage{lipsum}
+\listfiles
 
 \usepackage{mfirstuc}
-\usepackage{acro}
+\usepackage[single, hyperref=true]{acro}
 
 % *** capitalisation config for acronyms ***
 \acsetup{uc-cmd=\capitalisewords}
 % *** acronyms file loading ***
 \input{data/acronyms}
+
 
 % *** adds a space unless the macro is followed by certain punctuation characters ***
 \usepackage{xspace}
@@ -157,6 +159,32 @@
 % ***
 \input{data/abbreviations}
 
+\makechapterstyle{myell}{%
+  \chapterstyle{default}
+  \renewcommand*{\chapnumfont}{\normalfont\huge\bfseries}
+  \renewcommand*{\chaptitlefont}{\normalfont\Huge\bfseries}
+  \settowidth{\chapindent}{\chapnumfont 111}
+  \renewcommand*{\chapterheadstart}{\begingroup
+    \vspace*{\beforechapskip}%
+    \begin{adjustwidth}{}{-\chapindent}%
+    \hrulefill
+    \smash{\rule{0.4pt}{15mm}}
+    \end{adjustwidth}\endgroup}
+  \renewcommand*{\printchaptername}{}
+  \renewcommand*{\chapternamenum}{}
+  \renewcommand*{\printchapternum}{%
+    \begin{adjustwidth}{}{-\chapindent}
+    \hfill
+    \raisebox{10mm}[0pt][0pt]{\chapnumfont \thechapter}%
+                              \hspace*{1em}
+    \end{adjustwidth}\vspace*{-3.0\onelineskip}}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \vskip\onelineskip
+    \raggedleft {\chaptitlefont ##1}\par\nobreak}}
+
+\chapterstyle{myell}
+
+
 \begin{document}
 
 \frontmatter
@@ -184,11 +212,11 @@ I acknowledge the acknowledgement of having written this :)
 \section*{Funding}
 The research leading to this thesis has been supported by the following projects:
 \begin{itemize}
-    \item Protection of personal information in social networks (Skydd av personlig information för sociala nätverk)\\
-    Funded by the \acl{ssf} grant: SSF FFL09-0086.\\
+    \item Protection of personal information in social networks (Skydd av personlig information f{\"o}r sociala n{\"a}tverk)\\
+    Funded by the \ac{ssf} grant: SSF FFL09-0086.\\
     \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
     \item Privacy-preserving social and community networks\\
-    Funded by the \Acl{vr} grant: VR 2009-3793.\\
+    Funded by the \ac{vr} grant: VR 2009-3793.\\
     \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
 \end{itemize}
 
@@ -496,7 +524,13 @@ continuing mission: to explore strange new worlds, to seek out new life and new
 civilizations, to boldly go where no one has gone before. (Star Trek: The Next Generation)
 
 
-%\chapter*{Bibliography}
+\chapter{Glossary of acronyms and abbreviations}
+\acsetup{list-caps=true, list-heading=none}
+\printacronyms
+
+\chapter{Index}
+
+%\chapter*{References}
 %\addcontentsline{toc}{chapter}{Bibliography}
 %\dogearRGB{118,118,118}
 
