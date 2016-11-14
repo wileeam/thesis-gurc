@@ -20,6 +20,8 @@
 % *** allowed for \citeauthor and \citeyear commands ***
 \usepackage[authoryear, numbers, square]{natbib}
 
+\usepackage{lettrine}
+
 % DEBUG
 % *** provides random text to fill up boxes, etc ***
 \usepackage{lipsum}
@@ -128,7 +130,7 @@
     pdftitle        = {\thesistitle},
     pdfauthor       = {\thesisauthor},
 %    pdfauthortitle={},%
-    pdfsubject      = {Doctoral thesis},
+    pdfsubject      = {Wannabe thesis},
 %    pdfsubject      = {\thesistype~(\degree),~\department,~\university},
     pdfkeywords     = {\thesiskeywords},
     pdfcreator      = {\thesisauthor~(Supervised~by~\thesissupervisor)},
@@ -136,12 +138,12 @@
 %    pdfcontactaddress={},
 %    pdfcontactcity={Lentini (SR)},
 %    pdfcontactpostcode={},
-%    pdfcontactcountry={},
+%    pdfcontactcountry={Sweden},
 %    pdfcontactphone={},
-%    pdfcontactemail={},
+    pdfcontactemail={\thesiscontactemail},
 %    pdfcontacturl={},
 %    pdfcaptionwriter={},
-    pdflang={en},
+    pdflang={\thesislanguage},
 %    pdfcopyright    = {\thesiscopyright},
     pdflicenseurl   = {\thesislicenseurl},
     pdfstartview    = FitB,
@@ -202,32 +204,46 @@
 %  Me gusta mucho esto
 % \end{abstract}
  \selectlanguage{english}
-% \begin{abstract}
-%      Pang Ping
-% \end{abstract}
+\begin{abstract}
+    Privacy-enhancing technologies may help lessen the threats to the privacy of 
+    users' personal information in centralised \aclp*{osn}. As such, decentralised 
+    solutions have been proposed to extend user's control over its data.
+    
+    current solutions are made of building blocks, we show some of them in the categories
+    of decentralized systems in general, particular systems like osns and more generic
+    privacy-preserving systems.
+    
+    Decentralization: P2P
+    
+    Particular case of decentralization (\acp{dosn}): EI
+    
+    Privacy-Preserving systems: DSS
+\end{abstract}
 \clearpage
-\chapter*{Acknowledgements}
-I acknowledge the acknowledgement of having written this :)
-
-\section*{Funding}
-The research leading to this thesis has been supported by the following projects:
-\begin{itemize}
-    \item Protection of personal information in social networks (Skydd av personlig information f{\"o}r sociala n{\"a}tverk)\\
-    Funded by the \ac{ssf} grant: SSF FFL09-0086.\\
-    \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
-    \item Privacy-preserving social and community networks\\
-    Funded by the \ac{vr} grant: VR 2009-3793.\\
-    \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
-\end{itemize}
-
-We are grateful to the Swedish taxpayers for their funding.
-
+% \chapter*{Acknowledgements}
+% I acknowledge the acknowledgement of having written this :)
+%
+% \section*{Funding}
+% The research leading to this thesis has been supported by the following projects:
+% \begin{itemize}
+%     \item Protection of personal information in social networks (Skydd av personlig information f{\"o}r sociala n{\"a}tverk)\\
+%     Funded by the \ac{ssf} grant: SSF FFL09-0086.\\
+%     \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
+%     \item Privacy-preserving social and community networks\\
+%     Funded by the \ac{vr} grant: VR 2009-3793.\\
+%     \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
+% \end{itemize}
+%
+% We are grateful to the Swedish taxpayers for their commitment to research and development.
+%
 \clearpage
 \addtocontents{toc}{~\hfill\textbf{Page}\par}
 \tableofcontents
+
 \mainmatter
+
 \chapter{Introduction}
-In 1989, while at the European Particle Physics Laboratory, at \ac{cern}, Tim Berners-Lee 
+\lettrine{\textcolor[gray]{.25}{I}}{n} 1989, while at the European Particle Physics Laboratory, at \ac{cern}, Tim Berners-Lee 
 invented the \Ac{www}. No one at that time would have imagined that such invention 
 has been centric to the rapid development of the digital age that we are currently 
 witnessing.
@@ -254,24 +270,75 @@ have taken the leading role as tools to convey different types of information fr
 one party to another, expanding the boundaries of the concept of social networks, 
 heavily based on tangible activity between individuals and entities.
 
-While the concept of social networks is a theoretical term mainly used in the realm 
-of social sciences to study and describe the social structures determined by the 
-relationships between individuals, groups, and other types of entities such as societies; 
-the technological developments of the digital era have popularised its virtual counterpart 
+While the concept of \acl{sn} is a theoretical term mainly used in the realm of 
+social sciences to study and describe the social structures determined by the relationships 
+between individuals, groups, and other types of entities such as societies; the 
+technological developments of the digital era have popularised its virtual counterpart 
 term: \aclp{osn}.
 
-define osns in a brief manner (proper definition is in background). Maybe break 
-down in chunks? (Or this is better to move to the background... looks like if there 
-is the case).
+\Acp{osn} are \Internet based applications where the audience --- individuals and 
+groups --- create profiles of themselves, connect with others by creating relationships, 
+generate heterogeneous content and, share and exchange such content among the connections 
+and other users in the network. These networks are, up to a certain extent, a complement 
+to the established interactions that individuals already have in their daily lives 
+\cite{SubrahmanyamRWE08}.
 
-give examples of osns and evolution
+These information systems started becoming popular in the second half of the 90s 
+with services such as \LiveJournal or \Friendster evolving\footnote{For a comprehensive 
+but concise survey on the history and evolution of these networks the reader is 
+advised to read \cite{boydE07} and \cite{HeidemannKP12}} to the most popular ones 
+nowadays such as \Facebook, \LinkedIn, \Twitter or \GooglePlus.
 
-point out to what is the business model (start leaning to privacy issues here). 
-Use Oleksandr's examples of TOS from Facebook and Google (also take the one from 
-Twitter, LinkedIn etc to show the differences).
-Check at the end of: \url{https://en.wikipedia.org/wiki/Ello_(social_network)} for 
-a list of services (pick a few... try to find )
+The building design describing such systems is very similar among them. Their design 
+is usually monolithic with a data model that is centralised\footnote{With centralised 
+we mean that the ownership and control of the data is under the jurisdiction of 
+one entity, usually the provider of the \ac{osn}, regardless of how such data is 
+stored physically, for example, in a distributed or centralised manner.} and a system 
+model consisting of some variant of cloud computing architectures \cite{PallisZD11}. 
 
+The main business model is also similar among most \acp{osn} providers. Instead 
+of charging the users for the services of the \ac{osn}, the revenue model is based 
+on selling advertisements to businesses and companies that want to reach a subset 
+of the users in the platform. In fact, some argue that \acp{osn} have become an 
+ecosystem for marketing rather than for information \cite{HannaRC11}, and ignoring 
+these social media platforms may be the difference between prosperity or failure 
+\cite{HarrisR09}.
+
+Such business revenue model based on advertising requires in most cases accepting 
+some \ac{tos} and \acp{pp} where the users of the \ac{osn} give up certain rights 
+on the data contained in the ``free'' profiles and any other data stemming from 
+the interactions among them. For example, \Facebook states in its \ac{tos} that 
+the user grants a ``non-exclusive, transferable, sub-licensable, royalty-free and 
+worldwide license'' of any intelectual property content posted in the \ac{osn} \cite{Facebook15}, 
+\LinkedIn and \Twitter state similar \ac{tos} as \Facebook \cite{LinkedIn14, Twitter16}.
+
+Users are also more aware of the profitability that \ac{osn} service providers do 
+of their content via advertising. Moreover, the concern of users' data privacy in 
+\acp{osn} has also increased in recent years particularly when it comes to configuring 
+who can access their content. Some studies show that users' engagement with the 
+privacy settings is more frequent nowadays and even in line with the use of the 
+\ac{osn} \cite{boydH10}.
+
+However, raising awareness among \ac{osn} users of the privacy settings or how they 
+can better use the service to protect their privacy or, requesting more transparent 
+policies from the \ac{osn} service provider is necessary but still not sufficient. 
+Because an important aspect of personal data privacy is actually maintaining control 
+over such information --- informational privacy \cite{Cavoukian96}.
+
+Privacy in \acp{osn} has become a topic of ongoing discussions in the current century 
+due to the business model of the service providers of \acp{osn}. Nevertheless, the 
+focus of the discussions on privacy in \acp{osn} has shifted towards the idea of 
+data control --- privacy was already envisioned as data control in the late 90s 
+\cite{Allen99}.
+
+\acp{osn} have been on the news for different unfortunate reasons: 
+%- name a few with links (censorship, misuse, data leakage, password hacking, etc)
+%- Check Facebook's wikipedia: a nice encyclopedia of their mess...
+
+Moreover, Snowden's revelations put the service providers of these \acp{osn} among 
+many other big technological companies in the thick of a global surveillance program.
+
+---
 talk about the importance of privacy (in general) (mention snowden?)
 
 talk about the particular privacy issues of osns (give examples from media)
@@ -296,13 +363,9 @@ Discuss that these are not the only solutions, nor the best ones: these are some
 of many solutions.
 
 End with a summary of our goal with this thesis (longer version and so description of the title?)
+---
 
 
-% \acp{osn}, although thought a
-%
-% %The equivalent of social networks in the digital world, online social netwrosk serve
-% %as an alterna
-%
 % % Social networks
 %  is an inherently interdisciplinary academic field which emerged from social psychology, sociology, statistics, and graph theory.
 %
@@ -322,36 +385,120 @@ End with a summary of our goal with this thesis (longer version and so descripti
 % people to build social networks or social relations with other people who share similar personal or career interests,[1] activities, backgrounds or real-life connections. The variety of stand-alone and built-in
 
 \section{Motivation}
+Our rationale for the line of work of this thesis is data control in the broad sense 
+and in line with the notion of ``privacy as data control'' in \cite{Allen99}. We 
+drive our reasoning on the three following core user personal data rights\footnote{The 
+reader is advised to read more on the three main rights we have in mind in the \ac{udm} 
+(\url{https://userdatamanifesto.org}).}: ``control over user data access'', ``knowledge 
+of how data is stored'' and which laws or jurisdictions apply and, ``freedom to 
+choose a platform'' without experiencing any vendor lock-in.
+
+% The rights stated in the \ac{udm} are, as a matter of fact, a modern version of the
+% three notions of `privacy' that \citeauthor{Allen99} stated in \cite{Allen99}: ``personal
+% data control or rights of data control'', ``right of personal data control'' and,
+% ``enhancing personal data control by individuals is the optimal end of privacy regulation''.
+
+Data control —-- in the essence of data privacy and information security —-- is a 
+subject that has gained a lot of attention in the last decade. Particularly from 
+big corporations such as \Google, \Apple or \Facebook as they have been identified 
+as necessary collaborators of institutional surveillance of citizens world-wide \cite{Lyon14}.
+
+Although users of the \acp{osn} that some of these corporations own are more aware 
+than ever of such collaboration of service providers and governmental institutions 
+for mass surveillance \cite{Madden14}. Moreover, users are more willing than before 
+to do something to protect their privacy despite the fact that different types of 
+information prompt different degrees of sensitivity, for example, social security 
+numbers are considered much more sensitive than some habits such as purchasing or 
+browsing the \ac{www}.
+
+A well articulated security and privacy strategy is necessary but it is not sufficient 
+for a corporation (or governmental institution) to protect the data of its customers 
+(or citizens) and users because the data itself is still out of the control of the 
+user. Not only the user does not possess such data physically but also does not 
+control who access it or even if, and how, it gets transferred to third parties 
+(in some cases, unauthorised).
+
+Therefore, we aim at improving users' data control as much as it is technologically 
+possible, leaving legal policies such as \ac{tos} or \ac{pp} and, the ethical debate 
+out of the scope of this thesis. We believe that removing the central provider in 
+a centralised information system such as an \ac{osn} is one of the very first steps 
+towards returning that control of the data back to the user.
+
+Finally, we also have the desire to reduce the impact of personal data privacy in 
+people's lives by raising awareness on the topic with our solutions to broaden and 
+deepen the ongoing political and legal discussions. There is still a long road ahead 
+on the quest of privacy and this is barely the beginning.
 
 \section{Outline}
+In chapter this... bla bla bla, in chapter that.... blu blu blu...
+
+For completeness, we include a list of publications that this thesis is comprised 
+of in chapter X. 
+
 
 \section{Conventions}
-Gender used in papers and thesis (we are neutral but papers and/or thesis may not 
-be to ease reading though each paper is consistent in gender on its own anyways)
+In this thesis we are using the following conventions in the language used,
+\begin{itemize}
+    \item The gender used throughout the text while referring to a human being using 
+    a computer --- user --- may unintentionally differ, although we tried to be 
+    consistent with the gender `she'. However, this thesis is neutral towards gender 
+    but to ease the reading we chose such gender (except in the abstract).
 
-Although data and information can be considered synonyms in the broader sense 
---- the definition of data is a piece of information --- in the context of this 
-thesis we will use the latter --- information --- as the abstract fact about something 
-while the former --- data --- as the encoded form of such information that can be 
-transferred over a network.
-
+    \item Data and information can be considered synonyms in the broader sense --- 
+    the definition of data is a piece of information. In the context of this thesis 
+    we will use the latter --- information --- as the abstract fact about something, 
+    while the former --- data --- as the encoded form of such information that can 
+    be transferred over a network and interpreted by a computer.
+\end{itemize}
 
 \chapter{Research problem}
+\lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing solutions for user's data 
+control in the realm of \acp{dosn}.
+
 Main idea of the problem we are trying to solve (or shortlist of them but try to come up with a general idea first)
-- Practical methods to preserve privacy
+Privacy-Preserving methods for services in decentralized systems in general and applied ones
+
 
 \section{Challenges addressed}
+Among the wide spectrum of problems and questions that decentralisation poses in 
+information systems such as \acp{osn} we have first focused our efforts on keeping 
+the functionality of some features in decentralised systems as close as possible to 
+what these would be in a centralised scenario.
+
+In parallel, such decentralisation triggers our second concern in terms of privacy.
+Not only we consider this topic in such setup where the central provider does not 
+exist or it plays a minimal role but also in a more generic fashion for an information 
+system.
+
+Each one, decentralisation and privacy, raise so many questions that any thesis 
+or research will ever be able to answer. Therefore, we list the main questions that 
+we believe this thesis answers in the aforementioned domains although there may 
+be other questions unintentionally answered that we have not thought of as of this 
+writing,
+\begin{itemize}
+	\item Can we decentralize an information system? If so, how?\\
+	Paper A and B
+	\item Can we mimic some of the features of centralised systems in a decentralised setup?\\
+	Paper A and B
+	\item What are the trade-offs when protecting the privacy of the user in an information system?\\
+	Paper A, B and C
+\end{itemize}
+
+---
+Keep functionality of OSNs (in the decentralised scenario) while provide such functionality 
+in a privacy-preserving manner.
+
 Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
 
 Talk about delimitations as well
-
+---
 
 \chapter{Background}
-The field of \acp{sn} is an extremely vast domain of knowledge and research. It 
+\lettrine{\textcolor[gray]{.25}{T}}{he} field of \acp{sn} is an extremely vast domain of knowledge and research. It 
 has influenced dozens of domains, spanning from the most traditional ones such as 
 ethnography or anthropology to more contemporanean ones such as genomics or astrophysics.
 
-% TODO: Do I need to include something here to make the transititon from SNs to OSNs? Otherwise, rephrase the next paragraph and start with such transition?
+% TODO: Do I need to include something here to make the transititon from SNs to OSNs? Otherwise, maybe rephrase the next paragraph and start with such transition?
 
 With the explosion of large scale \acp{osn} new challenges have emerged in connection 
 with the sudden availability of new types of data. The inherent increase in the 
@@ -360,85 +507,138 @@ such size. Moreover, there is a need to investigate and develop efficient method
 that can answer questions in such large space of data within a reasonable amount 
 of time.
 
+% http://dictionary.cambridge.org/dictionary/english/be-two-sides-of-the-same-coin
 At the same time, the collection of such amount of data in \acp{osn} is having a great 
 impact on the privacy of the users who use these networks to share information among 
-them. Because the data is usually stored by a single centralised entity --- the 
-owner of the \ac{osn} --- there is a risk for unintentional, and also intentional, 
-wrong-doing of the data without knowledge of the users such as misuse, data leakages 
-or even censorship.
+them. Data and privacy seem to be the two sides of the same coin: \acp{osn} \cite{BelkinC92}. 
+On the one side, the retrieval of information --- data --- is 
+a necessity when it comes to providing some service, for example, allowing people 
+to comment on a picture, and on the other side, the collection of such data opens 
+a lot of possibilities on how the data can be used beyond its initial intended purpose 
+in other realms, for example, advertising.
 
-% http://dictionary.cambridge.org/dictionary/english/be-two-sides-of-the-same-coin
-That is to say, data and privacy seem to be the two sides of the same coin --- \acp{osn}. 
+As the data is usually stored by a single centralised entity --- the owner of the 
+\ac{osn} --- there is also a risk for unintentional wrong-doing of the data without 
+the knowledge of the users such as misuse, data leakages or even censorship. Therefore, 
+when designing such information systems with social network capabilities \cite{Abrams06, Lunt06, Lunt07, Zhu08, Lunt09}, 
+considering privacy is not simply an additional feature to have in the \ac{osn} 
+and it becomes a requirement. 
 
-
+Moreover, it is as important to provide privacy-preserving capabilities than to 
+educate the users into using them. The risks of exposing personal information by 
+not configuring properly the visibility of the data is something that is not commonly 
+considered and pose different threats, for example, identity theft \cite{GrossAH05, BrandtzaegLS10}. 
+However, the topic of user behaviour with privacy-preserving features in \acp{osn} 
+is out of the scope of this thesis.
 
 \section{Information systems: on the importance of capabilities}
-% This section seems more appropiate for the phd...
 % Reference: Social Networks and Information Systems: Ongoing and Future Research Streams
 % Short summary: The IS research drawing on social networks can be divided into the following streams: 1) network awareness at both individual and organizational levels, 2) uses of social network analysis related to IS use, and 3) conceptual and technological change in the fast evolving platforms to manage social networks
+
+\subsection{Information systems in this thesis}
 
 
 \section{\Aclp{osn}: centralisation vs decentralisation}
 
 While there is a wide understanding among researchers and practitioners on what 
-a \ac{sn} is and, by extension, a \ac{osn}, there is not a canonical definition 
+a \ac{sn} is and, by extension, an \ac{osn}, there is not a canonical definition 
 of neither of them in the literature. Authors seem to define their own ``interpretation'' 
 as they see fit to their particular problem to solve or topic to discuss without 
-much general consensus.
+much general consensus. See, for example, \cite{AdamicA05}, \cite{DwyerHP07}, \cite{SchneiderFKW09} 
+and \cite{RichterRB11}.
 
-In our work, we have opted for the definition by \citeauthor{boydE07} because we 
-believe that is the most representative for the recent works in the field of \acp{osn} 
+In our work, we have opted for the definition by boyd\etal because we 
+believe it is the most representative for recent works in the field of \acp{osn} 
 --- an \ac{osn} site is a ``web-based service that allows individuals to construct 
 a public or semi-public profile within a bounded system, articulate a list of other 
 users with whom they share a connection, and view and traverse their list of connections 
-and those made by others within the system'' --- \cite{boydE07}. 
+and those made by others within the system'' --- \cite{boydE07}. Although this definition 
+has been critiqued for being too broad as well \cite{Beer08}.
 
 The two most important parts of the previous definition are the means of communication 
 --- the \ac{www} --- and the administration of the users' profiles and their connections 
 in a system. It is this system what we need to clarify in fact because the \ac{www} 
-is, by construction, an interconnected set of systems thus inherently distributed. 
+is, by construction, an interconnected set of systems thus inherently distributed\footnote{
+Although \Internet traffic nowadays is increasingly concentrating through specific 
+nodes, owned by major corporations, offering cloud services and allowing a centralization 
+of the data in the \ac{www} Bolychevsky, Irina (12 November 2013). "BBC Radio Five Live". Outriders (Interview). Interview with Jamillah Knowles. Retrieved 12 December 2013.}. 
 But the \ac{osn} is a traditionally centralised system as opposed to distributed 
 systems such as the \ac{www}.
 
-There are many reasons for which most \acp{osn} designs are centralised --- define here centralised --- 
-lie more on the side of data control towards business value \cite{look-for-reference}.
-Popular \acp{osn} such as \Facebook, \Twitter, etc take different approaches in the 
-way they have designed their users' profiles and the mechanisms for which they share 
-and traverse the connections among them and, exchange information. However, most 
-of the data, if not all, is stored under the control of the owner of the network\footnote{The 
-owner may still use a distributed system to provide the service while still keep 
-full control of all the nodes in such distributed setup}.
+%"As we've gone on there's been more and more internet traffic focused through particular 
+% nodes such as Google or Facebook. [...] Centralised services that hold all the user data and host it themselves have become increasingly popular because that business model has worked. As the Internet has become more mass market, people are not necessarily willing or knowledgable to host it themselves, so where that hosting is outsourced it's become the default, which allows a centralization of power and a centralization of data that I think is worrying."[149]
+
+
+There are many reasons for which most \acp{osn} designs are centralised with the 
+most prominent ones lying on the side of data control --- ownership --- 
+towards business value by means of data mining \cite{DomingosR01}.
+
+Popular centralised \acp{osn} such as \Facebook, \Twitter or \GooglePlus take different 
+approaches in the way they have designed their users' profiles and the mechanisms 
+for which users share and traverse the connections among them and, exchange information. 
+However, most of the data is still stored, processed, administered and managed by 
+the owner of the \ac{osn}\footnote{The owner may use a distributed architecture 
+to provide the service while still keep full control of all the nodes in such setup.}.
 
 
 
+
+---
 How most designs are centralised (and why)
+Cite "Centralized information systems and the legal right to privacy"
 What it means to be decentralised
-How we can decentralise such centralisation
+How we can decentralise such centrali
 Trade off (this leads to the main point of privacy that comes now)
+---
+
+\subsection{\aclp{dosn} in this thesis}
+
 
 \section{Privacy: a never ending battle}
+Privacy as a fundamental human right recognized in the \ac{un} Declaration of Human 
+Rights, the International Convenant on Civil and Political Rights and in many other 
+international treaties, can be defined as ``the right to be let alone'' \cite{The Right to Privacy (article)
+}.
+
+Although there have been many attempts thorughout history to define privacy from different
+perspectives, for example, as part of a legal framework or as a social value.
+---
+One definition of interest that englobes all this stuff from Westin who describes 
+four states of privacy: solitude, intimacy, anonymity, and reserve. These states must balance participation against norms:
+
+% Data control is a complex paradigm that hinders conflicting interests. For example,
+% while it seems reasonable to let individuals keep control of their financial data,
+% as it is rather sensitive personal information, certain obligations, such as tax
+% laws, oblige individuals to share this type of information to governmental agencies
+% and even society \cite{Allen99}.
+
+Each individual is continually engaged in a personal adjustment process in which he balances the desire for privacy with the desire for disclosure and communication of himself to others, in light of the environmental conditions and social norms set by the society in which he lives. - Alan Westin, Privacy and Freedom, 1968[48]
+
 
 What privacy is
 
-Privacy is a fundamental human right recognized in the UN Declaration of Human Rights, 
-the International Convenant on Civil and Political Rights and in many other international 
-and regional treaties.
 
 What it implies
-Why is it important
+Why is it important (and in our context)
 How it can be breached or attacked or diminished
-What can we do: crypto
+What can we do: crypto for access control
+---
 
-\section{Analytics: from raw data to information}
-TODO: Develop for PhD kappa
+% \section{Graph modeling: there is so much beyond one-to-one relationships}
+% TODO: Develop for PhD kappa
+%
+% \section{Analytics: from raw data to information}
+% TODO: Develop for PhD kappa
+%
+% Raw data is a set of unorganized facts about something that when processed, organized
+% and structured can be presented in some meaningful manner resulting in information.
+% Such information is key to get conclusions via a process: analysis.
+%
+% Analysis of data in OSNs is important from a business perspective but doing so will
+% necessarily breach the boundaries of user privacy. Can we do business in a privacy-preserving
+% manner? (This is the key question).
 
-Raw data is a set of unorganized facts about something that when processed, organized 
-and structured can be presented in some meaningful manner resulting in information.
-Such information is key to get conclusions via a process: analysis.
-
-Analysis of data in OSNs is important from a business perspective but doing so will 
-necessarily breach the boundaries of user privacy. Can we do business in a privacy-preserving 
-manner? (This is the key question).
+\subsection{Privacy aspects in this thesis}
 
 \section{Related work}
 %NOTE: Undecided, whether this best fit as a subsection or part of the introduction or simply not exist.
@@ -458,7 +658,7 @@ the scientific method as the main approach to address our research problem by sy
 observation, measurement, experimentation, induction and formulation of hypotheses, 
 testing of our deductions, and possibly the modification of such hypotheses \cite{Oxford14}.
 
-
+---
 Design science research methodology
 
 (Mixed Methods Research: A Research Paradigm Whose Time Has Come: http://edr.sagepub.com/content/33/7/14.short)
@@ -473,7 +673,7 @@ Prototyping or such
 
 Break down these parts (analysis, design, protocol/theory, prototyping) for each 
 paper?
-
+---
 
 \chapter{Contributions}
 \renewcommand\thesection{\Alph{section}}
@@ -518,17 +718,28 @@ paper?
 \renewcommand\thesection{\thechapter.\arabic{section}}
 I conclude I am not yet done... will I ever be...? :/
 
-\section{Future work}
+\section{Future directions}
 Space: the final frontier. These are the voyages of the starship Enterprise. Its 
 continuing mission: to explore strange new worlds, to seek out new life and new 
 civilizations, to boldly go where no one has gone before. (Star Trek: The Next Generation)
 
 
-\chapter{Glossary of acronyms and abbreviations}
+%\chapter{Glossary of acronyms and abbreviations}
+\chapter{Glossary of acronyms}
 \acsetup{list-caps=true, list-heading=none}
 \printacronyms
 
-\chapter{Index}
+\begin{appendices}
+    \addappheadtotoc
+    %\appendixpage
+    \chapter{Excerpts of \ac{tos} and \ac{pp}}
+    \section{\Facebook}
+    \section{\LinkedIn}
+    \section{\Twitter}
+\end{appendices}
+
+%\appendix
+%\chapter{Excerpts of \ac{tos} and \ac{pp}}
 
 %\chapter*{References}
 %\addcontentsline{toc}{chapter}{Bibliography}
