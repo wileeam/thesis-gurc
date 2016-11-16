@@ -9,6 +9,25 @@
 \newcommand{\Ie}{I.\,e.,\ }
 
 
-\newcommand{\ppPTP}{Passwords in Peer-to-Peer}
-\newcommand{\ppEI}{Event Invitations in Privacy-Preserving DOSNs: Formalization and Protocol Design}
-\newcommand{\ppDSS}{Design of a Privacy-preserving Document Submission and Grading System}
+%%%
+% DOC: Automatized formatting for quotes :) Usually it will be
+%      one quote/citation per chaper, and it should be located
+%      right after the chapter's title, \chapter{bla bla bla}
+%      Usage: \requote{frase}{autor}
+%
+%      For instance: \requote{To be... or not to be: that is the question}{William Shakespeare}
+%
+\newcommand{\requote}[2]{
+{\fontfamily{\carlitofamily}\selectfont
+    \begin{flushright}
+        \begin{minipage}[b][][t]{0.45\paperwidth}
+            \small{
+                \itshape{\textbf{\normalsize ``}#1\textbf{\normalsize ''}}
+                \begin{flushright}
+                    \textbf{\textsc{#2}}
+                \end{flushright}
+            }
+        \end{minipage}
+        \bigskip
+    \end{flushright}
+}}
