@@ -1,7 +1,7 @@
 % -*- mode: TeX -*-
 % -*- coding: utf-8 -*-
 
-\documentclass[showtrims]{kthesis}
+\documentclass[showtrims,oldfontcommands]{kthesis}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{lmodern}
@@ -19,6 +19,10 @@
 \usepackage[noadjust]{cite}
 % *** allowed for \citeauthor and \citeyear commands ***
 \usepackage[authoryear, numbers, square]{natbib}
+\usepackage{usebib}
+\bibliographystyle{acm}
+\setcitestyle{authoryear,aysep={},open={(},close={)}}
+\bibinput{data/bibliography} % <--- the same argument as in \bibliography
 
 \usepackage{lettrine}
 
@@ -26,6 +30,10 @@
 % *** provides random text to fill up boxes, etc ***
 \usepackage{lipsum}
 \listfiles
+
+\usepackage[explicit]{titlesec}
+\usepackage[many]{tcolorbox}
+
 
 \usepackage{mfirstuc}
 \usepackage[single, hyperref=true]{acro}
@@ -39,14 +47,41 @@
 % *** adds a space unless the macro is followed by certain punctuation characters ***
 \usepackage{xspace}
 
-\usepackage{cleveref}
-
 %\usepackage{algorithm}
+
+% colored dogear marks
+\usepackage[pages=some,contents={},opacity=1.0,scale=1,angle=90]{background}
+\usepackage{tikz}
+\newcommand*\VerBar[1]{%
+	\begin{tikzpicture}
+	\fill[#1] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
+	\draw[white] (0.5,0.5)node{\rotatebox{-90}{\Huge \textbf \thechapter}};
+	\end{tikzpicture}
+}
+\newcounter{DogearHShift}
+\newcommand{\dogear}[1]{%
+  \backgroundsetup{position={current page.north east},vshift=0.5cm,%
+    hshift=-\theDogearHShift cm,contents={\VerBar{#1}}}%
+  \BgThispage%
+  \addtocounter{DogearHShift}{1}
+}
+\newcommand{\dogearRGB}[1]{%
+  \definecolor{dogearColor}{RGB}{#1}%
+  \dogear{dogearColor}%
+}
+%usage: \dogear{COLOR}, e.g. \dogear{red}
+%   or: \dogearRGB{RED,GREEN,BLUE}, e.g. \dogearRGB{255,0,0}
+% ------------------------------------
+
 
 \usepackage{hyperxmp}
 % == load hyperref last ==
 %\usepackage[hidelinks, pagebackref=true]{hyperref}
 \usepackage[colorlinks=true, pagebackref=true, linktocpage=true]{hyperref}
+
+\usepackage{cleveref}
+\crefname{appsec}{appendix}{appendices}
+\crefname{artsec}{article}{articles}
 
 % *** customisation for pagebackref option in hyperref package ***
 % http://tex.stackexchange.com/questions/38149/removing-double-entries-from-hyperrefs-pagebackref
@@ -65,7 +100,6 @@
 
 \input{data/kth-bibl}
 
-\usepackage[many]{tcolorbox}
 \newtcolorbox{ppBox}[1][]{
     breakable,
     enhanced,
@@ -96,30 +130,6 @@
     width=8\linewidth/10,
     valign=center,
 }
-
-% colored dogear marks
-\usepackage[pages=some,contents={},opacity=1.0,scale=1,angle=90]{background}
-\usepackage{tikz}
-\newcommand*\VerBar[1]{%
-	\begin{tikzpicture}
-	\fill[#1] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
-	\draw[white] (0.5,0.5)node{\rotatebox{-90}{\Huge \textbf \thechapter}};
-	\end{tikzpicture}
-}
-\newcounter{DogearHShift}
-\newcommand{\dogear}[1]{%
-  \backgroundsetup{position={current page.north east},vshift=0.5cm,%
-    hshift=-\theDogearHShift cm,contents={\VerBar{#1}}}%
-  \BgThispage%
-  \addtocounter{DogearHShift}{1}
-}
-\newcommand{\dogearRGB}[1]{%
-  \definecolor{dogearColor}{RGB}{#1}%
-  \dogear{dogearColor}%
-}
-%usage: \dogear{COLOR}, e.g. \dogear{red}
-%   or: \dogearRGB{RED,GREEN,BLUE}, e.g. \dogearRGB{255,0,0}
-% ------------------------------------
 
 %%%
 % CONFIG: Meta-data properties for PDF and XMP
@@ -154,15 +164,13 @@
     urlcolor={blue}
 }
 
-
-
 % *** 
 \input{data/commands}
 % ***
 \input{data/abbreviations}
 
 \makechapterstyle{myell}{%
-  \chapterstyle{default}
+  \chapterstyle{veelo}
   \renewcommand*{\chapnumfont}{\normalfont\huge\bfseries}
   \renewcommand*{\chaptitlefont}{\normalfont\Huge\bfseries}
   \settowidth{\chapindent}{\chapnumfont 111}
@@ -184,8 +192,145 @@
     \vskip\onelineskip
     \raggedleft {\chaptitlefont ##1}\par\nobreak}}
 
-\chapterstyle{myell}
+% http://tex.stackexchange.com/questions/254318/chapter-style-with-tcolorbox/254328
+% http://tex.stackexchange.com/questions/301185/modify-fancy-chapter-heading-to-show-chapter-name
+\definecolor{titlebgdark}{RGB}{0,163,243}
+\definecolor{titlebglight}{RGB}{191,233,251}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=titlebgdark,
+      boxrule=0.25cm,
+      colframe=titlebglight,
+      arc=0pt,
+      outer arc=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\sffamily\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin, 
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
+      width=\paperwidth, 
+      left=1in+\hoffset+\oddsidemargin, 
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      top=0.6cm, 
+      bottom=0.6cm,
+      overlay={
+        \node[
+          fill=titlebgdark,
+          draw=titlebglight,
+          line width=0.15cm,
+          inner sep=0pt,
+          text width=1.7cm,
+          minimum height=1.7cm,
+          align=center,
+          font=\color{white}\sffamily\bfseries\fontsize{30}{36}\selectfont
+        ] 
+        (chapname)
+        at ([xshift=-1in]frame.north east)
+        {\thechapter};
+        \node[font=\small,anchor=south,inner sep=2pt] at (chapname.north)
+        {\MakeUppercase\chaptertitlename};  
+      } 
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\huge\bfseries}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=titlebgdark,
+      boxrule=0.25cm,
+      colframe=titlebglight,
+      arc=0pt,
+      outer arc=0pt,
+      remember as=title,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\sffamily\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin, 
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
+      width=\paperwidth, 
+      left=1in+\hoffset+\oddsidemargin, 
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      top=0.6cm, 
+      bottom=0.6cm, 
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\titlespacing*{\chapter}
+  {0pt}{0pt}{40pt}
+\makeatother
 
+%\chapterstyle{myell}
+
+% http://tex.stackexchange.com/questions/159551/customizing-part-style-with-tikz
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+\renewcommand\partnumfont{% font specification for the number
+  \fontsize{380}{130}\color{myblueii}\selectfont%
+}
+
+\renewcommand\partnamefont{% font specification for the name "PART"
+  \normalfont\color{white}\scshape\small\bfseries 
+}
+
+\titleformat{\part}
+  {\normalfont\huge\filleft}
+  {}
+  {20pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii] 
+    (current page.north west) rectangle ([yshift=-13cm]current page.north east);   
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=6cm,
+      text depth=18cm,
+      anchor=center,
+      inner sep=0pt] at (current page.north east) (parttop)
+    {\thepart};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south) 
+    {\partnumfont\thepart};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)   
+  {\partnamefont PART};
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.5cm]partname.east|-partnum.south) 
+  {\parbox{.7\textwidth}{\raggedleft#1}};
+  \end{tikzpicture}%
+  }
+  
+
+\makeatletter
+\newcommand*{\greek}[1]{%
+   \expandafter\@greek\csname c@#1\endcsname
+}
+\newcommand*{\@greek}[1]{%
+   $\ifcase#1\or\alpha\or\beta\or\gamma\or\delta\or\varepsilon
+     \or\zeta\or\eta\or\theta\or\iota\or\kappa\or\lambda
+     \or\mu\or\nu\or\xi\or o\or\pi\or\varrho\or\sigma
+     \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
+     \else\@ctrerr\fi$%
+}
+\makeatother
+
+\counterwithin*{chapter}{part}
 
 \begin{document}
 
@@ -205,9 +350,15 @@
 % \end{abstract}
  \selectlanguage{english}
 \begin{abstract}
+    % What is the problem?
+    % Why is it a problem?
+    % Why should we care?
+    % What are our findings?
+    %
     Privacy-enhancing technologies may help lessen the threats to the privacy of 
-    users' personal information in centralised \aclp*{osn}. As such, decentralised 
-    solutions have been proposed to extend user's control over its data.
+    users' personal information in centralised systems like \aclp*{osn}. As such, 
+    decentralised solutions have been proposed to extend user's control over its 
+    data.
     
     current solutions are made of building blocks, we show some of them in the categories
     of decentralized systems in general, particular systems like osns and more generic
@@ -242,11 +393,14 @@
 
 \mainmatter
 
+\part*{}
+
 \chapter{Introduction}
-\lettrine{\textcolor[gray]{.25}{I}}{n} 1989, while at the European Particle Physics Laboratory, at \ac{cern}, Tim Berners-Lee 
-invented the \Ac{www}. No one at that time would have imagined that such invention 
-has been centric to the rapid development of the digital age that we are currently 
-witnessing.
+    \label{chapter:introduction}
+\lettrine{\textcolor[gray]{.25}{I}}{n} 1989, while at the European Particle Physics 
+Laboratory, at the \acf{cern}, Tim Berners-Lee invented the \Ac{www}. No one at that 
+time would have imagined that such invention has been centric to the rapid development 
+of the digital age that we are currently witnessing.
 
 Such period in human history, mainly characterised by an economy based on information 
 processing as opposed to the traditional industry of the industrial revolution, 
@@ -309,8 +463,8 @@ some \ac{tos} and \acp{pp} where the users of the \ac{osn} give up certain right
 on the data contained in the ``free'' profiles and any other data stemming from 
 the interactions among them. For example, \Facebook states in its \ac{tos} that 
 the user grants a ``non-exclusive, transferable, sub-licensable, royalty-free and 
-worldwide license'' of any intelectual property content posted in the \ac{osn} \cite{Facebook15}, 
-\LinkedIn and \Twitter state similar \ac{tos} as \Facebook \cite{LinkedIn14, Twitter16}.
+worldwide license'' of any intelectual property content posted in the \ac{osn}, 
+\LinkedIn and \Twitter state similar \ac{tos} as \Facebook~--- see \cref{section:excerpts-facebook,section:excerpts-linkedin,section:excerpts-twitter}.
 
 Users are also more aware of the profitability that \ac{osn} service providers do 
 of their content via advertising. Moreover, the concern of users' data privacy in 
@@ -335,57 +489,151 @@ data control --- privacy was already envisioned as data control in the late 90s
 to name a few, coercion into self-identification\footnote{See ``Facebook Locks Out Thousands, Now Wants Photo ID'' at \url{https://web.archive.org/web/20150921075721/http://www.conspiracyclub.co/2015/03/25/facebook-asking-gov-id-to-verify-account/}}, 
 user data leakages\footnote{See ``Passwords for 32M Twitter accounts may have been hacked and leaked'' at \url{https://web.archive.org/web/20161102165137/https://techcrunch.com/2016/06/08/twitter-hack/}}, 
 censorship\footnote{See ``LinkedIn Considers Changes After China Censorship Revealed'' at \url{https://web.archive.org/web/20150927040931/http://blogs.wsj.com/digits/2014/09/03/linkedin-considers-changes-after-china-censorship-exposed/}}, 
-intentional misuse\footnote{See ``WhatsApp data sharing with Facebook must be stopped until it can be proved legal, European Union warns'' at \url{https://web.archive.org/web/20161029115621/http://www.independent.co.uk/life-style/gadgets-and-tech/news/whatsapp-data-sharing-facebook-eu-european-union-privacy-safety-opt-out-a7384586.html}} and 
-even veto the right to be forgotten\footnote{See ``European Court Lets Users Erase Records on Web'' at \url{https://web.archive.org/web/20161013113612/http://www.nytimes.com/2014/05/14/technology/google-should-erase-web-links-to-some-personal-data-europes-highest-court-says.html}}
+intentional misuse\footnote{See ``WhatsApp data sharing with Facebook must be stopped until it can be proved legal, European Union warns'' at \url{https://web.archive.org/web/20161029115621/http://www.independent.co.uk/life-style/gadgets-and-tech/news/whatsapp-data-sharing-facebook-eu-european-union-privacy-safety-opt-out-a7384586.html}} 
+and even veto the right to be forgotten\footnote{See ``European Court Lets Users Erase Records on Web'' at \url{https://web.archive.org/web/20161013113612/http://www.nytimes.com/2014/05/14/technology/google-should-erase-web-links-to-some-personal-data-europes-highest-court-says.html}}
 
 Moreover, \acp{osn} service providers, among other major technological companies, 
 have been known to be in the thick of a global surveillance program --- a program 
 known as \Ac{prism}\footnote{See ``NSA Prism program taps in to user data of Apple, Google and others'' at \url{https://web.archive.org/web/20161112033822/https://www.theguardian.com/world/2013/jun/06/us-tech-giants-nsa-data}} --- 
-after the revelations of a former contractor's employee of the \ac{us} government 
+after the revelations of a former contractor's employee of the \ac{usa} government 
 in 2013. For example, not only \Facebook and \Google, had full knowledge of having 
 their users' privacy breached without their knowledge and consent but also assisted 
 and collaborated willingly in such violation.
 
-Even though the aforementioned scenario is certainly pessimistic as it seems that 
-privacy is barely possible even if it was somewhat possible before, there are different 
-scenarios that can address the use of \acp{osn} in a privacy-preserving manner. 
-A trivial one would be simply not using any technology that can pose a threat to privacy 
-but this is impractical in the current digital era and also irrational. Another 
-solution could be some sort of institutional transparent control of service providers 
-but this would allow for collusions between service providers and institutions as 
-experienced with the \ac{prism} program.
+The aforementioned scenario certainly pictures a quite pessimistic and probable 
+future as it seems that privacy is pretty much extinct --- even if it was somewhat 
+possible before. Even though there are other plausible scenarios that can address the use of 
+\acp{osn} in a privacy-preserving manner. A trivial one would be simply not using 
+any technology that can pose a threat to privacy but this is impractical in the 
+current digital era and irrational. Another solution could be some sort of institutional 
+transparent control of service providers but this would allow for collusions between 
+service providers and institutions as proven with the \ac{prism} program.
 
-There is not a perfect solution that addresses the problem in fact. However, the 
-idea of privacy as data control is feasible enough to consider it because it should 
-be the user the one who decides what happens with her data, how it is dealt with 
-and by whom. There is already technology allowing for current business models to 
-operate without compromising users' privacy. For example, \Apple recently unveiled 
-how it is embracing differential privacy to collect statistics of its users anonymously\footnote{See ``Apple's `Differential Privacy' Is About Collecting Your Data --- But Not Your Data'' at \url{https://web.archive.org/web/20160901192334/https://www.wired.com/2016/06/apples-differential-privacy-collecting-data/}}.
+In fact, there is not a perfect solution that addresses the problem. However, the 
+idea of privacy as data control is feasible enough to consider as a starting point. 
+Because it should be the user the one who decides what happens with her data, how 
+it is dealt with and by whom. There is already technology aiding the users keep 
+that control while allowing business models to operate without compromising users' 
+privacy. For example, \Apple recently unveiled how it is embracing differential 
+privacy to collect statistics of its users anonymously\footnote{See ``Apple's `Differential Privacy' Is About Collecting Your Data --- But Not Your Data'' at \url{https://web.archive.org/web/20160901192334/https://www.wired.com/2016/06/apples-differential-privacy-collecting-data/}}.
 
-For these reasons decentralisation has been proposed for \ac{osn} as one of the 
-most important ways to reduce the impact of the main issue with these networks: 
-the central service provider. 
+% DSS BEGIN
+An example of a privacy-preserving solution in an information system is part of 
+this thesis in \cref{article:document-submission-system}. In the context of an academic 
+institution where personal information about individuals is collected --- for example, 
+students' examination documents --- for further processing by a central authority 
+--- such as a grading examiner --- we provide a privacy-preserving protocol based 
+on blind signatures for anonymous document submission and grading --- the process 
+of anonymous grading is popularly known as blind grading in fact. 
 
+% In such scenario, our proposed protocol guarantees what we defined as ``forward
+% unlinkability'' of a document with the author --- a document and its author's identity
+% must remain unlinkable even after receiving a grade --- and ``provable linkability''
+% of an author with a grade --- the system must guarantee that an author receives
+% a grade if and only if the author submitted a document for grading that was actually
+% graded.
 
+Although our solution provides with a procedure to do blind grading in a privacy-preserving 
+manner guaranteeing the correctness of the grading process, it relies on a central 
+authority to process the data --- for example, to issue and link the credentials with 
+the identities of the participants. Such authority --- an academic institution --- 
+is a trusted party, but this cannot always be a reasonable assumption in other scenarios 
+--- recall the governmental program \ac{prism}.
+% DSS END
 
-%\acp{dosn} are the name 
+For these reasons, decentralisation\footnote{In the context of this thesis we adopt 
+the definition by Rohit Khare where a decentralised system is ``one which requires 
+multiple parties to make their own independent decisions''.} has been proposed in 
+some centralised information systems such as \ac{osn} --- namely \acp{dosn} --- 
+as one of the foremost steps to minimise the impact on users' privacy by the central 
+service provider. Yet decentralisation in information systems does not come for 
+free nor it is trivial to achieve because new challenges arise when there is no 
+central provider to rely on for basic services such as storage, communication or 
+identification.
 
----
-Offer some solutions (maybe in categories). Point to decentralization as a key solution
-(use \url{https://diasporafoundation.org/about#privacy} idea with the pictures too).
+The main idea in decentralised systems, such as \acp{dosn}, is to provide the services 
+of the centralised counterpart without relying on the central authority which was 
+assumed to be trusted --- fully or partially --- and making decisions on behalf 
+of everyone in the system. This can be done by fully opening the system in such 
+a way that every party --- known as peer --- is autonomous, hence interacting directly 
+with other parties, for example, sharing information, and, entering or leaving the 
+system freely --- anyone can do so at any time. A typical example of an information 
+system that is completely decentralised is a \ac{p2p} network.
 
-introduce the solutions presented 
-in this thesis. Describe them briefly.
+Such arbitrariness comes with trade-offs because the parties may have conflicting 
+interests and goals making the decentralised system susceptible to additional attacks 
+from malicious parties. Every party has now some responsibility because there is 
+not a central authority where any party can turn to in case of misbehaviour. For 
+example, impersonation, denial of service, \Sybil attacks, collusion or deception 
+are some of the security threats that a decentralised scenario has to face besides 
+other technical ones such as lack of cooperation, network bootstraping or, who and 
+how to trust \cite{BucheggerA09}.
 
-There are also some other valid solutions outside the realm of OSNs (introduce DSS 
-and describe).
+Consequently, decentralisation shifts the primary focus of the information system 
+to privacy, security and data portability --- and usable functionality thereafter. 
+As the power of the central authority is overruled and distributed among the parties 
+in the decentralised system new threats arise in the decentralised context. Without 
+any privacy-preserving approach addressing these challenges, the personal data, 
+that is now unlocked from the centralised ``silo'', is at the hand of everyone in 
+a virtually ungoverned environment.
 
-Discuss that these are not the only solutions, nor the best ones: these are some 
-of many solutions.
+% P2P BEGIN
+Privacy-preserving decentralised information systems is the other focus of this 
+thesis. On one side, we show how the classical functionality of user authentication 
+can be implemented in a decentralised manner in \cref{article:passwords-peer-to-peer} 
+for an information system in general --- in fact, for a fully decentralised system 
+such as a \ac{p2p} network. We supplement the basic login functionality with other 
+features such as enabling a user to change her password or even recover a forgotten 
+one via her e-mail or some security questions or, store her login credentials on 
+some other device --- in a secure form --- for example, a mobile phone, so that 
+she does not have to log in every time she wants to use it.
 
-End with a summary of our goal with this thesis (longer version and so description of the title?)
----
+Scalable and usable privacy-preserving user authentication in decentralised systems 
+allows for a wider adoption and transition to decentralised information systems. 
+For example, the feature of recovering the password via e-mail is a popular solution 
+used by many vendors in centralised systems --- including \acp{osn} service providers 
+\cite{Kuzma11}. However, the functionality fails its primary function when the service 
+provider is not available, or if it becomes malicious and refuses to use the e-mail 
+originally provided by the user. 
 
+In our solution we propose a $(n, k)$-secret sharing approach to overcome the absence 
+of a central authority. The user chooses $n$ peers who can help her on the recovery 
+task and among those, $k$ peers that should be available when recovering the password. 
+The user is in control of both parameters --- $n$ and $k$ ---  at all times, unlike 
+in the centralised scenario.
+% P2P END
+
+% EI BEGIN
+On the other side, we show how the basic functionality of organising an event, usually 
+available in centralised \acp{osn}, can be implemented in a privacy-preserving manner 
+in \acp{dosn} in \cref{article:events-invitations-dosns}. Our proposed solution 
+allows a user to create events and invite other users who can confirm their attendance. 
+While this functionality is rather simple when there is a trusted third party, such as 
+the service provider in an \ac{osn}, implementing such feature without a trusted 
+broker that guarantees fairness in the process is not trivial. For example, keeping 
+track of who is invited or showing the total number of attendess to those invitees 
+who are attending.
+
+Our mechanism uses standard cryptographic primitives allowing other features such 
+as revealing some event specific information to a group of users --- to those who 
+commit to attend an event --- or even detect any misbehaving party --- for example, 
+an invitee can prove that accepted an invitation and did not get further details 
+about the event from a malicious organiser.
+
+With our solution we aim at a broader spectrum of privacy-preserving applications 
+outside the context of \acp{dosn}. The cooperation and coordination characteristics 
+of our specific use case and our secure decentralised solution suggest for applications 
+in other domains where there is some collaboration involved between the parties 
+and a trusted third party is not ideal or possible at all.
+% EI END
+
+Finally, we acknowledge the urgent need for more privacy in information systems. 
+In this thesis, we take the approach of decentralising such systems as a way to 
+achieve the ideal of privacy as data control as envisioned by Allen \cite{Allen99}. 
+We contribute with some insights on how to enhance the control of the user on her 
+data in general centralised and decentralised systems, and in particular ones such 
+as \acp{dosn}. We also suggest usable privacy-preserving protocols for some specific 
+features and show their utility in some concrete scenarios.
 
 % % Social networks
 %  is an inherently interdisciplinary academic field which emerged from social psychology, sociology, statistics, and graph theory.
@@ -406,13 +654,15 @@ End with a summary of our goal with this thesis (longer version and so descripti
 % people to build social networks or social relations with other people who share similar personal or career interests,[1] activities, backgrounds or real-life connections. The variety of stand-alone and built-in
 
 \section{Motivation}
+    \label{section:motivation}
 Our rationale for the line of work of this thesis is data control in the broad sense 
 and in line with the notion of ``privacy as data control'' in \cite{Allen99}. We 
 drive our reasoning on the three following core user personal data rights\footnote{The 
-reader is advised to read more on the three main rights we have in mind in the \ac{udm} 
-(\url{https://userdatamanifesto.org}).}: ``control over user data access'', ``knowledge 
-of how data is stored'' and which laws or jurisdictions apply and, ``freedom to 
-choose a platform'' without experiencing any vendor lock-in.
+reader is advised to read more on the three main rights we have in mind in the \Ac{udm} 
+(\url{https://web.archive.org/web/20161010132230/https://userdatamanifesto.org/}).}: 
+``control over user data access'', ``knowledge of how data is stored'' and which 
+laws or jurisdictions apply and, ``freedom to choose a platform'' without experiencing 
+any vendor lock-in.
 
 % The rights stated in the \ac{udm} are, as a matter of fact, a modern version of the
 % three notions of `privacy' that \citeauthor{Allen99} stated in \cite{Allen99}: ``personal
@@ -421,11 +671,12 @@ choose a platform'' without experiencing any vendor lock-in.
 
 Data control —-- in the essence of data privacy and information security —-- is a 
 subject that has gained a lot of attention in the last decade. Particularly from 
-big corporations such as \Google, \Apple or \Facebook as they have been identified 
-as necessary collaborators of institutional surveillance of citizens world-wide \cite{Lyon14}.
+major technological corporations such as \Google, \Apple or \Facebook because they 
+have been identified as necessary collaborators of institutional surveillance of 
+citizens world-wide \cite{Lyon14}.
 
-Although users of the \acp{osn} that some of these corporations own are more aware 
-than ever of such collaboration of service providers and governmental institutions 
+Although the users of \acp{osn} owned by some of these major corporations are much more 
+aware than ever of such collaboration of service providers and governmental institutions 
 for mass surveillance \cite{Madden14}. Moreover, users are more willing than before 
 to do something to protect their privacy despite the fact that different types of 
 information prompt different degrees of sensitivity, for example, social security 
@@ -434,10 +685,10 @@ browsing the \ac{www}.
 
 A well articulated security and privacy strategy is necessary but it is not sufficient 
 for a corporation (or governmental institution) to protect the data of its customers 
-(or citizens) and users because the data itself is still out of the control of the 
+and users (or citizens) because the data itself is still out of the control of the 
 user. Not only the user does not possess such data physically but also does not 
-control who access it or even if, and how, it gets transferred to third parties 
-(in some cases, unauthorised).
+control who access it or even if, and how, gets transferred to third parties --- 
+in many cases, unauthorised.
 
 Therefore, we aim at improving users' data control as much as it is technologically 
 possible, leaving legal policies such as \ac{tos} or \ac{pp} and, the ethical debate 
@@ -447,8 +698,8 @@ towards returning that control of the data back to the user.
 
 Finally, we also have the desire to reduce the impact of personal data privacy in 
 people's lives by raising awareness on the topic with our solutions to broaden and 
-deepen the ongoing political and legal discussions. There is still a long road ahead 
-on the quest of privacy and this is barely the beginning.
+deepen the ongoing political debate and legal discussions. However, there is still 
+a long road ahead on the quest of privacy and this is barely the beginning.
 
 \section{Outline}
 In chapter this... bla bla bla, in chapter that.... blu blu blu...
@@ -470,7 +721,19 @@ In this thesis we are using the following conventions in the language used,
     we will use the latter --- information --- as the abstract fact about something, 
     while the former --- data --- as the encoded form of such information that can 
     be transferred over a network and interpreted by a computer.
+    
+    \item All the \acp{url} in this thesis are provided via the \Wayback machine, 
+     a digital archive of the \ac{www} and other information on the \Internet created 
+     by the \InternetArchive non-profit digital library organisation. The reader 
+     has the possibility of accesing a cached snapshot of the version that was used 
+     when this thesis was written and also the original link. In order to access 
+     the original link, the reader is advised to remove the timestamped prefix that 
+     precedes the original \ac{url} of the form \url{https://web.archive.org/web/YYYYMMDDHHMMSS/}. For 
+     example, given the original link \url{https://en.wikipedia.org/wiki/Privacy}, 
+     the \Wayback machine created the following snapshot and its \ac{url} as of 
+     the time of this writing, \url{https://web.archive.org/web/20161111044417/https://en.wikipedia.org/wiki/Privacy}.
 \end{itemize}
+
 
 \chapter{Research problem}
 \lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing solutions for user's data 
@@ -557,10 +820,22 @@ is out of the scope of this thesis.
 % Short summary: The IS research drawing on social networks can be divided into the following streams: 1) network awareness at both individual and organizational levels, 2) uses of social network analysis related to IS use, and 3) conceptual and technological change in the fast evolving platforms to manage social networks
 
 \subsection{Information systems in this thesis}
+\url{https://en.wikipedia.org/wiki/Information_system}
+
+A computer(-based) information system is essentially an IS using computer technology to carry out some or all of its planned tasks. The basic components of computer-based information systems are:
+
+Hardware- these are the devices like the monitor, processor, printer and keyboard, all of which work together to accept, process, show data and information.
+Software- are the programs that allow the hardware to process the data.
+Databases- are the gathering of associated files or tables containing related data.
+Networks- are a connecting system that allows diverse computers to distribute resources.
+Procedures- are the commands for combining the components above to process information and produce the preferred output.
+
+Information systems theoretical foundations: http://www.sciencedirect.com/science/article/pii/0306437981900235
+
+Managing trust in a peer-2-peer information system: http://dl.acm.org/citation.cfm?id=502638
 
 
 \section{\Aclp{osn}: centralisation vs decentralisation}
-
 While there is a wide understanding among researchers and practitioners on what 
 a \ac{sn} is and, by extension, an \ac{osn}, there is not a canonical definition 
 of neither of them in the literature. Authors seem to define their own ``interpretation'' 
@@ -605,11 +880,26 @@ to provide the service while still keep full control of all the nodes in such se
 
 
 ---
-How most designs are centralised (and why)
-Cite "Centralized information systems and the legal right to privacy"
-What it means to be decentralised
-How we can decentralise such centrali
-Trade off (this leads to the main point of privacy that comes now)
+% Sample of centralised vs decentralised system: https://en.wikipedia.org/wiki/File:Decentralization_diagram.svg
+% How most designs are centralised (and why)
+% Cite "Centralized information systems and the legal right to privacy"
+% What it means to be decentralised
+% How we can decentralise such centrali
+% Trade off (this leads to the main point of privacy that comes now)
+---
+
+---
+% \footnote{The creator of the \ac{www} said recently that ``The web was designed to be decentralised so that everybody could participate by having their own domain and having their own webserver and this hasn’t worked out. Instead, we’ve got the situation where individual personal data has been locked up in these silos. […] The proposal is, then, to bring back the idea of a decentralised web.''}
+% \footnote{The \ac{www} was envisioned as a huge decentralised information
+% system, this has not been the case unfortunately as major technological companies controand a movement on the idea of decentralising
+% the \ac{www} is gaining notoerity. See the keynote by Tim Berners-Lee at the ``Decentralized Web Summit'' on ``Re-decentralizing the web - some strategic questions'' at \url{https://archive.org/details/DWebSummit2016_Keynote_Tim_Berners_Lee}}
+%
+% Decentralisation overrules the power that major technological companies have gained
+% over the last two decades and, instead, the duties and responsibilties are shared
+% among a subset of federated servers or among everyone in a \ac{p2p} fashion.
+%
+%
+% Regardless of the trade-offs decentralisation seems to \footnote{See ``A decentralized web would give power back to the people online'' at \url{https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/}}
 ---
 
 \subsection{\aclp{dosn} in this thesis}
@@ -699,7 +989,8 @@ paper?
 \chapter{Contributions}
 \renewcommand\thesection{\Alph{section}}
 % P2P
-\section{\ppPTP}
+%\section{\ppPTP}
+\section{\usebibentry{KreitzBGRB12}{title}}
 \begingroup\centering
 \begin{ppBox}
     \bibentry{KreitzBGRB12}
@@ -711,7 +1002,8 @@ paper?
 %\subsection{Changes for the thesis}
 
 % EI
-\section{\ppEI}
+%\section{\ppEI}
+\section{\usebibentry{RodriguezCanoG14}{title}}
 \begingroup\centering
 \begin{ppBox}
     \bibentry{RodriguezCanoG14}
@@ -723,7 +1015,8 @@ paper?
 %\subsection{Changes for the thesis}
 
 % DSS
-\section{\ppDSS}
+%\section{\ppDSS}
+\section{\usebibentry{GreschbachREB15}{title}}
 \begingroup\centering
 \begin{ppBox}
     \bibentry{GreschbachREB15}
@@ -744,20 +1037,53 @@ Space: the final frontier. These are the voyages of the starship Enterprise. Its
 continuing mission: to explore strange new worlds, to seek out new life and new 
 civilizations, to boldly go where no one has gone before. (Star Trek: The Next Generation)
 
-
 %\chapter{Glossary of acronyms and abbreviations}
 \chapter{Glossary of acronyms}
-\acsetup{list-caps=true, list-heading=none}
+\acsetup{list-caps=true, list-heading=none, extra-style=comma}
+% Reset all acronyms
+%\acresetall
+% Mark all acronyms as used
+%\acuseall
 \printacronyms
+
+
+\part{Published articles}
+\renewcommand\thechapter{\Alph{chapter}}
+\renewcommand{\chaptername}{Article}
+
+\chapter{\usebibentry{KreitzBGRB12}{title}}
+    \label[artsec]{article:passwords-peer-to-peer}
+
+
+\chapter{\usebibentry{RodriguezCanoG14}{title}}
+    \label[artsec]{article:events-invitations-dosns}
+
+
+\chapter{\usebibentry{GreschbachREB15}{title}}
+    \label[artsec]{article:document-submission-system}
+
 
 %\appendix
 \begin{appendices}
     \addappheadtotoc
     %\appendixpage
-    \chapter{Excerpts of \ac{tos} and \ac{pp}}
+    \renewcommand\thechapter{\greek{chapter}}
+    \renewcommand\thesection{\thechapter.\greek{section}}
+    \crefalias{section}{appsec}
+
+    \chapter{Excerpts of \acp{tos} and \acp{pp}}
+
     \section{\Facebook}
+        \label{section:excerpts-facebook}
+    \cite{Facebook15}
+
     \section{\LinkedIn}
+        \label{section:excerpts-linkedin}
+    \cite{LinkedIn14}
+
     \section{\Twitter}
+        \label{section:excerpts-twitter}
+    \cite{Twitter16}
 \end{appendices}
 
 
@@ -765,7 +1091,6 @@ civilizations, to boldly go where no one has gone before. (Star Trek: The Next G
 %\addcontentsline{toc}{chapter}{Bibliography}
 %\dogearRGB{118,118,118}
 
-\bibliographystyle{acm}
 \bibliography{data/bibliography}
 
 \end{document}
