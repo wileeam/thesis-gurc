@@ -543,13 +543,6 @@ students' examination documents --- for further processing by a central authorit
 on blind signatures for anonymous document submission and grading --- the process 
 of anonymous grading is popularly known as blind grading in fact. 
 
-% In such scenario, our proposed protocol guarantees what we defined as ``forward
-% unlinkability'' of a document with the author --- a document and its author's identity
-% must remain unlinkable even after receiving a grade --- and ``provable linkability''
-% of an author with a grade --- the system must guarantee that an author receives
-% a grade if and only if the author submitted a document for grading that was actually
-% graded.
-
 Although our solution provides with a procedure to do blind grading in a privacy-preserving 
 manner guaranteeing the correctness of the grading process, it relies on a central 
 authority to process the data --- for example, to issue and link the credentials with 
@@ -710,8 +703,8 @@ in many cases, unauthorised.
 Therefore, we aim at improving users' data control as much as it is technologically 
 possible, leaving legal policies such as \ac{tos} or \ac{pp} and, the ethical debate 
 out of the scope of this thesis. We believe that removing the central provider in 
-a centralised \ac{is} such as an \ac{osn} is one of the very first steps 
-towards returning that control of the data back to the user.
+a centralised \ac{is} such as an \ac{osn} is one of the very first steps towards 
+returning that control of the data back to the user.
 
 Finally, we also have the desire to reduce the impact of personal data privacy in 
 people's lives by raising awareness on the topic with our solutions to broaden and 
@@ -730,8 +723,8 @@ centralised and decentralised \acp{osn} in \cref{section:osns-centralisation-vs-
 and privacy in \cref{section:privacy-a-never-ending-battle}.
 
 We continue in \cref{chapter:our-research-problem} with a description of our research 
-problem and the challenges our research faced to detail our reserach methodology 
-in \cref{chapter:methodoloy}. Our contributions are listed in \cref{chapter:our-contributions} 
+problem and the challenges we faced to detail our research methodology 
+in \cref{section:methodoloy}. Our contributions are listed in \cref{chapter:our-contributions} 
 along with a summary of each article for the reader's convenience. We complete our 
 thesis with our conclusions and future directions in \cref{chapter:conclusions} 
 and \cref{section:future-directions} respectively. 
@@ -770,59 +763,6 @@ In this thesis we are using the following conventions in the language used,
     of this writing, \url{https://web.archive.org/web/20161111044417/https://en.wikipedia.org/wiki/Privacy}.
 \end{itemize}
 
-
-\chapter{Our research problem}
-    \label{chapter:our-research-problem}
-
-\requote{Poetry is a succession of questions which the poet constantly poses}{Vicente 
-P{\'i}o Marcelino Cirilo Aleixandre y Merlo}
-
-\lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing some methods to improve 
-user data control in the realm of centralised and decentralised \ac{is} 
-and, in a particular scenario: \aclp{dosn}.
-
-
-Main idea of the problem we are trying to solve (or shortlist of them but try to come up with a general idea first)
-
-Privacy-Preserving methods for services in decentralised systems in general and applied ones
-
-
-\section{Challenges addressed}
-Among the wide spectrum of problems and questions that decentralisation poses in 
-\acp{is} such as \acp{osn} we have first focused our efforts on keeping 
-the functionality of some features in decentralised systems as close as possible to 
-what these would be in a centralised scenario.
-
-In parallel, such decentralisation triggers our second concern in terms of privacy.
-Not only we consider this topic in such setup where the central provider does not 
-exist or it plays a minimal role but also in a more generic fashion for an information 
-system.
-
-Each one, decentralisation and privacy, raise so many questions that any thesis 
-or research will ever be able to answer. Therefore, we list the main questions that 
-we believe this thesis answers in the aforementioned domains. There may be additional 
-questions we have not explicitly considered but have an answer in our work. Moreover, 
-the reader may expect some questions that we have not even thought as of the time 
-of this writing --- though this is the beauty of 
-tthere are other expected questions the reader does not find an answer because 
-we did not think about them at the time of of this writing.
-\begin{itemize}
-	\item Can we decentralize an \ac{is}? If so, how?\\
-	Paper A and B
-	\item Can we mimic some of the features of centralised systems in a decentralised setup?\\
-	Paper A and B
-	\item What are the trade-offs when protecting the privacy of the user in an \ac{is}?\\
-	Paper A, B and C
-\end{itemize}
-
----
-Keep functionality of OSNs (in the decentralised scenario) while provide such functionality 
-in a privacy-preserving manner.
-
-Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
-
-Talk about delimitations as well
----
 
 \chapter{Background}
     \label{chapter:background}
@@ -876,25 +816,54 @@ privacy-preserving features in \acp{osn} is out of the scope of this thesis.
 % and privacy in \cref{section:privacy-a-never-ending-battle}.
 
 
-\section{\Aclp*{is}: on the importance of capabilities}
-
+%\section{\Aclp*{is}: on the importance of capabilities}
+\section{Information Systems: on the importance of capabilities}
     \label{section:information-systems-on-the-importance-of-capabilities}
 
 Stair\etal define an \ac{is} as a ``set of interrelated elements or components 
 that collect --- input ---, manipulate --- process --- , store, and disseminate 
 --- output --- data and information, and provide a corrective reaction --- feedback 
-mechanism --- to meet an objective'' \cite{StairR15}. And narrowed down in the domain 
-of \ac{it} a \ac{cbis} is defined as a ``single set of hardware, software, databases, 
-telecommunications, people, and procedures configured to collect, manipulate, store, 
-and process data into information''. 
+mechanism --- to meet an objective'' \cite{StairR15}. And narrow down the previous 
+definition in the domain of \ac{it} with \ac{cbis} defined as a ``single set of 
+hardware, software, databases, telecommunications, people, and procedures configured 
+to collect, manipulate, store, and process data into information''. 
 
-% Some experts list five basic elements of a CBIS: hardware, software, data, procedures and people. Others add a sixth element, communications, to the list.
+\Ac{cbis} are usually divided into six parts, which we briefly describe in the context 
+of \acp{osn},
+\begin{itemize}
+    \item Hardware\\
+    Possibly the most obvious one in any \ac{cbis}. It can be a single machine or 
+    many. In the context of \acp{osn} --- and in the current state of the \Internet 
+    --- is common to use server farms in data centers all over the world acting 
+    as one and, providing a fast, reliable and redundant service. Users usually 
+    communicate with one of the farms that is geographically close. In case of failure 
+    of any component in one or more servers of the farm --- or even an entire server 
+    farm --- the other machines can take over seamlessly --- or another server farm.
+    
+    \item Software\\
+    A
+    
+    \item Communications\\
+    A
+    
+    \item Data\\
+    A
+    
+    \item Processes\\
+    A
+    
+    \item Users\\
+    A
+    
+\end{itemize}
+
 % https://www.techwalla.com/articles/what-are-the-six-elements-of-an-information-system
 
 % Reference: Social Networks and Information Systems: Ongoing and Future Research Streams
 % Short summary: The IS research drawing on social networks can be divided into the following streams: 1) network awareness at both individual and organizational levels, 2) uses of social network analysis related to IS use, and 3) conceptual and technological change in the fast evolving platforms to manage social networks
 
-\subsection{Information systems in this thesis}
+%\subsection{\Aclp*{is} in this thesis}
+\subsection{Information Systems in this thesis}
     \label{subsection:information-system-in-this-thesis}
 
 \url{https://en.wikipedia.org/wiki/Information_system}
@@ -912,7 +881,8 @@ Information systems theoretical foundations: \url{http://www.sciencedirect.com/s
 Managing trust in a peer-2-peer information system: \url{http://dl.acm.org/citation.cfm?id=502638}
 
 
-\section{\Aclp{osn}: centralisation \vs decentralisation}
+%\section{\Aclp*{osn}: centralisation \vs decentralisation}
+\section{Online Social Networks: centralisation \vs decentralisation}
     \label{section:osns-centralisation-vs-decentralisation}
 
 While there is a wide understanding among researchers and practitioners on what 
@@ -981,17 +951,18 @@ to provide the service while still keep full control of all the nodes in such se
 % Regardless of the trade-offs decentralisation seems to \footnote{See ``A decentralized web would give power back to the people online'' at \url{https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/}}
 ---
 
-\subsection{\aclp*{dosn} in this thesis}
+%\subsection{\Aclp*{dosn} in this thesis}
+\subsection{Decentralised Online Social Networks in this thesis}
     \label{subsection:dosns-in-this-thesis}
 
 \section{Privacy: a never ending battle}
     \label{section:privacy-a-never-ending-battle}
 
-Privacy as a fundamental human right recognized in the \ac{un} Declaration of Human 
+Privacy as a fundamental human right recognised in the \ac{un} Declaration of Human 
 Rights, the International Convenant on Civil and Political Rights and in many other 
 international treaties, can be defined as ``the right to be let alone'' \cite{Westin70}.
 
-Although there have been many attempts thorughout history to define privacy from different
+Although there have been many attempts throughout history to define privacy from different
 perspectives, for example, as part of a legal framework or as a social value.
 ---
 One definition of interest that englobes all this stuff from Westin who describes 
@@ -1045,8 +1016,63 @@ Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that
 use OSNs in a privacy-preserving manner (that is, using an overlay of encryption 
 or perhaps a link to a third party that is under the user's control?).
 
-\chapter{Methodology}
-    \label{chapter:methodoloy}
+
+\chapter{Our research problem}
+    \label{chapter:our-research-problem}
+
+\requote{Poetry is a succession of questions which the poet constantly poses}{Vicente 
+P{\'i}o Marcelino Cirilo Aleixandre y Merlo}
+
+\lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing some methods to improve 
+user data control in the realm of centralised and decentralised \ac{is} 
+and, in a particular scenario: \aclp{dosn}.
+
+
+Main idea of the problem we are trying to solve (or shortlist of them but try to come up with a general idea first)
+
+Privacy-Preserving methods for services in decentralised systems in general and applied ones
+
+
+\section{Challenges addressed}
+    \label{section:challenges-addressed}
+Among the wide spectrum of problems and questions that decentralisation poses in 
+\acp{is} such as \acp{osn} we have first focused our efforts on keeping 
+the functionality of some features in decentralised systems as close as possible to 
+what these would be in a centralised scenario.
+
+In parallel, such decentralisation triggers our second concern in terms of privacy.
+Not only we consider this topic in such setup where the central provider does not 
+exist or it plays a minimal role but also in a more generic fashion for an information 
+system.
+
+Each one, decentralisation and privacy, raise so many questions that any thesis 
+or research will ever be able to answer. Therefore, we list the main questions that 
+we believe this thesis answers in the aforementioned domains. There may be additional 
+questions we have not explicitly considered but have an answer in our work. Moreover, 
+the reader may expect some questions that we have not even thought as of the time 
+of this writing --- though this is the beauty of 
+tthere are other expected questions the reader does not find an answer because 
+we did not think about them at the time of of this writing.
+\begin{itemize}
+	\item Can we decentralize an \ac{is}? If so, how?\\
+	Paper A and B
+	\item Can we mimic some of the features of centralised systems in a decentralised setup?\\
+	Paper A and B
+	\item What are the trade-offs when protecting the privacy of the user in an \ac{is}?\\
+	Paper A, B and C
+\end{itemize}
+
+---
+Keep functionality of OSNs (in the decentralised scenario) while provide such functionality 
+in a privacy-preserving manner.
+
+Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
+
+Talk about delimitations as well
+---
+
+\section{Methodology}
+    \label{section:methodoloy}
 Computer science is the study of the phenomena that surrounds computers by means 
 of the theory, experiments and design that leads to the actual construction of computers. 
 That is, the computer is not only a collection of interconnected pieces of hardware 
@@ -1057,13 +1083,22 @@ the scientific method as the main approach to address our research problem by sy
 observation, measurement, experimentation, induction and formulation of hypotheses, 
 testing of our deductions, and possibly the modification of such hypotheses \cite{Oxford14}.
 
+Among the most prominent research methodologies used nowadays --- quantitative and 
+qualitative --- we do not side with any of them and instead take a mixed approach. 
+Mixed methods research gives a greater flexibility when answering research questions 
+rather than constraining approaches or ideas. We try to find research questions 
+that offer the best chance to obtain useful and meaningful answers. And we think 
+that a combined approach achieves the best results \cite{JohnsonO04}.
+
+Such mixed methods approach leads us to design science research methodologies for 
+\acp{is}, which consist of six main steps: identification and motivation of the 
+problem, definition of the objectives for a solution, design and development of 
+the solution, demonstration, evaluation and finally, communication of the research 
+\cite{PeffersTRC07}.
+
+% Make a table with the steps and mark for each paper
+
 ---
-Design science research methodology
-
-(Mixed Methods Research: A Research Paradigm Whose Time Has Come: http://edr.sagepub.com/content/33/7/14.short)
-
-(A Design Science Research Methodology for Information Systems Research: http://www.tandfonline.com/doi/abs/10.2753/MIS0742-1222240302)
-
 Types of information used/analyzed/gathered/studied and source of such data (random, dataset, etc)
 
 Parts of systems designed and/or analyzed
@@ -1073,6 +1108,7 @@ Prototyping or such
 Break down these parts (analysis, design, protocol/theory, prototyping) for each 
 paper?
 ---
+
 
 \chapter{Our contributions}
     \label{chapter:our-contributions}
@@ -1110,6 +1146,13 @@ paper?
 \endgroup
 
 \subsection{Summary}
+% In such scenario, our proposed protocol guarantees what we defined as ``forward
+% unlinkability'' of a document with the author --- a document and its author's identity
+% must remain unlinkable even after receiving a grade --- and ``provable linkability''
+% of an author with a grade --- the system must guarantee that an author receives
+% a grade if and only if the author submitted a document for grading that was actually
+% graded.
+
 \subsection{Contributions}
 %\subsection{Changes for the thesis}
 
@@ -1167,7 +1210,8 @@ I conclude I am not yet done... will I ever be...? :/
     \crefalias{section}{appsec}
     \crefalias{chapter}{appchp}
 
-    \chapter{Excerpts of \aclp*{tos} and \aclp*{pp}}
+    %\chapter{Excerpts of \aclp*{tos} and \aclp*{pp}}
+    \chapter{Excerpts of Terms of Services and Privacy Policies}
         \label{chapter:excerpts-of-tos-and-pp}
 
     \section{\Facebook}
