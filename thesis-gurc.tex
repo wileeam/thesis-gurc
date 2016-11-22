@@ -18,6 +18,10 @@
 \usepackage[svgnames]{xcolor}
 %\usepackage{tikz}
 
+% *** disable reset of footnote counter every chapter
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
 % *** enables the checkmark commands: \ding{51} and \ding{52}
 \usepackage{pifont}
 
@@ -483,10 +487,10 @@ nowadays such as \Facebook, \LinkedIn, \Twitter or \GooglePlus.
 
 The building design describing such systems is very similar among them. Their design 
 is usually monolithic with a data model that is centralised\footnote{With centralised 
-we mean that the ownership and control of the data is under the jurisdiction of 
-one entity, usually the \ac{osn} service provider, regardless of how such data is 
-stored physically, for example, in a distributed or centralised manner.} and a system 
-model consisting of some variant of cloud computing architectures \cite{PallisZD11}. 
+we mean that the control of the data is under the jurisdiction of one entity, usually 
+the \ac{osn} service provider, regardless of how such data is stored physically, 
+for example, in a distributed or centralised manner.} and a system model consisting 
+of some variant of cloud computing architectures \cite{PallisZD11}. 
 
 The main business model is also similar among most \acp{osn} providers. Instead 
 of charging the users for the services of the \ac{osn}, the revenue model is based 
@@ -883,6 +887,10 @@ of \acp{osn},
     
 \end{itemize}
 
+
+%Social Media Information systems - david kroenke :https://online.columbiasouthern.edu/CSU_Content/Courses/Business/BBA/BBA3551/12K/UnitV_Chapter8Presentation.pdf?targ
+There are also pther approaches to \acp{osn} in \acp{is} as \acp{smis}.
+
 % https://www.techwalla.com/articles/what-are-the-six-elements-of-an-information-system
 
 % Reference: Social Networks and Information Systems: Ongoing and Future Research Streams
@@ -910,7 +918,6 @@ Managing trust in a peer-2-peer information system: \url{http://dl.acm.org/citat
 %\section{\Aclp*{osn}: centralisation \vs decentralisation}
 \section{Online Social Networks: centralisation \vs decentralisation}
     \label{section:osns-centralisation-vs-decentralisation}
-
 While there is a wide understanding among researchers and practitioners on what 
 a \ac{sn} is and, by extension, an \ac{osn}, there is not a canonical definition 
 of neither of them in the literature. Authors seem to define their own ``interpretation'' 
@@ -926,23 +933,17 @@ with whom they share a connection, and view and traverse their list of connectio
 and those made by others within the system'' --- \cite{boydE07}. Although this definition 
 has been critiqued for being too broad as well \cite{Beer08}.
 
+% https://web.archive.org/web/20161121154722/http://www.bbc.co.uk/programmes/p02swnrx
+% https://web.archive.org/web/20131215060028/http://downloads.bbc.co.uk/podcasts/fivelive/pods/pods_20131112-0401a.mp3
 The two most important parts of the previous definition are the means of communication 
 --- the \ac{www} --- and the administration of the users' profiles and their connections 
-in a system. It is this system what we need to clarify in fact because the \ac{www} 
-is, by construction, an interconnected set of systems thus inherently distributed\footnote{
-Although \Internet traffic nowadays is increasingly concentrating through specific 
-nodes, owned by major corporations, offering cloud services and allowing a centralization 
-of the data in the \ac{www} Bolychevsky, Irina (12 November 2013). "BBC Radio Five Live". Outriders (Interview). Interview with Jamillah Knowles. Retrieved 12 December 2013.}. 
-But the \ac{osn} is a traditionally centralised system as opposed to distributed 
-systems such as the \ac{www}.
-
-%"As we've gone on there's been more and more internet traffic focused through particular 
-% nodes such as Google or Facebook. [...] Centralised services that hold all the user data and host it themselves have become increasingly popular because that business model has worked. As the Internet has become more mass market, people are not necessarily willing or knowledgable to host it themselves, so where that hosting is outsourced it's become the default, which allows a centralization of power and a centralization of data that I think is worrying."[149]
-
-
-There are many reasons for which most \acp{osn} designs are centralised with the 
-most prominent ones lying on the side of data control --- ownership --- 
-towards business value by means of data mining \cite{DomingosR01}.
+in a system. This system is what we need to clarify in fact because the \ac{www} 
+is, by construction, an interconnected set of systems thus inherently\footnote{
+\Internet traffic nowadays is increasingly concentrating through specific nodes, 
+owned by major technological corporations such as \Amazon or \Google, offering cloud 
+services and fostering a centralisation of the data in the \ac{www} which is seen 
+as a dangerous concentration of `power' by some activists \cite{Bolychevsky13}} 
+distributed.
 
 Popular centralised \acp{osn} such as \Facebook, \Twitter or \GooglePlus take different 
 approaches in the way they have designed their users' profiles and the mechanisms 
@@ -951,7 +952,27 @@ However, most of the data is still stored, processed, administered and managed b
 the owner of the \ac{osn}\footnote{The owner may use a distributed architecture 
 to provide the service while still keep full control of all the nodes in such setup.}.
 
+Traditional \acp{osn}, as \acp{is}, are controlled by a single authority --- the 
+service provider--- regardless of the chosen infrastructure of the \ac{cbis} --- 
+for example, in a distributed manner --- to provide the service to the users. There 
+are many reasons for which many \acp{osn} designs are centralised with the most 
+prominent ones lying on the side of data control\footnote{Do not confuse data control 
+with data ownership. The latter is still a right that the user who uploaded the content 
+to the \ac{osn} usually keeps. See \cref{chapter:excerpts-of-tos-and-pp} for some 
+examples of \acp{tos} with the legal wording on this matter.} towards business value 
+by means of data mining \cite{DomingosR01}.
 
+
+Give works on decentralisation
+Talk about removing the central provider as the easy, most convenient and common
+ solution - but this comes with trade-offss (see next point)
+Questions with decentralisation:
+- identification/authentication
+- communication
+- storage
+- access control
+talk about possibility of business models in a decentralised (refer to apple's differential 
+privacy but perhpaps look for another one from facebook or twitter if they even exists...)
 
 
 ---
@@ -1284,8 +1305,16 @@ I conclude I am not yet done... will I ever be...? :/
     %\chapter{Excerpts of \aclp*{tos} and \aclp*{pp}}
     \chapter{Excerpts of Terms of Services and Privacy Policies}
         \label{chapter:excerpts-of-tos-and-pp}
+    
+    % TODO: replace the word section with a cleverref command
+    In the following sections we quote some selected excerpts of the \ac{tos} and 
+    \ac{pp} of a few \ac{osn} service providers that we thought --- as computer 
+    scientists --- interesting to know in our realm of research. We include the 
+    last update date stated by the service provider of the \ac{tos} and \ac{pp} 
+    as well as the corresponding \acp{url}. However, the wording and even the \ac{url} 
+    are likely to change at any time.
 
-    \section{\Facebook}
+    \section[\Facebook]{\Facebook (\FacebookInc)}
         \label{section:excerpts-facebook}
     % \cite{Facebook15}
     \Facebook's \acs{tos} are called ``Statement of Rights and Responsibilities
@@ -1344,10 +1373,10 @@ I conclude I am not yet done... will I ever be...? :/
         \[...\]
     \end{quote_tos}
 
-    \section{\LinkedIn}
+    \section[\LinkedIn]{\LinkedIn (\LinkedInCorp)}
         \label{section:excerpts-linkedin}
     % \cite{LinkedIn14}
-    \LinkedIn's \acs{tos} are called ``User Agreement'' and available at \url{hhttps://www.linkedin.com/legal/user-agreement}. 
+    \LinkedIn's \acs{tos} are called ``User Agreement'' and available at \url{https://www.linkedin.com/legal/user-agreement}. 
     The last revision as of this writing is dated on October 23rd, 2014. The following 
     is an excerpt of some selected sections of the \ac{tos}.
 
@@ -1415,7 +1444,7 @@ I conclude I am not yet done... will I ever be...? :/
         \[...\]
     \end{quote_tos}
 
-    \section{\Twitter}
+    \section[\Twitter]{\Twitter (\TwitterInc)}
         \label{section:excerpts-twitter}
     % \cite{Twitter16}
     \Twitter's \acs{tos} are called ``Twitter Terms of Service'' and available at 
