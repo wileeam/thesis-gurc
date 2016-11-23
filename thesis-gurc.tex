@@ -132,6 +132,7 @@
   \fi%
 }
 
+
 \input{data/kth-bibl}
 
 \newtcolorbox{ppBox}[1][]{
@@ -364,9 +365,26 @@
 }
 \makeatother
 
+\newcommand\firstToLow[1]{%
+ {%
+   \renewcommand{\mfirstucMakeUppercase}{\MakeLowercase}%
+   \makefirstuc{#1}%
+ }%
+}
 
+\makeatletter
+\newcommand*{\lcnameref}[1]{%
+ \begingroup 
+   \let\label\@gobble
+   \NR@setref{#1}\lc@thirdoffive{#1}%
+  \endgroup
+}
+\newcommand{\lc@thirdoffive}[5]{\firstToLow{#3}}
+\makeatother
 
 \counterwithin*{chapter}{part}
+
+
 
 \begin{document}
 
@@ -738,9 +756,11 @@ between each other without a third one overseeing, ought to be identified, analy
 researched and worked out.
 
 Finally, we also have the desire to reduce the impact of personal data privacy in 
-people's lives by raising awareness on the topic with our solutions to broaden and 
-deepen the ongoing political debate and legal discussions. However, there is still 
-a long road ahead on the quest of privacy and this is barely the beginning.
+people's lives by raising awareness on the topic with our solutions. We want to 
+broaden and deepen the ongoing political debate and legal discussions on the topic 
+of privacy not only in \acp{osn} but also in many other centralised \acp{is}. However, 
+we reckon there is still a long road ahead on the quest of privacy and this is barely 
+the beginning.
 
 \section{Outline}
     \label{section:outline}
@@ -840,13 +860,15 @@ that is not commonly considered and pose different threats, for example, identit
 theft \cite{GrossAH05, BrandtzaegLS10}. Though the topic of user behaviour with 
 privacy-preserving features in \acp{osn} is out of the scope of this thesis.
 
-% In the following \namecrefs{section:information-systems-on-the-importance-of-capabilities}
-% we introduce the reader to the main concepts that this thesis is based on --- although
-% the reader should should not consider this background introduction a survey. We
-% provide a brief background on \acp{is} in \cref{section:information-systems-on-the-importance-of-capabilities},
-% centralised and decentralised \acp{osn} in \cref{section:osns-centralisation-vs-decentralisation}
-% and privacy in \cref{section:privacy-a-never-ending-battle}.
-
+% TODO: Use cleverref for name of chapter instead of hardcoding background
+In the following \namecrefs{section:information-systems-on-the-importance-of-capabilities}
+we introduce the reader to the main concepts that this thesis is based on --- however,
+the reader should should not consider this chapter a survey because it is not aimed 
+at being that and rather an introductory and concise summary of relevant concepts. 
+%We provide a brief introduction to \acp{is} in \cref{section:information-systems-on-the-importance-of-capabilities},
+We provide a brief introduction to \acp{is} in the following section,
+centralised and decentralised \acp{osn} in \cref{section:osns-centralisation-vs-decentralisation}
+and privacy in \cref{section:privacy-a-never-ending-battle}.
 
 %\section{\Aclp*{is}: on the importance of capabilities}
 \section{Information Systems: on the importance of capabilities}
@@ -891,7 +913,9 @@ of \acp{osn},
 
 
 %Social Media Information systems - david kroenke :https://online.columbiasouthern.edu/CSU_Content/Courses/Business/BBA/BBA3551/12K/UnitV_Chapter8Presentation.pdf?targ
-There are also pther approaches to \acp{osn} in \acp{is} as \acp{smis}.
+There are also pther approaches to \acp{osn} in \acp{is} as \acp{smis} or even web 
+finromation ssytems
+Make a footnote on sticking on CBIS in this thesis to be agnostic of terms and/or mediums (web is fine but now social networks happen on the mobile hence social media or even mobile apps work best)
 
 % https://www.techwalla.com/articles/what-are-the-six-elements-of-an-information-system
 
@@ -964,19 +988,82 @@ to the \ac{osn} usually keeps. See \cref{chapter:excerpts-of-tos-and-pp} for som
 examples of \acp{tos} with the legal wording on this matter.} towards business value 
 by means of data mining \cite{DomingosR01}.
 
+However, such centralisation by a single authority poses many threats to the owner 
+of the data --- the user --- because she does not know what happens with her data 
+after such data is transferred into the \ac{osn}. Even if the specific uses and 
+purposes are specified in the \ac{tos} and \ac{pp}, the user will not know how much 
+effort the service provider will put into abiding by them. There are many unfortunate 
+examples of misuse in the media as we highlighted in the \lcnameref{chapter:introduction}.
+Such instances are factual breaches of security of the \ac{osn} infrastructure but 
+more importantly, probable violations of the privacy of \ac{osn} users' personal 
+information --- see \cite{CutilloMS10} or \cite{GaoHHWC11} for examples of attacks 
+against \acp{osn} affecting the privacy, integrity and availability of personal 
+data of the users.
 
-Give works on decentralisation
-Talk about removing the central provider as the easy, most convenient and common
- solution - but this comes with trade-offss (see next point)
-Questions with decentralisation:
-- identification/authentication
-- communication
-- storage
-- access control
+For that reason, decentralisation is the most common solution proposed nowadays 
+as a solution to the central authority that amasses all the personal data shared 
+by the users in centralised \acp{osn}. However, decentralisation is not an easy 
+task and usually there is not one single solution, for example, \cite{ShakimovVCC09} 
+describes three alternative architectures to decentralised \acp{osn} --- namely, 
+cloud based, desktop based with socially informed replication and a hybrid of the 
+former two --- differing in privacy, costs and availability trade-offs. 
+
+Past research has focused on removing the central provider and guaranteeing the 
+confidentiality of users' personal data --- via cryptographic algorithms and protocolos 
+--- but little has been done to address other major trade-offs when distributing 
+the responsibilities of the central authority among the users of the \ac{osn} \cite{GreschbachKB12} 
+--- see \cref{section:related-work} for \lcnameref{section:related-work} on \acp{dosn}.
+
+When decentralising an \ac{osn} --- and other similar centralised \acp{is} --- one 
+has to consider how to address topics such as identification of the users, storage 
+of personal data and, access control policies --- and their enforcement --- for 
+the stored data as well information accountability.
+
+\textit{Identification}. In traditional \acp{osn} --- and most centralised \acp{is} 
+--- authentication of users for the purpose of accessing the system is done by the 
+service provider itself or via some authorised trusted third party. The central 
+authority keeps and maintains a registry of records with diverse information about 
+the user for the purpose of authenticating the user after identifying her. The authority 
+usually has some other identifying information should the user forgets her credentials 
+and needs to gain access to the system again.
+
+When decentralising such mechanisms of identification and authentication there is 
+not a central authority to which rely on to guarantee unique identifiers or recovering 
+the credentials. One of the solutions for a user to identifying herself in such 
+scenario would be using public key cryptography because the user could use the public 
+key as identifier while authenticate herself since she holds the paired private key. 
+
+Although cryptographic identifiers are not memorable for the users nor portable 
+enough for the dynamism of \acp{osn} and the different devices where they are used 
+nowadays. A solution to this would be using a \ac{pki} for which there are decentralised 
+solutions such as the web of trust ---  decentralised networks of \ac{p2p} certification 
+--- of \ac{pgp} \cite{Stallings95, Abdul97}. But they do not prevent a user from 
+registering a public key under the identity of an already registered user --- identity 
+retention. 
+
+% TODO: Mention Twister as example?
+Such consistency guarantee is now possible thanks to leveraging on the blockchain 
+that enables cryptocurrencies such as \Bitcoin \cite{Nakamoto08}. The blockchain 
+is a distributed sequential database of growing list of records --- blocks of transactions. 
+Because blocks can only be appended it is not possible to alter already registered 
+transactions and this characteristic --- among others of this technology --- can 
+be used to impose such consistency guarantee for identifiers in a \ac{dosn} setup.
+
+\textit{Data storage}. 
+
+\textit{Access control policies for the stored data}. 
+
+\textit{Information accountability}. 
+dl.acm.org/citation.cfm?id=1349043
+
+
+
 talk about possibility of business models in a decentralised (refer to apple's differential 
 privacy but perhpaps look for another one from facebook or twitter if they even exists...)
-
-
+---
+Give works on decentralisation
+ - Privacy, Cost, and Availability Tradeoffs in Decentralized OSNs -> Decentralization alternatives
+   \cite{ShakimovVCC09}
 ---
 % Sample of centralised vs decentralised system: https://en.wikipedia.org/wiki/File:Decentralization_diagram.svg
 % How most designs are centralised (and why)
@@ -986,19 +1073,6 @@ privacy but perhpaps look for another one from facebook or twitter if they even 
 % Trade off (this leads to the main point of privacy that comes now)
 ---
 
----
-% \footnote{The creator of the \ac{www} said recently that ``The web was designed to be decentralised so that everybody could participate by having their own domain and having their own webserver and this hasn’t worked out. Instead, we’ve got the situation where individual personal data has been locked up in these silos. […] The proposal is, then, to bring back the idea of a decentralised web.''}
-% \footnote{The \ac{www} was envisioned as a huge decentralised information
-% system, this has not been the case unfortunately as major technological companies controand a movement on the idea of decentralising
-% the \ac{www} is gaining notoerity. See the keynote by Tim Berners-Lee at the ``Decentralized Web Summit'' on ``Re-decentralizing the web - some strategic questions'' at \url{https://archive.org/details/DWebSummit2016_Keynote_Tim_Berners_Lee}}
-%
-% Decentralisation overrules the power that major technological companies have gained
-% over the last two decades and, instead, the duties and responsibilties are shared
-% among a subset of federated servers or among everyone in a \ac{p2p} fashion.
-%
-%
-% Regardless of the trade-offs decentralisation seems to \footnote{See ``A decentralized web would give power back to the people online'' at \url{https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/}}
----
 
 %\subsection{\Aclp*{dosn} in this thesis}
 \subsection{Decentralised Online Social Networks in this thesis}
@@ -1064,6 +1138,9 @@ What can we do: crypto for access control
 Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that try to 
 use OSNs in a privacy-preserving manner (that is, using an overlay of encryption 
 or perhaps a link to a third party that is under the user's control?).
+Vis-a-Vis project
+Check GreschbachKB12 for citations of Safebook and other projects.
+
 
 
 \chapter{Our research problem}
@@ -1198,6 +1275,10 @@ included in this thesis in \cref{table:papers-methodologies}.
 \endgroup
 
 \subsection{Summary}
+
+% Benny's thesis
+% The problem of how to transfer credentials in a usable and secure way from one device to another is one of the concerns of Article B contained in this thesis. The proposed solution emulates the traditional username/password-login paradigm in a decentralized system.
+
 \subsection{Contributions}
 %\subsection{Changes for the thesis}
 
@@ -1239,7 +1320,36 @@ included in this thesis in \cref{table:papers-methodologies}.
 continuing mission: to explore strange new worlds, to seek out new life and new 
 civilizations, to boldly go where no one has gone before}{Star Trek: The Next Generation}
 
-I conclude I am not yet done... will I ever be...? :/
+\lettrine{\textcolor[gray]{.25}{W}}{hen} Tim Berners-Lee invented the \Ac{www} in 1989, he envisioned a large-scale 
+and decentralised \ac{is} where everybody would be able to have their own website 
+and plug-in a server from which they could offer their content. Such idea never 
+worked out and, instead, personal data ended up under the control of major technological 
+companies in huge data centers --- ``silos'' --- distributed all over the world.
+
+% https://archive.org/details/DWebSummit2016_Keynote_Tim_Berners_Lee
+% https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/
+The idea of bringing back the initial design of a decentralised \ac{www} has been 
+in the minds of many researchers and practitioners for a while now --- ``bring back 
+the power to the people'' as Tim Berners-Lee said during his keynote ``Re-decentralizing 
+the web -- some strategic questions'' at the ``Decentralized Web Summit'' in 2016. 
+
+The decentralisation of \acp{is} on the \Internet has gained some popularity in recent 
+years due to concerns on what the personal data was being used for but it took a major turnaround
+after the revelations by Snowden on worldwide scale governmental surveillance.
+%Gaining crucial relevance after the revelations by Snowden on worlwide scale governmental surveillance
+% Here talk about how privacy on the internet was mostly focused on the business side
+% till the end of 20th century and how all the power of technological companies made
+% that a concern, and after snowden revelations things changed not just because of the
+% governmetal surveillance but also because of the collaboration of these companies.
+
+Such idea of decentralisation is what motivates this thesis as means to achive 
+privacy as data control in similar terms as those by Allen et al \cite{Allen99}. Though overruling 
+the power of a central authority like the service provider of an \ac{osn} entails 
+sharing the duties and responsibilities among a subset of federated servers or among
+all the users of the network in a \ac{p2p} fashion.
+
+
+
 
 \section{Future directions}
     \label{section:future-directions}
@@ -1308,13 +1418,16 @@ I conclude I am not yet done... will I ever be...? :/
     \chapter{Excerpts of Terms of Services and Privacy Policies}
         \label{chapter:excerpts-of-tos-and-pp}
     
-    % TODO: replace the word section with a cleverref command
-    In the following sections we quote some selected excerpts of the \ac{tos} and 
-    \ac{pp} of a few \ac{osn} service providers that we thought --- as computer 
-    scientists --- interesting to know in our realm of research. We include the 
-    last update date stated by the service provider of the \ac{tos} and \ac{pp} 
-    as well as the corresponding \acp{url}. However, the wording and even the \ac{url} 
-    are likely to change at any time.
+    % TODO: replace the word sections with a cleverref command
+    \lettrine{\textcolor[gray]{.25}{I}}{n} the following sections we quote some 
+    selected excerpts of the \ac{tos} and \ac{pp} of a few \ac{osn} service providers 
+    that we thought --- as computer scientists --- interesting to be aware of in 
+    our realm of research.
+    
+    We include the last update date stated by the service provider of the \ac{tos} 
+    and \ac{pp} as well as the corresponding \acp{url} where we originally found 
+    the terms and policies --- however, the wording and even the \ac{url} are likely 
+    to change at any time.
 
     \section[\Facebook]{\Facebook (\FacebookInc)}
         \label{section:excerpts-facebook}
