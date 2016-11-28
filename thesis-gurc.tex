@@ -776,13 +776,12 @@ and privacy in \cref{section:privacy-a-never-ending-battle}.
 We continue in \cref{chapter:our-research-problem} with a description of our research 
 problem and the challenges we faced to detail our research methodology 
 in \cref{section:methodoloy}. Our contributions are listed in \cref{chapter:our-contributions} 
-along with a summary of each article for the reader's convenience. We complete our 
-thesis with our conclusions and future directions in \cref{chapter:conclusions} 
-and \cref{section:future-directions} respectively. 
+along with a summary of each article for the reader's convenience. We complete this 
+thesis with our conclusions and future directions in \cref{chapter:conclusions}.
 
 For completeness, we include a re-print of each publication that we refer in \cref{chapter:our-contributions} 
 in \cref{part:published-articles}: \usebibentry{KreitzBGRB12}{title}, \usebibentry{RodriguezCanoG14}{title} 
-and \usebibentry{GreschbachREB15}{title} (\cref{article:passwords-peer-to-peer,article:events-invitations-dosns,,article:document-submission-system} 
+and, \usebibentry{GreschbachREB15}{title} (\cref{article:passwords-peer-to-peer,article:events-invitations-dosns,,article:document-submission-system} 
 respectively). Moreover, and for the reader's reference, we have also included selected 
 excerpts of \ac{tos} from three popular \ac{osn} service providers in \cref{chapter:excerpts-of-tos-and-pp}.
 
@@ -885,8 +884,8 @@ to collect, manipulate, store, and process data into information''.
 \Ac{cbis} are usually divided into six parts, which we briefly describe in the context 
 of \acp{osn},
 \begin{itemize}
-    \item Hardware\\
-    Possibly the most obvious one in any \ac{cbis}. It can be a single machine or 
+    \item hardware,\\
+    possibly the most obvious one in any \ac{cbis}. It can be a single machine or 
     many. In the context of \acp{osn} --- and in the current state of the \Internet 
     --- is common to use server farms in data centers all over the world acting 
     as one and, providing a fast, reliable and redundant service. Users usually 
@@ -1081,39 +1080,102 @@ Give works on decentralisation
 \section{Privacy: a never ending battle}
     \label{section:privacy-a-never-ending-battle}
 
-Privacy as a fundamental human right recognised in the \ac{un} Declaration of Human 
+Privacy, as a fundamental human right recognised in the \ac{un} Declaration of Human 
 Rights, the International Convenant on Civil and Political Rights and in many other 
-international treaties, can be defined as ``the right to be let alone'' \cite{Westin70}.
+international treaties, can be defined as ``the right to be let alone'' \cite{Westin70}. 
+Although Westin's approach is one of many attempts throughout history to define 
+the concept of privacy notably determined by aspects such as context, culture, people 
+or even expectations on what an individual can have as privacy.
 
-Although there have been many attempts throughout history to define privacy from different
-perspectives, for example, as part of a legal framework or as a social value.
+Westin describes the following four states of privacy, solitude, as being free from 
+observation by others, intimacy, as group seclusion to achieve a close and relaxed 
+relationship, anonymity, as freedom from identification and surveillance --- in 
+public places and acts --- and, reserve, as the desire to limit disclosures to others 
+--- implying that those others must respect such desire. That is, as a continuous 
+process of adjustments where each individual has to consider the need for privacy 
+and the desires for disclosure and communication to others in a societal context.
+
+Another approach to privacy --- of great interest in our work --- is the definition 
+of ``privacy as data control'' by Allen \cite{Allen99}. Although data control is 
+a complex paradigm that hinders conflicting interests because, as Allen says, ``it 
+obscures the need for concern that individuals will want too little privacy and 
+also the concern that people will want too much privacy''. For example, it seems 
+reasonable to let individuals keep control of their financial data --- as it is 
+rather sensitive personal information, but certain obligations --- such as tax laws, 
+oblige individuals to share this type of information to governmental agencies and 
+even society.
+
+Privacy is important because it helps individuals keep that individuality and autonomy 
+that defines them. An individual should be able to exercise control over its personal 
+information in a freely manner without coercions nor restrictions. It is not even 
+admissible to be questioned on such choices about what is shared --- or not, how, 
+when, with whom or for which purpose. Moreover, privacy becomes even more important 
+when we consider its functional benefits. For example, an individual may use a pseudonym 
+to sign some controversial political statements as a safeguard for her anonymity.
+
+Although some argue that there is some sort of paradox with privacy threats bringing 
+privacy benefits \cite{WittesL15}. Academics and activists seem to mainly focus 
+on the loss of some specific privacy, usually surveillance and tracking related, 
+but there are other technologies that while diminishing such type of privacy enhance 
+other types. For example, an individual may care what some others know about her 
+but does not mind \Google know what she is trying to find on the \ac{www} by using 
+\Google's search engine.
+
+The debate on privacy is a long-standing one and much of it we owe to Westin for 
+bringing a modern view of privacy to society during the digital revolution, to some 
+extent preparing the general public and lawmakers for the digital era to come. Privacy 
+cannot be thought as a good or feature that can merely be enhanced, for example, 
+with \acp{pet}, nor just threatened, for example, by governmental surveillance. 
+Privacy is a matter of personal preference in most cases and that is what Allen 
+meant with privacy as data control.
+
+\subsection{`Decentralising' privacy}
+    \label{subsection:decentralising-privacy}
+The privacy challenges in \acp{osn} are rather demanding and complex because it is 
+not simply a responsibility of the service provider in such centralised scenario 
+and, instead, it is a responsibility of all the stakeholders in the \ac{osn}. Everyone  
+is responsible to address the threats that are awaiting, for example, extortion 
+or identitiy theft \cite{GrossAH05}. 
+
+In centralised scenarios, the service provider must be clear with the \ac{pp} and 
+the \ac{tos} on what happens to the personal data of the users in the platform. 
+Moreover, the central authority should provide proper and straightforward settings 
+for the user to control who can access her data so that she can protect herself. 
+
+However, having such features does not mean the user will actually use them, or   
+do so right \cite{KrishnamurthyW08, BrandtzaegLS10}. Even if the configuration is 
+done correctly, there may be some false sense of safety and privacy. Those other 
+trusted ones can easily expose that personal information without realising that 
+they are doing so, for example, a user may tag a friend in a picture revealing her 
+precise location at some point of time \cite{ZhelevaG09}. 
+
+On the other hand, service providers need to make a living out of the `free' service
+they offer --- the \ac{osn}. Nowadays, users are aware, more than ever, of the data 
+mining that most of these services apply on their content --- not necessarily because 
+it is explicitly stated in the \ac{tos} though. Such data mining is not done only 
+by the service provider but also other third parties whom the owner of the \ac{osn} 
+is sharing data with --- including potentially sensitive information. In most cases, 
+the shared data is claimed to be protected via anonymization but the robustness 
+of such processes has been proven to be weak allowing for re-identification \cite{NarayananS09}.
+
+% TODO: Replace section at the end of paragraph for command via cleverrref
+In decentralised scenarios the challenges are greater as many of the safeguards 
+provided by the service provider do not exist anymore. All the problems and issues 
+become a responsibility of the users in the network because there is not a central 
+authority to rely on as we briefly discussed in the previous section.
+
+
+
 ---
-One definition of interest that englobes all this stuff from Westin who describes 
-four states of privacy: solitude, intimacy, anonymity, and reserve. These states must balance participation against norms:
-
-% Data control is a complex paradigm that hinders conflicting interests. For example,
-% while it seems reasonable to let individuals keep control of their financial data,
-% as it is rather sensitive personal information, certain obligations, such as tax
-% laws, oblige individuals to share this type of information to governmental agencies
-% and even society \cite{Allen99}.
-
-% Each individual is continually engaged in a personal adjustment process in which
-% he balances the desire for privacy with the desire for disclosure and communication
-% of himself to others, in light of the environmental conditions and social norms
-% set by the society in which he lives. - Alan Westin, Privacy and Freedom, 1968[48]
-
-
-What privacy is
-
-
 What it implies
 Why is it important (and in our context)
 How it can be breached or attacked or diminished
 What can we do: crypto for access control
 ---
 
-% \section{Graph modeling: there is so much beyond one-to-one relationships}
 % TODO: Develop for PhD kappa
+% \section{Graph modeling: beyond one-to-one relationships}
+%     \label{section:graph-modeling}
 %
 % \section{Analytics: from raw data to information}
 % TODO: Develop for PhD kappa
@@ -1149,36 +1211,50 @@ Check GreschbachKB12 for citations of Safebook and other projects.
 \requote{Poetry is a succession of questions which the poet constantly poses}{Vicente 
 P{\'i}o Marcelino Cirilo Aleixandre y Merlo}
 
-\lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing some methods to improve 
-user data control in the realm of centralised and decentralised \ac{is} 
-and, in a particular scenario: \aclp{dosn}.
+\lettrine{\textcolor[gray]{.25}{W}}{e} aim at providing some privacy-preserving 
+methods to improve user data control in the realm of centralised and decentralised 
+\acp{is} and, in a particular instance of \acp{cbis}, \acp{dosn}.
 
+Centralised \acp{is} are the most popular systems on the \Internet as the business 
+strategy of most enterprises owning such systems is fundamentally built around control. 
+For example, \Facebook, which has been accused\footnote{See ``Zuckerberg: Facebook will develop tools to fight fake news'' at \url{https://web.archive.org/web/20161120010511/http://money.cnn.com/2016/11/19/technology/mark-zuckerberg-facebook-fake-news-election/}} 
+recently of not doing enough to prevent fake news in its network, would probably 
+benefit from sharing some details on how its news filtering processes work for the 
+research community to assess, but doing so would likely expose details of its infrastructure 
+to its competitors.
 
-Main idea of the problem we are trying to solve (or shortlist of them but try to come up with a general idea first)
+In this thesis we aim at reducing the amount of control that a service provider 
+can do in a centralised \ac{is}. Either by improving the privacy of some steps of 
+a process in a centralised scenario --- if we are constrained to keep such authority, 
+for example, in a semi-trusted assumption, or by analysing the consequences on the 
+processes when removing the central authority and providing privacy-enhancing alternatives 
+instead. 
 
-Privacy-Preserving methods for services in decentralised systems in general and applied ones
+% Whether centralised or decentralised \acp{is} are better is not part of our research
+% problem. Although we acknowledge that this is an interesting open question. 
 
 
 \section{Challenges addressed}
     \label{section:challenges-addressed}
 Among the wide spectrum of problems and questions that decentralisation poses in 
-\acp{is} such as \acp{osn} we have first focused our efforts on keeping 
-the functionality of some features in decentralised systems as close as possible to 
-what these would be in a centralised scenario.
+centralised \acp{is} such as \acp{osn} we have first focused our efforts on keeping 
+the functionality of some features in decentralised systems as close as possible 
+to what these would be in the centralised scenario.
 
 In parallel, such decentralisation triggers our second concern in terms of privacy.
-Not only we consider this topic in such setup where the central provider does not 
-exist or it plays a minimal role but also in a more generic fashion for an information 
-system.
+Not only we consider this topic in such setup where the central authority does not 
+exist or it plays a minimal role but also in a more generic fashion for an \ac{is}. 
+When reducing the tasks of the central authority to the minimum, the users in the 
+system are exposed to some security and privacy threats that should be analysed 
+and addressed.
 
 Each one, decentralisation and privacy, raise so many questions that any thesis 
 or research will ever be able to answer. Therefore, we list the main questions that 
 we believe this thesis answers in the aforementioned domains. There may be additional 
-questions we have not explicitly considered but have an answer in our work. Moreover, 
-the reader may expect some questions that we have not even thought as of the time 
-of this writing --- though this is the beauty of 
-tthere are other expected questions the reader does not find an answer because 
-we did not think about them at the time of of this writing.
+questions we have not explicitly considered but the reader finds an answer in our 
+work. Moreover, the reader may expect answers to some questions that we have not 
+even thought as of the time of this writing --- though this is the beauty of research.
+
 \begin{itemize}
     \item Can we decentralize an \ac{is}? If so, how?\\
     \Cref{article:passwords-peer-to-peer,article:events-invitations-dosns}
@@ -1303,6 +1379,7 @@ included in this thesis in \cref{table:papers-methodologies}.
 \endgroup
 
 \subsection{Summary}
+
 % In such scenario, our proposed protocol guarantees what we defined as ``forward
 % unlinkability'' of a document with the author --- a document and its author's identity
 % must remain unlinkable even after receiving a grade --- and ``provable linkability''
@@ -1320,35 +1397,54 @@ included in this thesis in \cref{table:papers-methodologies}.
 continuing mission: to explore strange new worlds, to seek out new life and new 
 civilizations, to boldly go where no one has gone before}{Star Trek: The Next Generation}
 
-\lettrine{\textcolor[gray]{.25}{W}}{hen} Tim Berners-Lee invented the \Ac{www} in 1989, he envisioned a large-scale 
-and decentralised \ac{is} where everybody would be able to have their own website 
-and plug-in a server from which they could offer their content. Such idea never 
-worked out and, instead, personal data ended up under the control of major technological 
-companies in huge data centers --- ``silos'' --- distributed all over the world.
+\lettrine{\textcolor[gray]{.25}{W}}{hen} Tim Berners-Lee invented the \Ac{www} in 
+1989, he envisioned a large-scale and decentralised \ac{is} where everybody would 
+be able to have their own website and plug-in a server from which they could offer 
+their content. Such idea never worked out and, instead, personal data ended up under 
+the control of major technological companies in huge data centers --- ``silos'' 
+--- distributed all over the world.
 
 % https://archive.org/details/DWebSummit2016_Keynote_Tim_Berners_Lee
 % https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/
 The idea of bringing back the initial design of a decentralised \ac{www} has been 
-in the minds of many researchers and practitioners for a while now --- ``bring back 
-the power to the people'' as Tim Berners-Lee said during his keynote ``Re-decentralizing 
+in the minds of researchers and practitioners for a while now --- ``bring back the 
+power to the people'' as Tim Berners-Lee said during his keynote ``Re-decentralizing 
 the web -- some strategic questions'' at the ``Decentralized Web Summit'' in 2016. 
 
-The decentralisation of \acp{is} on the \Internet has gained some popularity in recent 
-years due to concerns on what the personal data was being used for but it took a major turnaround
-after the revelations by Snowden on worldwide scale governmental surveillance.
-%Gaining crucial relevance after the revelations by Snowden on worlwide scale governmental surveillance
-% Here talk about how privacy on the internet was mostly focused on the business side
-% till the end of 20th century and how all the power of technological companies made
-% that a concern, and after snowden revelations things changed not just because of the
-% governmetal surveillance but also because of the collaboration of these companies.
+Decentralisation of \acp{is} on the \Internet --- or re-decentralisation --- has 
+gained popularity in recent years due to increasing concerns on the risks of personal 
+data misuse by major technological companies as they oversee a large portion of 
+the data circulating the \Internet.
+
+Until the turn of the 21st century the focus was on the privacy concerns of individuals 
+as consumers and the policy making in that direction --- see some examples at \cite{MilbergBSK95}, 
+\cite{Rindfleisch97}, \cite{Clarke99} and \cite{NamSPI06}. However, in 2013, the 
+focus shifted to governmental mass surveillance after the disclosures of Edward 
+Snowden --- a former contractor of the \aca{usa} government --- on the existence 
+of a global surveillance apparatus led by the \aca{usa} government \Ac{nsa} in cooperation 
+with other intelligence organisations and in partnership with major technological 
+players such as \Google, \Facebook or \Apple. 
 
 Such idea of decentralisation is what motivates this thesis as means to achive 
-privacy as data control in similar terms as those by Allen et al \cite{Allen99}. Though overruling 
-the power of a central authority like the service provider of an \ac{osn} entails 
-sharing the duties and responsibilities among a subset of federated servers or among
-all the users of the network in a \ac{p2p} fashion.
+privacy as data control in similar terms as those stated by Allen \cite{Allen99}. 
+Though overruling the power of a central authority like the service provider of 
+an \ac{osn} entails sharing the duties and responsibilities among a subset of federated 
+servers or among all the users of the network in a \ac{p2p} fashion. In other words, 
+there are many non-trivial trade-offs to consider which are worth the effort of 
+being looked at.
+
+With this thesis we aim at contributing to the field of centralised \acp{is} by 
+presenting solutions showing that decentralisation is not only possible but also 
+improves the control that a user has over her personal data --- her privacy is enhanced. 
+We specificy and design some protocols showing how some common functionality in 
+generic \acp{is} can be mimicked in a decentralised scenario, such as a \ac{p2p} 
+network, or in a more specific one, such as a \ac{dosn}. We also show how in some 
+conventional process where privacy is not seen that important it is possible to 
+enhance the privacy of a user while keeping the functionality intact in a scenario 
+where a trusted central authority is required.
 
 
+% we want to show some alternatives to improve the control that the user can do on her personal data. 
 
 
 \section{Future directions}
