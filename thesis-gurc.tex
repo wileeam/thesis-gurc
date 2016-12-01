@@ -70,7 +70,7 @@
 % *** adds a space unless the macro is followed by certain punctuation characters ***
 \usepackage{xspace}
 
-% tocloft is already being loaded
+% tocloft is already loaded
 %\usepackage{tocloft}
 % \renewcommand{\cftchapterfont}{\scshape}
 % \renewcommand{\cftsecfont}{\bfseries}
@@ -410,20 +410,43 @@
     % Why should we care?
     % What are our findings?
     %
-    Privacy-enhancing technologies may help lessen the threats to the privacy of 
-    users' personal information in centralised systems like \aclp*{osn}. As such, 
-    decentralised solutions have been proposed to extend user's control over its 
-    data.
+    \aclp*{pet} have proven to be a beneficial area of research aiming at lessening
+    the threats to the privacy of users' personal information in centralised \acl*{is}
+    like \aclp*{osn}. As such, decentralised solutions have been proposed to extend 
+    the control that a user has over its data as opposed to the centralised massive 
+    collection of personal and sensitive data.
     
-    current solutions are made of building blocks, we show some of them in the categories
-    of decentralized systems in general, particular systems like osns and more generic
-    privacy-preserving systems.
+    The power that the service provider has in centralised \aclp*{is} has been shown 
+    to diminish the user's privacy with cases of misuse, censorship or data leakage. 
+    Moreover, the disclosures in 2013 of a global surveillance program led by public 
+    intelligence institutions in collaboration with some of the service providers 
+    of such centralised \aclp*{is} has accelerated the debate on how to take action 
+    to counteract the threat to the ``right to be left alone'' as defined by Alan 
+    Westin in 1970. 
     
-    Decentralization: P2P
+    Decentralisation as a solution to such threat is plausible and commonly used 
+    nowadays. However, removing the central authority comes with two main trade-offs, 
+    on one side, mimicking the features of the centralised \acl*{is} in a usable 
+    way is not trivial. On the other side, the security and privacy threats 
+    that the central authority was supervising and taking care of are now a responsibility 
+    to be shared among all participants in the decentralised system.
     
-    Particular case of decentralization (\acp{dosn}): EI
+    In our thesis, we propose three different solutions to centralised \aclp*{is}
+    varying in the degree of achievable security and privacy, and decentralisation. 
+    For decentralised \aclp*{is} in general we show an actual implementation of 
+    user authentication via standard user-password credentials. Within the realm 
+    of decentralised systems we also show a specific example in the domain of \aclp*{dosn} 
+    with the implementation of a coordination and cooperation mechanism to organise 
+    events. Finally, in generic centralised privacy-preserving systems we show a 
+    mechanism to improve one of the aspects of user's privacy, anonymity, in the 
+    academic area to submit and grade documents anonymously.
     
-    Privacy-Preserving systems: DSS
+    Our solutions are some concrete examples of how privacy as data control, as 
+    envisioned by Anita Allen, can be achieved in different degrees and scenarios. 
+    Nonetheless, we hope that the privacy-preserving protocols we propose can be 
+    useful in other scenarios to mitigate the diverse dangers to personal privacy 
+    that we are facing nowadays.
+    
 \end{abstract}
 \clearpage
 % \chapter*{Acknowledgements}
@@ -887,14 +910,30 @@ of \acp{osn},
     \item hardware,\\
     possibly the most obvious one in any \ac{cbis}. It can be a single machine or 
     many. In the context of \acp{osn} --- and in the current state of the \Internet 
-    --- is common to use server farms in data centers all over the world acting 
-    as one and, providing a fast, reliable and redundant service. Users usually 
+    --- where it is common to use server farms in data centers all over the world 
+    acting as one and, providing a fast, reliable and redundant service. Users usually 
     communicate with one of the farms that is geographically close. In case of failure 
     of any component in one or more servers of the farm --- or even an entire server 
-    farm --- the other machines can take over seamlessly --- or another server farm.
+    farm --- the other machines can take over seamlessly --- or simply another server 
+    farm.
     
-    \item Software\\
-    A
+    \item software,\\
+    is the set of computer programs that govern the operation of the hardware --- 
+    tell the hardware what to do, how to function. These can be either system programs 
+    --- usually the operating system --- or application programs such as a text 
+    editor or a video player. In the context of \acp{osn} these would be the collection 
+    of programs to process the user requests when accessing the \ac{osn} and other 
+    auxiliary programs, for example, to administrate the service, or any client 
+    application, for example, to access the service from a mobile. As \acp{osn} 
+    have gained most of their popularity on the \ac{www}, the computer programs 
+    are the web servers and, engines and frameworks chosen by the service provider 
+    to implement the \ac{osn}, for example, the \Apache web server or the \ac{ror} 
+    web application framework. Mobile apps are also part of the software, and in 
+    the case of \acp{osn} a major player\footnote{Note that the adoption of mobile 
+    \Internet is more related to the envision by one of the biggest manufacturers 
+    --- \Apple --- to drive the demand for mobile services \cite{WestM10}.} for their 
+    success, because of their social nature the user is able to continue interacting 
+    from virtually anywhere.
     
     \item Communications\\
     A
@@ -1044,9 +1083,10 @@ retention.
 Such consistency guarantee is now possible thanks to leveraging on the blockchain 
 that enables cryptocurrencies such as \Bitcoin \cite{Nakamoto08}. The blockchain 
 is a distributed sequential database of growing list of records --- blocks of transactions. 
-Because blocks can only be appended it is not possible to alter already registered 
-transactions and this characteristic --- among others of this technology --- can 
-be used to impose such consistency guarantee for identifiers in a \ac{dosn} setup.
+Because blocks can only be appended to the list, it is not possible to alter already 
+registered transactions. Such immutability --- among others like the self-organised 
+\ac{p2p} network to have one single chain --- can be used to impose such consistency 
+guarantee for identifiers in a \ac{dosn} setup.
 
 \textit{Data storage}. 
 
@@ -1147,7 +1187,7 @@ do so right \cite{KrishnamurthyW08, BrandtzaegLS10}. Even if the configuration i
 done correctly, there may be some false sense of safety and privacy. Those other 
 trusted ones can easily expose that personal information without realising that 
 they are doing so, for example, a user may tag a friend in a picture revealing her 
-precise location at some point of time \cite{ZhelevaG09}. 
+precise location at some point of time \cite{ZhelevaG09, SmithSHV12}. 
 
 On the other hand, service providers need to make a living out of the `free' service
 they offer --- the \ac{osn}. Nowadays, users are aware, more than ever, of the data 
@@ -1164,21 +1204,26 @@ provided by the service provider do not exist anymore. All the problems and issu
 become a responsibility of the users in the network because there is not a central 
 authority to rely on as we briefly discussed in the previous section.
 
+The security and privacy trade-offs of decentralisation have been focused on keeping 
+personal data confidential and intact --- by means of cryptographic protocols and 
+algorithms, in line with previous perspectives of privacy, for example, in law \cite{Harvey92} 
+or in healthcare \cite{BarrowsC96}. 
 
+Although confidentiality and integrity are necessary, they are not sufficient because 
+regardless of any authentication and data control mechanisms implemented in a decentralised 
+scenario there are other problems to consider. For example, the inferences that 
+an attacker can make from the meta-data that the central authority was protecting 
+in the centralised scenario and are available in the decentralised setup if not addressed 
+in the design of the \ac{dosn} \cite{GreschbachKB12}.
 
----
-What it implies
-Why is it important (and in our context)
-How it can be breached or attacked or diminished
-What can we do: crypto for access control
----
-
-% TODO: Develop for PhD kappa
+% TODO: Develop for PhD kappa if there is a chance
 % \section{Graph modeling: beyond one-to-one relationships}
-%     \label{section:graph-modeling}
+%     \label{section:graph-modeling-beyond-one-to-one-relationships}
 %
+%
+% TODO: Develop for PhD kappa if there is a chance
 % \section{Analytics: from raw data to information}
-% TODO: Develop for PhD kappa
+    % \label{section:analytics-from-raw-data-to-information}
 %
 % Raw data is a set of unorganized facts about something that when processed, organized
 % and structured can be presented in some meaningful manner resulting in information.
@@ -1226,8 +1271,8 @@ to its competitors.
 In this thesis we aim at reducing the amount of control that a service provider 
 can do in a centralised \ac{is}. Either by improving the privacy of some steps of 
 a process in a centralised scenario --- if we are constrained to keep such authority, 
-for example, in a semi-trusted assumption, or by analysing the consequences on the 
-processes when removing the central authority and providing privacy-enhancing alternatives 
+for example, in a semi-trusted scheme, or by analysing what happens when the central 
+authority is taken away and, designing and evaluating privacy-enhancing alternatives 
 instead. 
 
 % Whether centralised or decentralised \acp{is} are better is not part of our research
@@ -1269,16 +1314,27 @@ Keep functionality of OSNs (in the decentralised scenario) while provide such fu
 in a privacy-preserving manner.
 
 Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
+---
 
-Talk about delimitations as well
+\section{Delimitations}
+    \label{section:delimitations}
+In the realm of this thesis, centralised and decentralised \acp{is}, including the 
+user case of the latter ones, \acp{dosn}, we are not aiming, nor we have, at building 
+a functional system as per the definition of \ac{is} in \cref{section:information-systems-on-the-importance-of-capabilities}.
+
+---
+Aim at providing some functionaliyy in either of this sytems with a focus on showing
+the security and privacy trade-offs while also show it is possible to have a usable
+functionality
 ---
 
 \section{Methodology}
     \label{section:methodoloy}
 Computer science is the study of the phenomena that surrounds computers by means 
 of the theory, experiments and design that leads to the actual construction of computers. 
-That is, the computer is not only a collection of interconnected pieces of hardware 
-but also a programmed ``living'' device --- the studied ``organism'' --- \cite{NewellS76}.
+The computer is not only a collection of interconnected pieces of hardware but also 
+a programmed ``living'' device --- as defined by Newell\etal the studied ``organism'' 
+--- \cite{NewellS76}.
 
 As such, and derived from the natural sciences as a continuous process, we take 
 the scientific method as the main approach to address our research problem by systematic 
@@ -1338,7 +1394,8 @@ included in this thesis in \cref{table:papers-methodologies}.
 % paper?
 % ---
 
-
+% TODO: Mention what other authors did?
+% TODO: Mention who did some or less writing?
 \chapter{Our contributions}
     \label{chapter:our-contributions}
 \renewcommand\thesection{\Alph{section}}
@@ -1356,6 +1413,11 @@ included in this thesis in \cref{table:papers-methodologies}.
 % The problem of how to transfer credentials in a usable and secure way from one device to another is one of the concerns of Article B contained in this thesis. The proposed solution emulates the traditional username/password-login paradigm in a decentralized system.
 
 \subsection{Contributions}
+    \label{subsection:contributions-p2p}
+I contributed actively in the discussions we held for the design of the protocols 
+with ideas and improvements, for example, I helped with the framing of some of the 
+protocols such as the password recovery mechanism. 
+
 %\subsection{Changes for the thesis}
 
 % EI
@@ -1367,7 +1429,10 @@ included in this thesis in \cref{table:papers-methodologies}.
 \endgroup
 
 \subsection{Summary}
+
 \subsection{Contributions}
+
+% Together with Guillermo Rodríguez-Cano, I developed the problem statement, the formalizations, the cryptographic tools, protocols and analysis for this article. Sonja Buchegger contributed with helpful feedback and writing
 %\subsection{Changes for the thesis}
 
 % DSS
