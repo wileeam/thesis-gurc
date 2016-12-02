@@ -1070,13 +1070,15 @@ former two --- differing in privacy, costs and availability trade-offs.
 Past research has focused on removing the central provider and guaranteeing the 
 confidentiality of users' personal data --- via cryptographic algorithms and protocolos 
 --- but little has been done to address other major trade-offs when distributing 
-the responsibilities of the central authority among the users of the \ac{osn} \cite{GreschbachKB12} 
---- see \cref{section:related-work} for \lcnameref{section:related-work} on \acp{dosn}.
+the responsibilities of the central authority among the users of the \ac{osn} \cite{GreschbachKB12}
+.% --- see \cref{section:related-work} for \lcnameref{section:related-work} on \acp{dosn}.
 
 When decentralising an \ac{osn} --- and other similar centralised \acp{is} --- one 
-has to consider how to address topics such as identification of the users, storage 
-of personal data and, access control policies --- and their enforcement --- for 
-the stored data as well information accountability.
+has to consider how to address topics such as identification of the users or personal 
+data storage.
+% has to consider how to address topics such as identification of the users, personal
+% data storage and, access control policies --- and their enforcement --- for
+% the stored data as well information accountability.
 
 \textit{Identification}. In traditional \acp{osn} --- and most centralised \acp{is} 
 --- authentication of users for the purpose of accessing the system is done by the 
@@ -1109,29 +1111,48 @@ registered transactions. Such immutability --- among others like the self-organi
 \ac{p2p} network to have one single chain --- can be used to impose such consistency 
 guarantee for identifiers in a \ac{dosn} setup.
 
-\textit{Data storage}. 
+\textit{Data storage}. Decentralising storage in \acp{osn} is another key challenging 
+task because it is not enough with partitioning the information among a set of nodes 
+using some algorithm to increase availability and redundancy. There requirements 
+of integrity and confidentiality are also crucial, particularly when the goal is 
+to eliminate or reduce the power of the central authority --- recall that it is 
+still possible to have a distributed storage system controlled by a single authority 
+requiring trust in such third party which is what we aim at removing.
 
-\textit{Access control policies for the stored data}. 
+Survivable storage systems provide the fundamental requirement of no node, service 
+nor user can be fully trusted. Persistence of data in such self-securing storage 
+systems is entrusted to a set of nodes --- rather than to individual ones --- able 
+to monitor and repair themselves guaranteeing malfunctioning and malicious compromises 
+of storage nodes. Nodes in such systems store the data as in any decentralised storage 
+and protect it as an independent entity --- self-securing requirement --- making 
+them different from `regular' decentralised storage systems \cite{WylieBSGKK00}.
+ 
+The unique characteristics of survivable storage systems are likely to be the closest 
+to the main properties of the most popular decentralised storage engine used when 
+decentralising \acp{osn}, \acp{dht}. \acp{dht} are distributed storage systems storing 
+information in key-value pairs and providing a lookup service --- usually by key 
+in a dictionary-like fashion.
 
-\textit{Information accountability}. 
-dl.acm.org/citation.cfm?id=1349043
+Decentralisation, integrity, scalability, fault tolerance and anonymity are among 
+the properties that any \ac{dht} should meet in a \ac{dosn}. As the varying overlay 
+network topologies, routing algorithms, data models, churn management techniques and, 
+security attack resilience are largely vast in the state of the art we direct the 
+reader to a survey on \ac{p2p} content distribution, \cite{Androutsellis-TheotokisSLS10} 
+and another one on \ac{dht} security techniques, \cite{UrdanetaPS11}.
 
+% \textit{Access control policies for the stored data}.
 
+% \textit{Information accountability}.
+% http://dl.acm.org/citation.cfm?id=1349043
 
-talk about possibility of business models in a decentralised (refer to apple's differential 
-privacy but perhpaps look for another one from facebook or twitter if they even exists...)
----
-Give works on decentralisation
- - Privacy, Cost, and Availability Tradeoffs in Decentralized OSNs -> Decentralization alternatives
-   \cite{ShakimovVCC09}
----
+% talk about possibility of business models in a decentralised (refer to apple's differential
+% privacy but perhpaps look for another one from facebook or twitter if they even exists...)
 % Sample of centralised vs decentralised system: https://en.wikipedia.org/wiki/File:Decentralization_diagram.svg
 % How most designs are centralised (and why)
 % Cite "Centralized information systems and the legal right to privacy"
 % What it means to be decentralised
 % How we can decentralise such centrali
 % Trade off (this leads to the main point of privacy that comes now)
----
 
 
 % \subsection{\Aclp*{dosn} in this thesis}
@@ -1257,16 +1278,16 @@ in the design of the \ac{dosn} \cite{GreschbachKB12}.
 % necessarily breach the boundaries of user privacy. Can we do business in a privacy-preserving
 % manner? (This is the key question).
 
-\section{Related work}
-    \label{section:related-work}
+% \section{Related work}
+%     \label{section:related-work}
 
 %NOTE: Undecided, whether this best fit as a subsection or part of the introduction or simply not exist.
 
-Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that try to 
-use OSNs in a privacy-preserving manner (that is, using an overlay of encryption 
-or perhaps a link to a third party that is under the user's control?).
-Vis-a-Vis project
-Check GreschbachKB12 for citations of Safebook and other projects.
+% Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that try to
+% use OSNs in a privacy-preserving manner (that is, using an overlay of encryption
+% or perhaps a link to a third party that is under the user's control?).
+% Vis-a-Vis project
+% Check GreschbachKB12 for citations of Safebook and other projects.
 
 
 \chapter{Our research problem}
@@ -1324,28 +1345,17 @@ even thought as of the time of this writing --- though this is the beauty of res
     \Cref{article:passwords-peer-to-peer,article:events-invitations-dosns}
     \item Can we mimic some of the features of centralised \acp{is} in a decentralised setup?\\
     \Cref{article:passwords-peer-to-peer,article:events-invitations-dosns}
-    \item What are the trade-offs when protecting the privacy of the user in an \ac{is}?\\
-    \Cref{article:passwords-peer-to-peer,article:events-invitations-dosns,,article:document-submission-system}
+    \item What are the trade-offs when protecting the privacy of the user in a decentralised \ac{is}?\\
+    \Cref{article:passwords-peer-to-peer,article:events-invitations-dosns}
+    \item Can centralised \ac{is} be more privacy-preserving?\\
+    \Cref{article:document-submission-system}
 \end{itemize}
-
----
-Keep functionality of OSNs (in the decentralised scenario) while provide such functionality 
-in a privacy-preserving manner.
-
-Practice is nothing without theory and viceversa (but there are trade offs when leaning to either side).
----
 
 \section{Delimitations}
     \label{section:delimitations}
-In the realm of this thesis, centralised and decentralised \acp{is}, including the 
+In the realm of this thesis, centralised and decentralised \acp{is}, including a 
 user case of the latter ones, \acp{dosn}, we are not aiming, nor we have, at building 
-a functional system as per the definition of \ac{is} in \cref{section:information-systems-on-the-importance-of-capabilities}.
-
----
-Aim at providing some functionaliyy in either of this sytems with a focus on showing
-the security and privacy trade-offs while also show it is possible to have a usable
-functionality
----
+a functional system as per the definition of \ac{cbis} in \cref{section:information-systems-on-the-importance-of-capabilities}.
 
 \section{Methodology}
     \label{section:methodoloy}
@@ -1434,8 +1444,8 @@ included in this thesis in \cref{table:papers-methodologies}.
 \subsection{Contributions}
     \label{subsection:contributions-p2p}
 I contributed actively in the discussions we held for the design of the protocols 
-with ideas and improvements, for example, I helped with the framing of some of the 
-protocols such as the password recovery mechanism. 
+with ideas and improvements, for example, I helped with the formalisation of some 
+of the protocols such as the password recovery mechanism. 
 
 %\subsection{Changes for the thesis}
 
@@ -1450,7 +1460,9 @@ protocols such as the password recovery mechanism.
 \subsection{Summary}
 
 \subsection{Contributions}
-
+I developed, with Benjamin Greschbach, the problem statement as well as the formalisations 
+of the security and privacy properties and, the protocols we devised. I also contributed 
+with Benjamin in the evaluation of the implementation and the tools we devised.
 % Together with Guillermo Rodríguez-Cano, I developed the problem statement, the formalizations, the cryptographic tools, protocols and analysis for this article. Sonja Buchegger contributed with helpful feedback and writing
 %\subsection{Changes for the thesis}
 
@@ -1472,6 +1484,11 @@ protocols such as the password recovery mechanism.
 % graded.
 
 \subsection{Contributions}
+Together with Benjamin Greschbach, I developed the problem statement, the formalisation 
+of the security and privacy properties and, the analysis and evaluation of our solution. 
+Tomas Ericsson implemented a proof-of-concept of the problem statement and contributed 
+actively in the formalisation.
+
 %\subsection{Changes for the thesis}
 
 \renewcommand\thesection{\thechapter.\arabic{section}}
@@ -1520,23 +1537,60 @@ being looked at.
 With this thesis we aim at contributing to the field of centralised \acp{is} by 
 presenting solutions showing that decentralisation is not only possible but also 
 improves the control that a user has over her personal data --- her privacy is enhanced. 
-We specificy and design some protocols showing how some common functionality in 
+We specify and design some protocols showing how some common functionality in 
 generic \acp{is} can be mimicked in a decentralised scenario, such as a \ac{p2p} 
-network, or in a more specific one, such as a \ac{dosn}. We also show how in some 
-conventional process where privacy is not seen that important it is possible to 
-enhance the privacy of a user while keeping the functionality intact in a scenario 
+network, or in a more specific one, such as a \ac{dosn}. We also demonstrate how 
+in some conventional process where privacy is not seen that important it is possible 
+to enhance the privacy of a user while keeping the functionality intact in a scenario 
 where a trusted central authority is required.
 
+For decentralised \acp{is} we present in \cref{article:passwords-peer-to-peer} an 
+scheme for usable privacy-preserving user authentication in a similar manner --- 
+via user-password credentials --- than what most \acp{is} use nowadays with key 
+functionality to recover the credentials or even maintain the authentication details 
+stored in a secure manner across devices with a negligible impact on performance.
 
-% we want to show some alternatives to improve the control that the user can do on her personal data. 
+In a specific use case of decentralised \acp{is} within the realm of \acp{osn}, 
+\acp{dosn}, we demonstrate how it is possible to have a coordination and cooperation 
+mechanism such as the organisation of events without the need of a \ac{ttp} in \cref{article:events-invitations-dosns}. 
+Along with standard cryptographic primitives we describe some privacy-enhancing 
+tools that allow storage location indirection --- control of the ability to access 
+an encrypted object and possibly to decrypt it as well, or controlled cipher-text 
+inferences --- allowing certain leak information such as the size of an encrypted 
+object but not its content --- and define a ``commit-disclose'' protocol --- where 
+some information is disclosed to a certain set of users who have fulfilled some 
+requirement.
 
+We also tackled the problem of anonymity in centralised \ac{is} with a prototype 
+implementation of a document submission and grading system in \cref{article:document-submission-system} 
+without compromising the correctness of the process. By means of standard cryptographic 
+primitives such as blind signatures we propose a protocol that guarantees ``forward 
+unlinkability'' of a document with the author over time --- an examiner will not 
+be able to link the author of a document with the document itself even after reporting 
+the grade for that document --- and, ``provable linkability'' of an author's identity 
+with the grade for its document --- an author of a document is guaranteed to receive 
+a grade if and only the author submitted the document.
+
+% TODO: Replace chapter with macro command
+Finally, we also aim at bringing back --- once more --- the debate on privacy because 
+the envisioned ``Big Brother'' society that George Orwell pictured is not far from 
+being part of our daily lives \cite{Orwell49}. The solutions to some of the security 
+and privacy problems we have presented in the previous chapters are some examples on 
+how we can actually achieve some compromises to resolve the conflict between the 
+need and value for information and the cost of personal privacy.
 
 \section{Future directions}
     \label{section:future-directions}
+Ideas? I need some more...
+
 - More features/functionality
+
 - Other scenarios where decentralisation fits
+
 - More formal security and privacy evaluation
+
 - Privacy-preserving analytics
+
 - Protection of the social network graph from within
 
 
