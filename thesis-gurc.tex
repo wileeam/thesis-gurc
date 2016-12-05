@@ -18,7 +18,6 @@
 \usepackage[swedish, english, french, spanish]{babel}
 
 \usepackage[svgnames]{xcolor}
-%\usepackage{tikz}
 
 % *** disable reset of footnote counter every chapter
 \usepackage{chngcntr}
@@ -527,7 +526,18 @@
 \begin{document}
 
 \frontmatter
+\pagestyle{empty}
 \maketitle
+
+
+\newpage
+\begin{vplace}
+    \begin{flushright}
+        \emph{In memory of Victoria}
+    \end{flushright}
+\end{vplace}
+\cleardoublepage
+
 % \input{template/doc/latex/kthesis/kth-abs}
 % \clearpage
 % \selectlanguage{swedish}
@@ -542,6 +552,7 @@
 % \end{abstract}
 \selectlanguage{english}
 
+\clearpage
 \begin{abstract}
     \label{abstract}
     % What is the problem?
@@ -589,22 +600,11 @@
 \end{abstract}
 
 \clearforchapter
+\pagestyle{headings}
+% \pagestyle{ruled}
 \chapter*{Acknowledgements}
-To be written...
 
-\section*{Funding}
-The research leading to this thesis has been supported by the following projects:
-\begin{itemize}
-    \item Protection of personal information in social networks (Skydd av personlig 
-    information f{\"o}r sociala n{\"a}tverk)\\
-    Funded by the \ac*{ssf} grant: SSF FFL09-0086.
-    % \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
-    \item Privacy-preserving social and community networks\\
-    Funded by the \ac*{vr} grant: VR 2009-3793.
-    % \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
-\end{itemize}
-
-We are grateful to the Swedish taxpayers for their commitment to research and development.
+\input{data/acknowledgements.tex}
 
 \clearforchapter
 \addtocontents{toc}{~\hfill\textbf{Page}\par}
