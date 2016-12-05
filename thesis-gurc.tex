@@ -3,6 +3,8 @@
 
 \documentclass[showtrims,oldfontcommands]{kthesis}
 
+% has to be loaded before some others (after hyperref gives an error)
+\usepackage{algorithm}
 %\usepackage[sfdefault,lf]{carlito}
 \usepackage[lf]{carlito}
 %% The 'lf' option for lining figures
@@ -36,9 +38,9 @@
 \nobibliography*
 
 % *** citation numbers will be sorted and properly "compressed/ranged" ***
-\usepackage[noadjust]{cite}
+%\usepackage[noadjust]{cite}
 % *** allowed for \citeauthor and \citeyear commands ***
-\usepackage[authoryear, numbers, square]{natbib}
+\usepackage[numbers, square, sort]{natbib}
 \usepackage{usebib}
 \bibliographystyle{acm}
 \setcitestyle{authoryear,aysep={},open={(},close={)}}
@@ -59,13 +61,8 @@
 
 
 \usepackage{mfirstuc}
-\usepackage[single, hyperref=true]{acro}
-
-% *** capitalisation config for acronyms ***
-\acsetup{uc-cmd=\capitalisewords}
-% *** acronyms file loading ***
-\input{data/acronyms}
-
+%\usepackage[single, index, hyperref=true]{acro}
+\usepackage[single, index]{utils/acro}
 
 % *** adds a space unless the macro is followed by certain punctuation characters ***
 \usepackage{xspace}
@@ -78,34 +75,176 @@
 % \renewcommand{\cfttabfont}{Table }
 % \renewcommand{\cftsectionpresnum}{SOMETHING }
 
-%\usepackage{algorithm}
+\graphicspath{{./images/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
 
 % colored dogear marks
 \usepackage[pages=some,contents={},opacity=1.0,scale=1,angle=90]{background}
 \usepackage{tikz}
-\newcommand*\VerBar[1]{%
-	\begin{tikzpicture}
-	\fill[#1] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
-	\draw[white] (0.5,0.5)node{\rotatebox{-90}{\Huge \textbf \thechapter}};
-	\end{tikzpicture}
-}
-\newcounter{DogearHShift}
-\newcommand{\dogear}[1]{%
-  \backgroundsetup{position={current page.north east},vshift=0.5cm,%
-    hshift=-\theDogearHShift cm,contents={\VerBar{#1}}}%
-  \BgThispage%
-  \addtocounter{DogearHShift}{1}
-}
-\newcommand{\dogearRGB}[1]{%
-  \definecolor{dogearColor}{RGB}{#1}%
-  \dogear{dogearColor}%
-}
-%usage: \dogear{COLOR}, e.g. \dogear{red}
-%   or: \dogearRGB{RED,GREEN,BLUE}, e.g. \dogearRGB{255,0,0}
-% ------------------------------------
-
 
 \usepackage{hyperxmp}
+
+%%% P2P %%%
+%\usepackage{amssymb}
+%\usepackage[pdftex]{graphicx}
+%\graphicspath{{./images/}}
+%\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+%\usepackage[tight,footnotesize]{subfigure} % old version
+%\usepackage{url}
+%\hyphenation{op-tical net-works semi-conduc-tor log-in}
+%%*** ALIGNMENT PACKAGES ***
+%\usepackage{array}
+%\usepackage{mdwmath}
+%%*** colors ***
+% \usepackage{xcolor,colortbl}
+% \definecolor{colorRowHeader}{rgb}{0.976471,0.976471,0.976471}
+% \definecolor{colorSubLine}{rgb}{0.5,0.5,0.5}
+%*** tables ***
+%\usepackage{multirow}
+\usepackage{booktabs}
+%*** code ***
+%\usepackage{algorithm}
+\usepackage{algpseudocode}
+%%% P2P %%%
+
+%%% EI %%%
+%\RequirePackage[l2tabu, orthodox]{nag}
+%\usepackage{enumitem}
+\usepackage{bold-extra}
+%\usepackage{amssymb}
+%\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{breqn} %automatic line breaks in formulas. deactivated due to this problem: http://latex-community.org/forum/viewtopic.php?f=46&t=24015&start=10
+%\setcounter{tocdepth}{3}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{url}
+%\usepackage{acro} % caused conflicts
+%\usepackage{glossaries} % caused errors
+%\usepackage{mfirstuc}
+\usepackage{xparse}
+%\usepackage{booktabs}
+%\usepackage{multirow}
+%\usepackage{array}
+\usepackage{colortbl}
+\usepackage{arydshln} % causes pdflatex to hang at umsb.fd
+%\usepackage{tikz}
+\usepackage{mdframed}
+%\usepackage{cleveref} % needs to be loaded after hyperref
+\usepackage{calc}
+%%% EI %%%
+
+%%% DSS %%%
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+% \usepackage[american]{babel}
+% \usepackage{graphicx}
+% \usepackage{tikz}
+% \usepackage{mdframed}
+%extended enumerate, such as \begin{compactenum}
+%%%% DEBUG
+% \usepackage{paralist}
+%%%% DEBUG
+%put figures inside a text
+%\usepackage{picins}
+%use
+%\piccaptioninside
+%\piccaption{...}
+%\parpic[r]{\includegraphics ...}
+%Text...
+
+%Sorts the citations in the brackets
+%\usepackage{cite}
+
+%for easy quotations: \enquote{text}
+%%%% DEBUG
+% \usepackage{csquotes}
+%%%% DEBUG
+% \usepackage[T1]{fontenc}
+
+%enable margin kerning
+%%%% DEBUG
+% \usepackage{microtype}
+%%%% DEBUG
+
+%better font, similar to the default springer font
+%%%% DEBUG
+% \usepackage[%
+% rm={oldstyle=false,proportional=true},%
+% sf={oldstyle=false,proportional=true},%
+% tt={oldstyle=false,proportional=true,variable=true},%
+% qt=false%
+% ]{cfr-lm}
+%%%% DEBUG
+%if more space is needed, exchange cfr-lm by mathptmx
+%\usepackage{mathptmx}
+
+% \usepackage{acro}
+% *** capitalisation config for acronyms ***
+% \usepackage{mfirstuc}
+% \acsetup{
+%     page-ref    = paren,% Seitennummer in Klammern
+%     extra-style = comma,% extra-Informationen mit Komma anhängen
+%     only-used   = false,% für das Beispiel auch die nicht verwendeten in die Liste aufnehmen
+%     sort        = true, % Liste sortieren
+%     uc-cmd      = \capitalisewords
+% }
+% \input{./data/acronyms}
+
+%for demonstration purposes only
+%%%% DEBUG
+% \usepackage[math]{blindtext}
+%%%% DEBUG
+
+% \usepackage[
+% pdfauthor={Benjamin Greschbach, Guillermo Rodr\'{i}guez-Cano, Tomas Ericsson and Sonja Buchegger},
+% %pdfsubject={},
+% pdftitle={Design of a Privacy-preserving Document Submission and Grading System},
+% %pdfkeywords={},
+% bookmarks=false,
+% breaklinks=true,
+% colorlinks=true,
+% linkcolor=black,
+% citecolor=black,
+% urlcolor=black,
+% %pdfstartpage=19,
+% pdfpagelayout=SinglePage
+% ]{hyperref}
+%enables correct jumping to figures when referencing
+% \usepackage[all]{hypcap}
+
+% \usepackage[capitalise,nameinlink]{cleveref}
+%Nice formats for \cref
+% \crefname{section}{Sect.}{Sect.}
+% \Crefname{section}{Section}{Sections}
+% \crefname{figure}{Fig.}{Fig.}
+% \Crefname{figure}{Figure}{Figures}
+
+% \usepackage{xspace}
+
+%sequence diagrams
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shadows}
+%\usepackage[underline=false]{pgf-umlsd}
+
+%msc diagrams
+%\usepackage{utils/msc5}
+\usepackage{utils/msc5}
+%%% DSS %%%
+
 % == load hyperref last ==
 %\usepackage[hidelinks, pagebackref=true]{hyperref}
 % if you only want the page number to be clickable in tock: linktocpage=true
@@ -115,22 +254,22 @@
 \crefname{appsec}{appendix}{appendices}
 \crefname{appchp}{appendix}{appendices}
 \crefname{artsec}{article}{articles}
+%\usepackage{algorithm}
+\usepackage[all]{hypcap}
 
-
-% *** customisation for pagebackref option in hyperref package ***
-% http://tex.stackexchange.com/questions/38149/removing-double-entries-from-hyperrefs-pagebackref
-\renewcommand*{\backreflastsep}{, }
-\renewcommand*{\backreftwosep}{, }
-\renewcommand*{\backref}[1]{}
-\renewcommand*{\backrefalt}[4]{%
-  \ifcase #1 %
-    No citations.% use \relax if you do not want the "No citations" message
-  \or
-    (Cited in page #2).%
-  \else
-    (Cited in pages #2).%
-  \fi%
+% *** capitalisation config for acronyms ***
+\acsetup{
+    page-ref    = paren,
+    extra-style = comma,
+    only-used   = false,
+    sort        = true,
+    uc-cmd      = \capitalisewords,
+    list-caps   = true,
+    list-heading= none
 }
+
+% *** acronyms file loading ***
+\input{data/acronyms}
 
 
 \input{data/kth-bibl}
@@ -389,6 +528,7 @@
 \begin{document}
 
 \frontmatter
+% Recall you need the file 'kth_svv_comp_science_comm' to be available
 % \maketitle
 % \input{template/doc/latex/kthesis/kth-abs}
 % \clearpage
@@ -402,7 +542,8 @@
 % \begin{abstract}
 %  Me gusta mucho esto
 % \end{abstract}
- \selectlanguage{english}
+\selectlanguage{english}
+
 \begin{abstract}
     \label{abstract}
     % What is the problem?
@@ -456,12 +597,13 @@ To be written...
 \section*{Funding}
 The research leading to this thesis has been supported by the following projects:
 \begin{itemize}
-    \item Protection of personal information in social networks (Skydd av personlig information f{\"o}r sociala n{\"a}tverk)\\
-    Funded by the \ac{ssf} grant: SSF FFL09-0086.\\
-    \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
+    \item Protection of personal information in social networks (Skydd av personlig 
+    information f{\"o}r sociala n{\"a}tverk)\\
+    Funded by the \ac*{ssf} grant: SSF FFL09-0086.
+    % \url{http://stratresearch.se/en/research/ongoing-research/framtidens-forskningsledare-4/project/4048/}
     \item Privacy-preserving social and community networks\\
-    Funded by the \ac{vr} grant: VR 2009-3793.\\
-    \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
+    Funded by the \ac*{vr} grant: VR 2009-3793.
+    % \url{http://vrproj.vr.se/detail.asp?arendeid=69587}
 \end{itemize}
 
 We are grateful to the Swedish taxpayers for their commitment to research and development.
@@ -472,7 +614,7 @@ We are grateful to the Swedish taxpayers for their commitment to research and de
 
 \mainmatter
 
-\part*{}
+%\part*{}
 
 \chapter{Introduction}
     \label{chapter:introduction}
@@ -1595,30 +1737,62 @@ Ideas? I need some more...
 
 %\chapter{Glossary of acronyms and abbreviations}
 \chapter{Glossary of acronyms}
-\acsetup{list-caps=true, list-heading=none, extra-style=comma}
+% \acsetup{
+%     list-caps   = true,
+%     list-heading= none,
+%     extra-style = comma,
+%     page-ref    = paren % Seitennummer in Klammern
+%     % only-used   = false,% für das Beispiel auch die nicht verwendeten in die Liste aufnehmen
+%     % uc-cmd      = \capitalisewords
+% }
+
 % Reset all acronyms
-%\acresetall
+% \acresetall
 % Mark all acronyms as used
-%\acuseall
+% \acuseall
 \printacronyms
+\acresetall
 
-
-\part{Published articles}
+\part*{Published articles}
     \label{part:published-articles}
+\setcounter{chapter}{0}
 \renewcommand\thechapter{\Alph{chapter}}
 \renewcommand{\chaptername}{Article}
 
+% *** properties' frame command ***
+\newenvironment{propertydef}[1][]{%
+	\mdfsetup{%
+		frametitle={%
+			\tikz[baseline]=(current bounding box.east),outer sep=0pt]
+			\node[anchor=east,rectangle,fill=black!15]
+			{\strut #1};
+		},%
+		skipabove=1em,%
+%		skipbelow=1em,%
+		innerrightmargin=0pt,%
+		linecolor=black,%
+		linewidth=1.5pt,%
+		topline=false,%
+		bottomline=false,%
+		leftline=true,%
+		rightline=false,%
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+	}
+
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
 \chapter{\usebibentry{KreitzBGRB12}{title}}
     \label[artsec]{article:passwords-peer-to-peer}
-
+\input{data/papers/passwords-peer-to-peer.tex}
 
 \chapter{\usebibentry{RodriguezCanoG14}{title}}
     \label[artsec]{article:events-invitations-dosns}
-
+\input{data/papers/event-invitations-dosns.tex}
 
 \chapter{\usebibentry{GreschbachREB15}{title}}
     \label[artsec]{article:document-submission-system}
-
+\input{data/papers/document-submission-system.tex}
 
 \newenvironment{quote_tos}{%
     \definecolor{formalshade}{rgb}{0.95,0.95,1}
@@ -1638,7 +1812,7 @@ Ideas? I need some more...
     \vspace{2pt}\end{adjustwidth}\endMakeFramed%
 }
 
-%\appendix
+% \appendix
 \begin{appendices}
     \addappheadtotoc
     %\appendixpage
@@ -1796,9 +1970,9 @@ Ideas? I need some more...
         \label{section:excerpts-twitter}
     % \cite{Twitter16}
     \Twitter's \acs{tos} are called ``Twitter Terms of Service'' and available at 
-    \url{https://twitter.com/tos}. The last revision as of 
-    this writing is dated on September 30th, 2016. The following is an excerpt of some 
-    selected sections of the \ac{tos}.
+    \url{https://twitter.com/tos}. The last revision as of this writing is dated 
+    on September 30th, 2016. The following is an excerpt of some selected sections 
+    of the \ac{tos}.
 
     \begin{quote_tos}
         \[...\]
@@ -1837,13 +2011,10 @@ Ideas? I need some more...
 
 \end{appendices}
 
-
 %\chapter*{References}
 %\addcontentsline{toc}{chapter}{Bibliography}
-%\dogearRGB{118,118,118}
-
 \bibliography{data/bibliography}
 
 \end{document}
-\endinput
+% \endinput
 
