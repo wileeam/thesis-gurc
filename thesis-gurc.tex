@@ -57,7 +57,6 @@
 \usepackage{lipsum}
 \listfiles
 
-\usepackage[explicit]{titlesec}
 \usepackage[many]{tcolorbox}
 
 
@@ -246,17 +245,20 @@
 \usepackage{utils/msc5}
 %%% DSS %%%
 
+\usepackage[explicit]{titlesec}
 % == load hyperref last ==
 %\usepackage[hidelinks, pagebackref=true]{hyperref}
 % if you only want the page number to be clickable in tock: linktocpage=true
 \usepackage[colorlinks=true, pagebackref=true, linktocpage=true]{hyperref}
 
+
 \usepackage{cleveref}
 \crefname{appsec}{appendix}{appendices}
 \crefname{appchp}{appendix}{appendices}
 \crefname{artsec}{article}{articles}
-%\usepackage{algorithm}
+\crefname{part}{part}{parts}
 \usepackage[all]{hypcap}
+
 
 % *** capitalisation config for acronyms ***
 \acsetup{
@@ -527,10 +529,24 @@
 
 \begin{document}
 
+%%%
+%   INF: Read the following links for the order of the content (and choose)
+%        http://site.uit.no/english/writing-style/bookstructure/
+%        http://gradschool.unc.edu/academics/thesis-diss/guide/ordercomponents.html
+%
+
 \frontmatter
-\pagestyle{empty}
+
+%%%
+%   DOC: Cover page (and ISBN, ISRN, etc numbers)
+%
 \maketitle
 
+%%%
+%   CNF: Removing styles (page numbers) until after abstract
+%        Note TOC lists content from itself not before
+%
+\pagestyle{empty}
 
 %%%
 %.  DOC: License page
@@ -599,8 +615,25 @@
     mitigate the diverse dangers to personal privacy that we are facing nowadays.
     
 \end{abstract}
+\clearpage
 
-\clearforchapter
+\selectlanguage{swedish}
+\begin{abstract}
+  Denna fil ger ett avhandlingsskelett.
+  Mer information om \LaTeX-mallen finns i
+  dokumentationen till paketet.
+\end{abstract}
+\clearpage
+
+\selectlanguage{spanish}
+\begin{abstract}
+ Me gusta mucho esto
+\end{abstract}
+\clearpage
+
+\selectlanguage{english}
+
+
 %\clearforchapter
 \cleardoublepage
 \phantomsection
@@ -610,8 +643,9 @@
 % \pagestyle{ruled}
 \input{data/acknowledgements.tex}
 
+
 \clearforchapter
-\addtocontents{toc}{~\hfill\textbf{Page}\par}
+%\addtocontents{toc}{~\hfill\textbf{Page}\par}
 \tableofcontents
 
 \mainmatter
@@ -1755,8 +1789,8 @@ Ideas? I need some more...
 \printacronyms
 \acresetall
 
-\part*{Published articles}
-    \label{part:published-articles}
+\part{Published articles}
+    \label[part]{part:published-articles}
 \setcounter{chapter}{0}
 \renewcommand\thechapter{\Alph{chapter}}
 \renewcommand{\chaptername}{Article}
