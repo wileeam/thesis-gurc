@@ -532,12 +532,6 @@
 \maketitle
 
 
-\newpage
-\begin{vplace}
-    \begin{flushright}
-        \emph{In memory of Victoria}
-    \end{flushright}
-\end{vplace}
 %%%
 %.  DOC: License page
 %
@@ -545,21 +539,21 @@
 \input{data/text/licenses}
 \clearpage
 
-% \input{template/doc/latex/kthesis/kth-abs}
-% \clearpage
-% \selectlanguage{swedish}
-% \begin{abstract}
-%   Denna fil ger ett avhandlingsskelett.
-%   Mer information om \LaTeX-mallen finns i
-%   dokumentationen till paketet.
-% \end{abstract}
-% \selectlanguage{spanish}
-% \begin{abstract}
-%  Me gusta mucho esto
-% \end{abstract}
-\selectlanguage{english}
 
+%%%
+%   DOC: Dedications page
+%
+\cleardoublepage
+\input{data/text/dedications}
 \clearpage
+
+% \input{template/doc/latex/kthesis/kth-abs}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Abstract}
+\selectlanguage{english}
 \begin{abstract}
     \label{abstract}
     % What is the problem?
@@ -607,10 +601,13 @@
 \end{abstract}
 
 \clearforchapter
+%\clearforchapter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\chapter*{Acknowledgements}
 \pagestyle{headings}
 % \pagestyle{ruled}
-\chapter*{Acknowledgements}
-
 \input{data/acknowledgements.tex}
 
 \clearforchapter
