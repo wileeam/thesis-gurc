@@ -586,6 +586,12 @@
 \newcommand{\lc@thirdoffive}[5]{\firstToLow{#3}}
 \makeatother
 
+% reset footnote counters per chapter (and chapter*)
+\makeatletter
+\pretocmd{\@schapter}{\setcounter{footnote}{0}}{}{}
+\pretocmd{\@chapter}{\setcounter{footnote}{0}}{}{}
+\makeatother
+
 \counterwithin*{chapter}{part}
 
 
