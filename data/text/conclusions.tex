@@ -1,0 +1,134 @@
+% -*- mode: TeX -*-
+% -*- coding: utf-8 -*-
+
+\chapter{Conclusions}
+    \label{chapter:thesis:conclusions}
+\requote{Space: the final frontier. These are the voyages of the starship Enterprise. Its 
+continuing mission: to explore strange new worlds, to seek out new life and new 
+civilizations, to boldly go where no one has gone before}{Star Trek: The Next Generation}
+
+\lettrine{\textcolor[gray]{.25}{W}}{hen} Tim Berners-Lee invented the \Ac{www} in 
+1989, he envisioned a large-scale and decentralised \ac{is} where everybody would 
+be able to have their own website and plug-in a server from which they could offer 
+their content. Such idea never worked out and, instead, personal data ended up under 
+the control of major technological companies in huge data centers --- ``silos'' 
+--- distributed all over the world.
+
+% https://archive.org/details/DWebSummit2016_Keynote_Tim_Berners_Lee
+% https://web.archive.org/web/20161106081045/https://techcrunch.com/2016/10/09/a-decentralized-web-would-give-power-back-to-the-people-online/
+The idea of bringing back the initial design of a decentralised \ac{www} has been 
+in the minds of researchers and practitioners for a while now --- ``bring back the 
+power to the people'' as Tim Berners-Lee said during his keynote ``Re-decentralizing 
+the web -- some strategic questions'' at the ``Decentralized Web Summit'' in 2016. 
+
+Decentralisation of \acp{is} on the \Internet --- or re-decentralisation --- has 
+gained popularity in recent years due to increasing concerns on the risks of personal 
+data misuse by major technological companies as they oversee a large portion of 
+the data circulating the \Internet.
+
+Until the turn of the 21st century the focus was on the privacy concerns of individuals 
+as consumers and the policy making in that direction --- see some examples at \cite{MilbergBSK95}, 
+\cite{Rindfleisch97}, \cite{Clarke99} and \cite{NamSPI06}. However, in 2013, the 
+focus shifted to governmental mass surveillance after the disclosures of Edward 
+Snowden --- a former contractor of the \aca{usa} government --- on the existence 
+of a global surveillance apparatus led by the \aca{usa} government \Ac{nsa} in cooperation 
+with other intelligence organisations and in partnership with major technological 
+players such as \Google, \Facebook or \Apple. 
+
+Such idea of decentralisation is what motivates this thesis as means to achive 
+privacy as data control in similar terms as those stated by Allen \cite{Allen99}. 
+Though overruling the power of a central authority like the service provider of 
+an \ac{osn} entails sharing the duties and responsibilities among a subset of federated 
+servers or among all the users of the network in a \ac{p2p} fashion. In other words, 
+there are many non-trivial trade-offs to consider which are worth the effort of 
+being looked at.
+
+With this thesis we aim at contributing to the field of centralised \acp{is} by 
+presenting solutions showing that decentralisation is not only possible but also 
+improves the control that a user has over her personal data --- her privacy is enhanced. 
+We specify and design some protocols showing how some common functionality in 
+generic \acp{is} can be mimicked in a decentralised scenario, such as a \ac{p2p} 
+network, or in a more specific one, such as a \ac{dosn}. We also demonstrate how 
+in some conventional process where privacy is not seen that important it is possible 
+to enhance the privacy of a user while keeping the functionality intact in a scenario 
+where a trusted central authority is required.
+
+For decentralised \acp{is} we present in \cref{article:thesis:passwords-peer-to-peer} an 
+scheme for usable privacy-preserving user authentication in a similar manner --- 
+via user-password credentials --- than what most \acp{is} use nowadays with key 
+functionality to recover the credentials or even maintain the authentication details 
+stored in a secure manner across devices with a negligible impact on performance.
+
+In a specific use case of decentralised \acp{is} within the realm of \acp{osn}, 
+\acp{dosn}, we demonstrate how it is possible to have a coordination and cooperation 
+mechanism such as the organisation of events without the need of a \ac{ttp} in \cref{article:thesis:events-invitations-dosns}. 
+Along with standard cryptographic primitives we describe some privacy-enhancing 
+tools that allow storage location indirection --- control of the ability to access 
+an encrypted object and possibly to decrypt it as well, or controlled cipher-text 
+inferences --- allowing certain leak information such as the size of an encrypted 
+object but not its content --- and define a ``commit-disclose'' protocol --- where 
+some information is disclosed to a certain set of users who have fulfilled some 
+requirement.
+
+We also tackled the problem of anonymity in centralised \ac{is} with a prototype 
+implementation of a document submission and grading system in \cref{article:thesis:document-submission-system} 
+without compromising the correctness of the process. By means of standard cryptographic 
+primitives such as blind signatures we propose a protocol that guarantees ``forward 
+unlinkability'' of a document with the author over time --- an examiner will not 
+be able to link the author of a document with the document itself even after reporting 
+the grade for that document --- and, ``provable linkability'' of an author's identity 
+with the grade for its document --- an author of a document is guaranteed to receive 
+a grade if and only the author submitted the document.
+
+% TODO: Replace chapter with macro command
+Finally, we also aim at bringing back --- once more --- the debate on privacy because 
+the envisioned ``Big Brother'' society that George Orwell pictured is not far from 
+being part of our daily lives \cite{Orwell49}. The solutions to some of the security 
+and privacy problems we have presented in the previous \namecrefs{chapter:thesis:introduction} 
+are some examples on how we can actually achieve some compromises to resolve the 
+conflict between the need and value for information and, the cost of personal privacy.
+
+\section{Future directions}
+    \label{section:future-directions}
+There are many directions in which \acp{cbis} can be developed further in a privacy-preserving 
+manner. From the purely decentralised approach such as \ac{p2p} networks to mixed 
+models where some of the services are supplied --- partially or fully ---- by means 
+of centralised service providers. For example, a trusted third party such as a governmental 
+agency --- the police --- could provide a national \ac{pki} on which some decentralised
+services that would need a real identity could rely on to uniquely identify their 
+users. We list some of the possible lines of work that this thesis could be followed 
+up with,
+\begin{itemize}
+    
+    \item stricter formalisation and evaluation of security and privacy properties,
+    we have looked at these loosely in isolated scenarios (the functionality itself)
+    but these features would benefit from a deeper evaluation that if formalised (pi-calculus) 
+    would be able to guarantee even more.
+    At the same time, a combination of the security and privacy properties of the 
+    different features that we have looked at may conflict with each other, hence 
+    assessing the compatibility would also be needed (besides, they will come together 
+    anyways)
+    
+    \item wider range of functionalities,
+
+    \item expand decentralisation approach to other areas,
+    our focus has always been on centralised systems in which there are multiple actors
+    for example, in osns. There are other scenarios where decentralisation could 
+    be interesting, for example, in home care (a nurse transports some personal sensitive data
+    to help a patient and eventually returns with some new data about that patient)
+    
+    \item privacy-preserving analytics,
+    although there are some solutions to do some analysis in a privacy-preserving 
+    manner in centralised, there are not simple ways or solutions to do complex ones
+    morevoer, moving such analysis in a decentralised scenario, where there it is 
+    not easy to have a complete picture of the network at the time of analysis, makes
+    it a challenge on its own.
+    However, in the coming years, privacy-preserving analytics are going to be key 
+    for the success of many business and enterprises as these do not want to risk 
+    bad publicity such as the one gained after Snowden, and they may want to minimize 
+    the data footprint already in the source of it (the user)
+    
+    \item 
+
+\end{itemize}
+

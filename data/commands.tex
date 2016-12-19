@@ -15,16 +15,14 @@
 
 % *** customisation for pagebackref option in hyperref package ***
 % http://tex.stackexchange.com/questions/38149/removing-double-entries-from-hyperrefs-pagebackref
-\renewcommand*{\backreflastsep}{, }
-\renewcommand*{\backreftwosep}{, }
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]{%
   \ifcase #1 %
     No citations.% use \relax if you do not want the "No citations" message
   \or
-    (Cited in page #2).%
+    (Cited in pp. #2).%
   \else
-    (Cited in pages #2).%
+    (Cited in pp. #2).%
   \fi%
 }
 
