@@ -148,7 +148,8 @@ Guillermo Rodr\'{i}guez-Cano, Benjamin Greschbach, and Sonja Buchegger\\[2em]
 KTH Royal Institute of Technology\\
 School of Computer Science and Communication\\
 Stockholm, Sweden\\
-\{gurc, bgre, buc\}@csc.kth.se
+% \{gurc, bgre, buc\}@csc.kth.se
+\{\href{gurc@csc.kth.se}{gurc}, \href{bgre@csc.kth.se}{bgre}, \href{buc@csc.kth.se}{buc}\}@csc.kth.se
 \end{center}
 
 
@@ -171,7 +172,7 @@ Stockholm, Sweden\\
 \DeclareDocumentCommand{\uS}{ O{j} }{\ensuremath{u_#1^S}} % user identifier = user private key
 \DeclareDocumentCommand{\o}{ O{k} }{\ensuremath{o_{\e[#1]}}} % organizing user = organizer 
 \DeclareDocumentCommand{\i}{ O{k} O{j} }{\ensuremath{i_{\e[#1]}^{\u[#2]}}} % invitation object
-\DeclareDocumentCommand{\c}{ O{k} O{j} }{\ensuremath{c_{\e[#1]}^{\u[#2]}}} % commitment object
+\DeclareDocumentCommand{\cm}{ O{k} O{j} }{\ensuremath{c_{\e[#1]}^{\u[#2]}}} % commitment object
 
 \DeclareDocumentCommand{\U}{ }{\ensuremath{U}} % users
 \DeclareDocumentCommand{\I}{ O{k} }{\ensuremath{I_{\e[#1]}}} % invitees
@@ -364,7 +365,7 @@ The event invitation happens in three main stages:
 	
 	\item \textbf{Commitment:}
 		The invitees \I{} have the chance of confirming the invitation, \ie ``commit'' 
-		to attend the event \e{}, by issuing commitment objects \c{}. We denote 
+		to attend the event \e{}, by issuing commitment objects \cm{}. We denote 
 		the set of all attendees, \ie the users who committed to the event \e{},
 		as \C{}.
 	
@@ -473,7 +474,7 @@ privacy properties. We first list the following basic security properties:
 	
 	\item \textit{An organizer \o{} can prove that the invited 
 		user \u{} committed to attend the event \e{} if and only if \u{}
-		actually committed, \ie issued a commitment \c{}.}
+		actually committed, \ie issued a commitment \cm{}.}
 
 	This property also has two sides. The organizer cannot forge a commitment
 	of a user that did not commit to the event. And a user cannot deny
@@ -633,7 +634,7 @@ A commitment object is composed of the invitation object \i{} and the cryptograp
 hash of the event object \eo{}, both signed by the attending 
 user \u{} with her private key \uS{} as follows,
 \begin{equation*}
-		\c{} = Sign_{\uS{}}(H(\eo{})||\i{})
+		\cm{} = Sign_{\uS{}}(H(\eo{})||\i{})
 \end{equation*}
 \end{itemize}
 
@@ -734,10 +735,10 @@ The protocol runs in three phases:
 		let this have index $l$. She then looks up the corresponding row
 		key $rk_l$ in the event object.
 		
-		Finally, she crafts a commitment \c{}, creates a fresh keypair
+		Finally, she crafts a commitment \cm{}, creates a fresh keypair
 		$dk_l^P/dk_l^S$ (disclose key, later used by the organizer to
 		encrypt the secret information) and writes the following entry
-		to row $l$ of the commit-list: $Enc_{rk_l}(\c{}) || dk_l^P$
+		to row $l$ of the commit-list: $Enc_{rk_l}(\cm{}) || dk_l^P$
 		that is the commitment, encrypted with the row-key, together
 		with the public disclose key in plain.
 		\\
@@ -785,8 +786,8 @@ the organizer cannot deny having issued the invitation because
 the signature used to sign the invitation is publicly verifiable.
 %
 The second basic security property is also fulfilled because an organizer \o{} cannot forge 
-a commitment \c{} as she is not able to forge another users' signature. A %TODO?: replay attacks excluded becauese of having the hash of the event in the commitment
-user \u{}, having sent the commitment \c{} to the organizer \o{}, cannot deny the 
+a commitment \cm{} as she is not able to forge another users' signature. A %TODO?: replay attacks excluded becauese of having the hash of the event in the commitment
+user \u{}, having sent the commitment \cm{} to the organizer \o{}, cannot deny the 
 commitment as her signature is again publicly verifiable and binding to the event \e{}.
 
 % \subsection{\Acl{iip} and \Acl{icp}}
@@ -984,7 +985,7 @@ on the settings for properties \Ac{aip} and \Ac{acp} is shown in \Cref{table:eve
 To implement this property, we will again use the \acl{cdp}. The 
 organizer \o{} shares a private description \dS{}, encrypted with the key \PDK{}, 
 with the committed users \C{}. The key is shared with these users in the
-disclose-list as soon as they store a valid commitment \c{} in the
+disclose-list as soon as they store a valid commitment \cm{} in the
 commit-list.
 %
 The organizer \o{} cannot have different private descriptions for groups of attendees 
