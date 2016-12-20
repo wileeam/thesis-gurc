@@ -6,9 +6,9 @@
 % has to be loaded before some others (after hyperref gives an error)
 \usepackage{algorithm}
 % proper Palatino fonts (text and math) instead of this ugly and old ones 
-\usepackage{newpxtext}
-\usepackage{newpxmath}
-\usepackage{eulervm}
+% \usepackage{newpxtext}
+% \usepackage{newpxmath}
+% \usepackage{eulervm}
 %\usepackage[sfdefault,lf]{carlito}
 \usepackage[lf]{carlito}
 %% The 'lf' option for lining figures
@@ -118,7 +118,7 @@
 \usepackage{bold-extra}
 %\usepackage{amssymb}
 %\usepackage{amsmath}
-\usepackage{amsfonts}
+% \usepackage{amsfonts}
 \usepackage{bm}
 %\usepackage{breqn} %automatic line breaks in formulas. deactivated due to this problem: http://latex-community.org/forum/viewtopic.php?f=46&t=24015&start=10
 %\setcounter{tocdepth}{3}
@@ -594,6 +594,13 @@
 
 \counterwithin*{chapter}{part}
 
+\hyphenation{log-in net-works pro-gram sur-veil-lan-ce}
+
+\usepackage[osf]{newpxtext} % osf for text, not math
+\usepackage{cabin} % sans serif
+\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
+\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
+\usepackage[cal=boondoxo]{mathalfa} % mathcal
 
 \begin{document}
 
