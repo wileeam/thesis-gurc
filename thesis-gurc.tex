@@ -29,6 +29,9 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
+% *** easier way of getting (La)TeX logos :)
+\usepackage{hologo}
+
 % *** enables the checkmark commands: \ding{51} and \ding{52}
 \usepackage{pifont}
 
@@ -1070,8 +1073,10 @@ actively in the formalisation \cite{Ericsson15}.
 \clearpage
 
 \cleardoublepage
+\chapter*{Colophon}
+    \label{chapter:thesis:colophon}
 \input{data/text/colophon}
-
+\clearpage
 
 \end{document}
 % \endinput
