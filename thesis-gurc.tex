@@ -652,11 +652,15 @@
     % Why should we care?
     % What are our findings?
     %
-    \aclp*{pet} have proven to be a beneficial area of research aiming at lessening
-    the threats to the privacy of users' personal information in centralised \acl*{is}
-    like \aclp*{osn}. As such, decentralised solutions have been proposed to extend 
-    the control that a user has over its data as opposed to the centralised massive 
-    collection of personal and sensitive data.
+    % Fix for bad grupin in lettrine package. See http://tex.stackexchange.com/questions/134371/lettrine-in-abstract-strange-behaviour
+    {
+    \lettrine{\textcolor[gray]{.25}{P}}{rivacy enhancing technologies}\csname@restorepar\endcsname\everypar{} 
+    have proven to be a beneficial area of research aiming at lessening the threats 
+    to the privacy of users' personal information in centralised \acl*{is} like 
+    \aclp*{osn}. As such, decentralised solutions have been proposed to extend the 
+    control that a user has over its data as opposed to the centralised massive 
+    collection of personal and sensitive data.\par
+    }
     
     The power that the service provider has in centralised \aclp*{is} has been shown 
     to diminish the user's privacy with cases of misuse, censorship or data leakage. 
