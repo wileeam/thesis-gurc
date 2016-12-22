@@ -6,6 +6,12 @@
 % has to be loaded before some others (after hyperref gives an error)
 \usepackage{algorithm}
 % proper Palatino fonts (text and math) instead of this ugly and old ones 
+% See http://math.ucsd.edu/~msharpe/RcntFnts.pdf for details
+\usepackage[osf]{newpxtext} % osf for text, not math
+\usepackage{cabin} % sans serif
+\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
+\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
+\usepackage[cal=boondoxo]{mathalfa} % mathcal
 % \usepackage{newpxtext}
 % \usepackage{newpxmath}
 % \usepackage{eulervm}
@@ -58,6 +64,11 @@
 
 \usepackage{booktabs}
 \usepackage{multirow}
+
+% \usepackage{adjustbox}
+% \usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabu}
 
 % DEBUG
 % *** provides random text to fill up boxes, etc ***
@@ -258,7 +269,7 @@
 % if you only want the page number to be clickable in tock: linktocpage=true
 % make hyperref dumber with hypertexnames=false (http://tex.stackexchange.com/a/6102/120692)
 % \usepackage[colorlinks=true, pagebackref=true, linktocpage=true, hypertexnames=false,hidelinks]{hyperref}
-\usepackage[hidelinks, colorlinks=true, linktocpage=true, backref=page, hypertexnames=false]{hyperref}
+\usepackage[backref=page]{hyperref}
 \usepackage{bookmark}
 \usepackage{cleveref}
 \crefname{appsec}{appendix}{appendices}
@@ -348,7 +359,10 @@
     citecolor={red},
     urlcolor={blue},
     bookmarks=true,         % show bookmarks bar?
-    unicode=false          % non-Latin characters in Acrobat’s bookmarks
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    % hidelinks,
+    linktocpage=true,
+    hypertexnames=false    
 }
 
 % *** 
@@ -595,15 +609,22 @@
 \pretocmd{\@chapter}{\setcounter{footnote}{0}}{}{}
 \makeatother
 
+% correct case for namerefs, see http://tex.stackexchange.com/questions/1655/correct-case-in-namerefs
+\newcommand{\lnameref}[1]{%
+\bgroup
+\let\nmu\MakeLowercase
+\nameref{#1}\egroup}
+\newcommand{\fnameref}[1]{%
+\bgroup
+\def\nmu{\let\nmu\MakeLowercase}%
+\nameref{#1}\egroup}
+
+\newcommand{\nmu}{}
+
+
 \counterwithin*{chapter}{part}
 
 \hyphenation{log-in net-works pro-gram sur-veil-lan-ce}
-
-\usepackage[osf]{newpxtext} % osf for text, not math
-\usepackage{cabin} % sans serif
-\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
-\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
-\usepackage[cal=boondoxo]{mathalfa} % mathcal
 
 \begin{document}
 
@@ -858,44 +879,39 @@ the solution, demonstration, evaluation and finally, communication of the resear
 \cite{PeffersTRC07}. We use the previous criteria to classify and describe the works 
 included in this thesis in \cref{table:papers-methodologies}.
 
-{ % restricting the table to be always on top of a page to this case (local not global)
-\makeatletter
-\setlength{\@fptop}{0pt}
-\setlength{\@fpbot}{0pt plus 1fil}
-\makeatother
-\begin{table}[ht!]
+% { % restricting the table to be always on top of a page to this case (local not global)
+% \makeatletter
+% \setlength{\@fptop}{0pt}
+% \setlength{\@fpbot}{0pt plus 1fil}
+% \makeatother
+{
+\newcolumntype{L}{>{\centering}m{3.5cm}}
+\begin{sidewaystable*}[t!]
     \centering
-    \begin{tabular}{llll}
+    % \small
+    \begin{tabu}{>{\arraybackslash}m{3.75cm}LLL@{}m{0pt}@{}}
         \toprule
-        \multirow{2}{*}{Design Research Step} & \multicolumn{3}{c}{Articles} \\
-        \cmidrule{2-4}
-         & \ref{article:thesis:passwords-peer-to-peer} & \ref{article:thesis:events-invitations-dosns} & \ref{article:thesis:document-submission-system} \\
+        % See http://tex.stackexchange.com/questions/156219/proper-centering-with-cmidrule-and-multi-row-and-column for the reason of the [4] optional argument in multirow
+        \multirow{2}[4]{*}{Design Research Step} & \multicolumn{3}{c}{Articles} & \\
+        \cmidrule(lr){2-4}
+         & \ref{article:thesis:passwords-peer-to-peer} & \ref{article:thesis:events-invitations-dosns} & \ref{article:thesis:document-submission-system} & \\
         \midrule
-        Problem identification and motivation & \ding{51} & \ding{51} & \ding{51} \\
-        Definition of objectives & \ding{51} & \ding{51} & \ding{51} \\
-        Solution design and development & \ding{51} & \ding{51} & \ding{51} \\
-        Demonstration & - & - & \ding{51} \\
-        Evaluation & \ding{51} & \ding{51} & \ding{51} \\
-        Communication & \ding{51} & \ding{51} & \ding{51} \\
+        Problem identification, motivation & decentralised authentication & decentralised events organisation & anonymous document submission & \\[1em]
+        Definition of objectives & usable, simple & fair, \ac{ttp}-free & correct, fair & \\[1em]
+        Solution design, development & protocols, experimentation & protocols, auditing & security properties, system design & \\[1em]
+        Demonstration & - & - & prototype & \\[1em]
+        Evaluation & security, privacy, and performance analysis & security and privacy analysis & security and privacy analysis & \\[1em]
+        Communication & See \cite{KreitzBGRB12} & See \cite{RodriguezCanoGB14} & See \cite{GreschbachREB15} & \\[1em]
         \bottomrule
-    \end{tabular}
-    \caption{Pong}
+    \end{tabu}
+    \caption{Summary of research design steps of the articles included in this thesis}
     \label{table:papers-methodologies}
-\end{table}
+% \begin{landscape}
+% \begin{adjustbox}{angle=90}
+% \end{adjustbox}
+% \end{landscape}
+\end{sidewaystable*}
 }
-
-% ---
-% The following gets answered with the previous table
-% 
-% Types of information used/analyzed/gathered/studied and source of such data (random, dataset, etc)
-%
-% Parts of systems designed and/or analyzed
-%
-% Prototyping or such
-%
-% Break down these parts (analysis, design, protocol/theory, prototyping) for each
-% paper?
-% ---
 
 % TODO: Mention what other authors did?
 % TODO: Mention who did some or less writing?
@@ -911,7 +927,7 @@ included in this thesis in \cref{table:papers-methodologies}.
 \endgroup
 
 \subsection{Summary}
-
+TODO: Summarise or insert abstract
 % Benny's thesis
 % The problem of how to transfer credentials in a usable and secure way from one device to another is one of the concerns of Article B contained in this thesis. The proposed solution emulates the traditional username/password-login paradigm in a decentralized system.
 
@@ -922,17 +938,18 @@ with ideas and improvements, for example, I helped with the formalisation of som
 of the protocols such as the password recovery mechanism. 
 
 \subsection{Changes for the thesis}
-TODO: Ask Benny for internal reviewer's comments
+TODO: Request B's internal reviewer comments
 
 % EI
-\section{\usebibentry{RodriguezCanoG14}{title}}
+\section{\usebibentry{RodriguezCanoGB14}{title}}
 \begingroup\centering
 \begin{ppBox}
-    \bibentry{RodriguezCanoG14}
+    \bibentry{RodriguezCanoGB14}
 \end{ppBox}
 \endgroup
 
 \subsection{Summary}
+TODO: Summarise or insert abstract
 
 \subsection{Contributions}
 I developed, with Benjamin Greschbach, the problem statement as well as the formalisations 
@@ -940,8 +957,7 @@ of the security and privacy properties, and the protocols we devised. I also con
 with Benjamin in the evaluation of the implementation and the tools we devised.
 
 \subsection{Changes for the thesis}
-TODO: Ask Benny for internal reviewer's comments
-
+TODO: Request B's internal reviewer comments
 
 % DSS
 \section{\usebibentry{GreschbachREB15}{title}}
@@ -952,7 +968,7 @@ TODO: Ask Benny for internal reviewer's comments
 \endgroup
 
 \subsection{Summary}
-
+TODO: Summarise or insert abstract
 % In such scenario, our proposed protocol guarantees what we defined as ``forward
 % unlinkability'' of a document with the author --- a document and its author's identity
 % must remain unlinkable even after receiving a grade --- and ``provable linkability''
@@ -970,8 +986,6 @@ actively in the formalisation \cite{Ericsson15}.
 
 \renewcommand\thesection{\thechapter.\arabic{section}}
 \input{data/text/conclusions}
-
-
 
 
 
@@ -1031,7 +1045,7 @@ actively in the formalisation \cite{Ericsson15}.
 \input{data/papers/passwords-peer-to-peer.tex}
 
 \acresetall
-\chapter{\usebibentry{RodriguezCanoG14}{title}}
+\chapter{\usebibentry{RodriguezCanoGB14}{title}}
     \label[artsec]{article:thesis:events-invitations-dosns}
 \input{data/papers/event-invitations-dosns.tex}
 
