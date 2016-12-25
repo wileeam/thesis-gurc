@@ -13,20 +13,50 @@
 % \usepackage{newpxtext}
 % \usepackage{newpxmath}
 % \usepackage{eulervm}
-%\usepackage[sfdefault,lf]{carlito}
+
+%%%
+%   CNF: Support for Carlito sans-serif fonts
+%        Use the 'lf' option for lining figures
+%        Use the 'sfdefault' option to make the base font sans serif
+%
 \usepackage[lf]{carlito}
-%% The 'lf' option for lining figures
-%% The 'sfdefault' option to make the base font sans serif
-\usepackage[T1]{fontenc}
 \renewcommand*\oldstylenums[1]{\carlitoOsF #1}
 
 %%%
-%   CNF: Checkmark commands: \ding{51} and \ding{52}
+%   CNF: Standard package for selecting font encodings
+%
+\usepackage[T1]{fontenc}
+
+%%%
+%   CNF: Accept different input encodings
+%
+\usepackage[utf8]{inputenc}
+
+%%%
+%   CNF: Multilingual support for Plain TeX or LaTeX
+%
+\usepackage[swedish, english, french, spanish]{babel}
+
+%%%
+%   CNF: Access to PostScript standard Symbol and Dingbats fonts
+%        Checkmark commands: \ding{51} and \ding{52}
 %
 \usepackage{pifont}
 
 %%%
-%   CNF: (La)TeX and alike logos
+%   CNF: A collection of (La)TeX and alike logos with bookmark support
 %
 \usepackage{hologo}
+
+%%%
+%   CNF: Support for putting documents under a Creative Commons license
+%        Includes icons and legal code
+%
+\usepackage[type={CC}, lang={english}, modifier={by-nd}, version={3.0}]{doclicense}
+
+%%%
+%   CNF: Define commands that appear not to eat spaces
+%        Adds a space unless the macro is followed by certain punctuation characters
+%
+\usepackage{xspace}
 

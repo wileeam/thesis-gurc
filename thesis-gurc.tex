@@ -3,19 +3,24 @@
 
 \documentclass[showtrims, oldfontcommands]{kthesis}
 
+%%%
+%   CNF: Load packages to be used
+%
 \input{configuration/options}
+
+%%%
+%   LOG: List of loaded packages in log
+%
+\listfiles
 
 % has to be loaded before some others (after hyperref gives an error)
 \usepackage{algorithm}
 
 \usepackage{textcomp}
 \usepackage{lmodern}
-\usepackage[utf8]{inputenc}
-\usepackage[swedish, english, french, spanish]{babel}
 
 \usepackage[svgnames]{xcolor}
 
-\usepackage[type={CC}, lang={english}, modifier={by-nd}, version={3.0}]{doclicense}
 
 % *** disable reset of footnote counter every chapter
 \usepackage{chngcntr}
@@ -43,7 +48,6 @@
 
 \usepackage{lettrine}
 
-\usepackage{booktabs}
 \usepackage{multirow}
 
 % \usepackage{adjustbox}
@@ -51,10 +55,6 @@
 \usepackage{rotating}
 \usepackage{tabu}
 
-% DEBUG
-% *** provides random text to fill up boxes, etc ***
-\usepackage{lipsum}
-\listfiles
 
 \usepackage[many]{tcolorbox}
 
@@ -62,9 +62,6 @@
 \usepackage{mfirstuc}
 %\usepackage[single, index, hyperref=true]{acro}
 \usepackage[single, index]{utils/acro}
-
-% *** adds a space unless the macro is followed by certain punctuation characters ***
-\usepackage{xspace}
 
 % tocloft is already loaded
 %\usepackage{tocloft}
@@ -274,8 +271,7 @@
 % *** acronyms file loading ***
 \input{data/others/acronyms}
 
-
-\input{data/kth-bibl}
+\input{data/others/kth-bibl}
 
 \newtcolorbox{ppBox}[1][]{
     breakable,
@@ -347,7 +343,7 @@
 }
 
 % *** 
-\input{data/commands}
+\input{configuration/commands}
 % ***
 \input{data/others/abbreviations}
 
