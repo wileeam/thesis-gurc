@@ -758,86 +758,37 @@
 \input{data/text/background}
 \clearpage
 
+%%%
+%   DOC: Research problem
+%
+\cleardoublepage
 \chapter{Our research problem}
     \label{chapter:thesis:our-research-problem}
 \input{data/text/problem}
 \clearpage
 
-% TODO: Mention what other authors did?
-% TODO: Mention who did some or less writing?
+%%%
+%   DOC: Contributions
+%
+\cleardoublepage
 \chapter{Our contributions}
     \label{chapter:thesis:our-contributions}
 \renewcommand\thesection{\Alph{section}}
-% P2P
-\section{\usebibentry{KreitzBGRB12}{title}}
-\begingroup\centering
-\begin{ppBox}
-    \bibentry{KreitzBGRB12}
-\end{ppBox}
-\endgroup
+\input{data/text/contributions}
+\clearpage
 
-\subsection{Summary}
-TODO: Summarise or insert abstract
-% Benny's thesis
-% The problem of how to transfer credentials in a usable and secure way from one device to another is one of the concerns of Article B contained in this thesis. The proposed solution emulates the traditional username/password-login paradigm in a decentralized system.
-
-\subsection{Contributions}
-    \label{subsection:contributions-p2p}
-I contributed actively in the discussions we held for the design of the protocols 
-with ideas and improvements, for example, I helped with the formalisation of some 
-of the protocols such as the password recovery mechanism. 
-
-\subsection{Changes for the thesis}
-TODO: Request B's internal reviewer comments
-
-% EI
-\section{\usebibentry{RodriguezCanoGB14}{title}}
-\begingroup\centering
-\begin{ppBox}
-    \bibentry{RodriguezCanoGB14}
-\end{ppBox}
-\endgroup
-
-\subsection{Summary}
-TODO: Summarise or insert abstract
-
-\subsection{Contributions}
-I developed, with Benjamin Greschbach, the problem statement as well as the formalisations 
-of the security and privacy properties, and the protocols we devised. I also contributed 
-with Benjamin in the evaluation of the implementation and the tools we devised.
-
-\subsection{Changes for the thesis}
-TODO: Request B's internal reviewer comments
-
-% DSS
-\section{\usebibentry{GreschbachREB15}{title}}
-\begingroup\centering
-\begin{ppBox}
-    \bibentry{GreschbachREB15}
-\end{ppBox}
-\endgroup
-
-\subsection{Summary}
-TODO: Summarise or insert abstract
-% In such scenario, our proposed protocol guarantees what we defined as ``forward
-% unlinkability'' of a document with the author --- a document and its author's identity
-% must remain unlinkable even after receiving a grade --- and ``provable linkability''
-% of an author with a grade --- the system must guarantee that an author receives
-% a grade if and only if the author submitted a document for grading that was actually
-% graded.
-
-\subsection{Contributions}
-Together with Benjamin Greschbach, I developed the problem statement, the formalisation 
-of the security and privacy properties, and the analysis and evaluation of our solution. 
-Tomas Ericsson implemented a proof-of-concept of the problem statement and contributed 
-actively in the formalisation \cite{Ericsson15}.
-
-%\subsection{Changes for the thesis}
-
+%%%
+%   DOC: Conclusions and future work
+%
+\cleardoublepage
 \renewcommand\thesection{\thechapter.\arabic{section}}
 \input{data/text/conclusions}
+\clearpage
 
-
+%%%
+%   DOC: Glossary
+%
+\cleardoublepage
 %\chapter{Glossary of acronyms and abbreviations}
 \chapter{Glossary of acronyms}
 % \acsetup{
@@ -854,7 +805,8 @@ actively in the formalisation \cite{Ericsson15}.
 % Mark all acronyms as used
 % \acuseall
 \printacronyms
-% \acresetall
+\acresetall
+\clearpage
 
 % titlesec recommendation to remove the page number (from part pages in this case)
 \assignpagestyle{\part}{empty}
@@ -921,14 +873,20 @@ actively in the formalisation \cite{Ericsson15}.
     \vspace{2pt}\end{adjustwidth}\endMakeFramed%
 }
 
+%%%
+%   DOC: Appendices
+%
 \cleardoublepage
 % \phantomsection
 % \appendix
 % \addcontentsline{toc}{part}{Appendices}
 \bookmarksetupnext{level=-1}
 \input{data/text/appendices}
+\clearpage
 
-
+%%%
+%   DOC: Bibliography
+%
 \cleardoublepage
 \bookmarksetupnext{level=-1}
 %\chapter*{References}
@@ -936,7 +894,9 @@ actively in the formalisation \cite{Ericsson15}.
 \bibliography{data/bibliography}
 \clearpage
 
-
+%%%
+%   DOC: Colophon
+%
 \cleardoublepage
 \chapter*{Colophon}
     \label{chapter:thesis:colophon}
