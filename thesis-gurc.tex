@@ -39,7 +39,7 @@
 \usepackage{usebib}
 \bibliographystyle{acm}
 \setcitestyle{authoryear,aysep={},open={(},close={)}}
-\bibinput{data/bibliography} % <--- the same argument as in \bibliography
+\bibinput{data/others/bibliography} % <--- the same argument as in \bibliography
 
 \usepackage{lettrine}
 
@@ -272,7 +272,7 @@
 }
 
 % *** acronyms file loading ***
-\input{data/acronyms}
+\input{data/others/acronyms}
 
 
 \input{data/kth-bibl}
@@ -349,7 +349,7 @@
 % *** 
 \input{data/commands}
 % ***
-\input{data/abbreviations}
+\input{data/others/abbreviations}
 
 \makechapterstyle{myell}{%
   \chapterstyle{veelo}
@@ -791,21 +791,11 @@
 \cleardoublepage
 %\chapter{Glossary of acronyms and abbreviations}
 \chapter{Glossary of acronyms}
-% \acsetup{
-%     list-caps   = true,
-%     list-heading= none,
-%     extra-style = comma,
-%     page-ref    = paren % Seitennummer in Klammern
-%     % only-used   = false,% für das Beispiel auch die nicht verwendeten in die Liste aufnehmen
-%     % uc-cmd      = \capitalisewords
-% }
-
-% Reset all acronyms
+% Reset all acronyms?
 % \acresetall
 % Mark all acronyms as used
-% \acuseall
+\acuseall
 \printacronyms
-\acresetall
 \clearpage
 
 % titlesec recommendation to remove the page number (from part pages in this case)
@@ -840,20 +830,26 @@
 \begin{mdframed}[]\relax%
 }{\end{mdframed}}
 
-\acresetall
+\cleardoublepage
 \chapter{\usebibentry{KreitzBGRB12}{title}}
     \label[artsec]{article:thesis:passwords-peer-to-peer}
-\input{data/papers/passwords-peer-to-peer.tex}
-
 \acresetall
+\input{data/papers/passwords-peer-to-peer.tex}
+\clearpage
+
+\cleardoublepage
 \chapter{\usebibentry{RodriguezCanoGB14}{title}}
     \label[artsec]{article:thesis:events-invitations-dosns}
-\input{data/papers/event-invitations-dosns.tex}
-
 \acresetall
+\input{data/papers/event-invitations-dosns.tex}
+\clearpage
+
+\cleardoublepage
 \chapter{\usebibentry{GreschbachREB15}{title}}
     \label[artsec]{article:thesis:document-submission-system}
+\acresetall
 \input{data/papers/document-submission-system.tex}
+\clearpage
 
 \newenvironment{quote_tos}{%
     \definecolor{formalshade}{rgb}{0.95,0.95,1}
@@ -891,7 +887,7 @@
 \bookmarksetupnext{level=-1}
 %\chapter*{References}
 %\addcontentsline{toc}{chapter}{Bibliography}
-\bibliography{data/bibliography}
+\bibliography{data/others/bibliography}
 \clearpage
 
 %%%
