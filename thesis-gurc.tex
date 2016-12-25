@@ -3,24 +3,10 @@
 
 \documentclass[showtrims, oldfontcommands]{kthesis}
 
+\input{configuration/options}
+
 % has to be loaded before some others (after hyperref gives an error)
 \usepackage{algorithm}
-% proper Palatino fonts (text and math) instead of this ugly and old ones 
-% See http://math.ucsd.edu/~msharpe/RcntFnts.pdf for details
-\usepackage[osf]{newpxtext} % osf for text, not math
-\usepackage{cabin} % sans serif
-\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
-\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
-\usepackage[cal=boondoxo]{mathalfa} % mathcal
-% \usepackage{newpxtext}
-% \usepackage{newpxmath}
-% \usepackage{eulervm}
-%\usepackage[sfdefault,lf]{carlito}
-\usepackage[lf]{carlito}
-%% The 'lf' option for lining figures
-%% The 'sfdefault' option to make the base font sans serif
-\usepackage[T1]{fontenc}
-\renewcommand*\oldstylenums[1]{\carlitoOsF #1}
 
 \usepackage{textcomp}
 \usepackage{lmodern}
@@ -35,11 +21,6 @@
 \usepackage{chngcntr}
 \counterwithout{footnote}{chapter}
 
-% *** easier way of getting (La)TeX logos :)
-\usepackage{hologo}
-
-% *** enables the checkmark commands: \ding{51} and \ding{52}
-\usepackage{pifont}
 
 % *** enables changing the label in enumerate environments directly
 \usepackage{enumitem}
@@ -988,7 +969,6 @@ actively in the formalisation \cite{Ericsson15}.
 \input{data/text/conclusions}
 
 
-
 %\chapter{Glossary of acronyms and abbreviations}
 \chapter{Glossary of acronyms}
 % \acsetup{
@@ -1086,6 +1066,7 @@ actively in the formalisation \cite{Ericsson15}.
 %\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{data/bibliography}
 \clearpage
+
 
 \cleardoublepage
 \chapter*{Colophon}
