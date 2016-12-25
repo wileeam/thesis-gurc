@@ -474,7 +474,7 @@ survey \cite{PaulFS14}.
 mechanisms that allow for services in the network guaranteeing privacy, data integrity 
 and availability \cite{CutilloMS09}. 
 
-\PeerSoN is another \ac{dosn} built as a two-tiered \ac{p2p} architecture --- one 
+Another \ac{dosn}, \PeerSoN, was built as a two-tiered \ac{p2p} architecture --- one 
 tier as a look-up service to find users and their stored data using a \ac{dht} and, 
 another tier formed by the peers and the users' data --- allowing direct data exchange 
 between the users and providing confidentiality and access control --- via cryptographic 
@@ -482,6 +482,13 @@ protocols --- \cite{BucheggerSVD09}. Similarly, \cite{AielloR10} design a \ac{dh
 \ac{osn} and implement some modules --- namely, identification, access control, synchronous 
 and asynchronous communication and, search --- supporting social networking services 
 as a ``customizable suite of interoperable, identity-based applications''.
+
+\Persona is another \ac{osn} implementation focusing on data control for the users 
+and groups of them by means of \ac{abe} --- a public-key encryption scheme where 
+the secret key and the ciphertext depend on some defined attributes. As all content 
+is stored in groups defined by the users, the service provider does not decide who 
+can access the data because it is the group's owner the one who decides who belongs 
+to the group \cite{BadenBSBS09}.
 
 \SuperNova: TODO
 
