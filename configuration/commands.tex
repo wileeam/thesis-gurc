@@ -48,3 +48,276 @@
         \bigskip
     \end{flushright}
 }}
+
+% http://tex.stackexchange.com/questions/254318/chapter-style-with-tcolorbox/254328
+% http://tex.stackexchange.com/questions/301185/modify-fancy-chapter-heading-to-show-chapter-name
+% \definecolor{titlebgdark}{RGB}{0,163,243}
+% \definecolor{titlebglight}{RGB}{191,233,251}
+% \definecolor{titlebgdark}{RGB}{25,84,186}
+\definecolor{titlebgdark}{RGB}{98,146,46}
+% \definecolor{titlebglight}{RGB}{36,160,216}
+\definecolor{titlebglight}{RGB}{176,201,43}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=titlebgdark,
+      boxrule=0.25cm,
+      colframe=titlebglight,
+      arc=0pt,
+      outer arc=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\sffamily\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin, 
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
+      % width=\paperwidth,
+      width=\paperwidth+1in,
+      height=0.6cm+0.6cm+3\baselineskip,
+      valign=center,
+      left=1in+\hoffset+\oddsidemargin, 
+      % right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth+1in,
+      top=0.6cm, 
+      bottom=0.6cm,
+      overlay={
+        \node[
+          fill=titlebgdark,
+          draw=titlebglight,
+          line width=0.15cm,
+          inner sep=0pt,
+          text width=1.7cm,
+          minimum height=1.7cm,
+          align=center,
+          font=\color{white}\sffamily\bfseries\fontsize{30}{36}\selectfont
+        ] 
+        (chapname)
+        % at ([xshift=-1in]frame.north east)
+        at ([xshift=-1in-1in]frame.north east)
+        {\thechapter};
+        \node[font=\small,anchor=south,inner sep=2pt] at (chapname.north)
+        % {\MakeUppercase\chaptertitlename};
+        {};  
+      } 
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\huge\bfseries}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=titlebgdark,
+      boxrule=0.25cm,
+      colframe=titlebglight,
+      arc=0pt,
+      outer arc=0pt,
+      remember as=title,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\sffamily\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin, 
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth+1in,
+      % width=\paperwidth,
+      width=\paperwidth+1in,
+      height=0.6cm+0.6cm+3\baselineskip,
+      valign=center,
+      left=1in+\hoffset+\oddsidemargin, 
+      % right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth+1in,
+      top=0.6cm, 
+      bottom=0.6cm, 
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\titlespacing*{\chapter}
+  {0pt}{0pt}{10pt}
+\makeatother
+
+% Make format of TOC heading same as the one used in the chapter
+% http://tex.stackexchange.com/a/19484/120692
+\makeatletter
+\renewcommand\tableofcontents{%
+        \chapter{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+        \@starttoc{toc}%
+        }
+\makeatother
+
+% http://tex.stackexchange.com/questions/54115/how-to-let-part-stay-solo-page-and-no-page-number
+% \makeatletter
+% \renewcommand\part{%
+%   \if@openright
+%     \cleardoublepage
+%   \else
+%     \clearpage
+%   \fi
+%   \thispagestyle{empty}%   % Original »plain« replaced by »emptyx
+%   \if@twocolumn
+%     \onecolumn
+%     \@tempswatrue
+%   \else
+%     \@tempswafalse
+%   \fi
+%   \null\vfil
+%   \secdef\@part\@spart}
+% \makeatother
+
+% http://tex.stackexchange.com/questions/159551/customizing-part-style-with-tikz
+% \definecolor{mybluei}{RGB}{0,173,239}
+% \definecolor{mybluei}{RGB}{25,84,186}
+% \definecolor{myblueii}{RGB}{63,200,244}
+% \definecolor{myblueiii}{RGB}{199,234,253}
+% \definecolor{myblueiii}{RGB}{36,160,216}
+\definecolor{bgdark}{RGB}{98,146,46}
+\definecolor{bglight}{RGB}{176,201,43}
+\renewcommand\partnumfont{% font specification for the number
+    % \fontsize{380}{130}\color{myblueii}\selectfont%
+    \fontsize{380}{130}\color{bgdark}\sffamily\selectfont%
+}
+
+\renewcommand\partnamefont{% font specification for the name "PART"
+    % \normalfont\color{white}\scshape\small\bfseries
+    \color{white}\sffamily\bfseries\fontsize{30}{36}\selectfont
+}
+
+\titleformat{\part}
+  {\normalfont\huge\filleft}
+  % {\sffamily\bfseries\normalfont\huge\filleft}
+  {}
+  {20pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+  \fill[bglight] 
+    (current page.north west) rectangle ([yshift=-13cm,xshift=1in]current page.north east);   
+  \node[
+      fill=bgdark,
+      text width=2\paperwidth,
+      rounded corners=6cm,
+      text depth=18cm,
+      anchor=center,
+      inner sep=0pt] at (current page.north east) (parttop)
+    {\thepart};%
+    {};
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south) 
+    {\partnumfont\thepart};
+    % {\partnumfont};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)   
+  % {\partnamefont PART};
+  {\partnamefont};
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=10pt] at ([yshift=-1.5cm]partname.east|-partnum.south) 
+  % {\parbox{.7\textwidth}{\raggedleft#1}};
+  {\parbox{.7\textwidth}{\raggedleft\sffamily\bfseries\Huge\selectfont #1}};
+  \end{tikzpicture}%
+  }
+
+
+\makeatletter
+\newcommand*{\greek}[1]{%
+   \expandafter\@greek\csname c@#1\endcsname
+}
+\newcommand*{\@greek}[1]{%
+   $\ifcase#1\or\alpha\or\beta\or\gamma\or\delta\or\varepsilon
+     \or\zeta\or\eta\or\theta\or\iota\or\kappa\or\lambda
+     \or\mu\or\nu\or\xi\or o\or\pi\or\varrho\or\sigma
+     \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
+     \else\@ctrerr\fi$%
+}
+\makeatother
+
+\newcommand\firstToLow[1]{%
+ {%
+   \renewcommand{\mfirstucMakeUppercase}{\MakeLowercase}%
+   \makefirstuc{#1}%
+ }%
+}
+
+\makeatletter
+\newcommand*{\lcnameref}[1]{%
+ \begingroup 
+   \let\label\@gobble
+   \NR@setref{#1}\lc@thirdoffive{#1}%
+  \endgroup
+}
+\newcommand{\lc@thirdoffive}[5]{\firstToLow{#3}}
+\makeatother
+
+% reset footnote counters per chapter (and chapter*)
+\makeatletter
+\pretocmd{\@schapter}{\setcounter{footnote}{0}}{}{}
+\pretocmd{\@chapter}{\setcounter{footnote}{0}}{}{}
+\makeatother
+
+% correct case for namerefs, see http://tex.stackexchange.com/questions/1655/correct-case-in-namerefs
+\newcommand{\lnameref}[1]{%
+\bgroup
+\let\nmu\MakeLowercase
+\nameref{#1}\egroup}
+\newcommand{\fnameref}[1]{%
+\bgroup
+\def\nmu{\let\nmu\MakeLowercase}%
+\nameref{#1}\egroup}
+
+\newcommand{\nmu}{}
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+
+\newtcolorbox{ppBox}[1][]{
+    breakable,
+    enhanced,
+    skin=enhancedmiddle,
+    frame hidden,
+    interior hidden,
+    title=#1,
+    arc=0pt,
+    outer arc=0pt,
+    top=0pt,
+    bottom=0pt,
+    boxsep=1mm,
+    borderline={1.5pt}{0mm}{black},
+    fonttitle=\sffamily\footnotesize,
+    fontupper=\sffamily\footnotesize,
+    fontlower=\sffamily\footnotesize,
+    colframe=black,
+    colback=white,
+    colbacktitle=white,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0pt,
+    bottomrule=0pt,
+    toprule=0pt,
+  % leftrule=3pt,
+  % rightrule=3pt,
+    titlerule=0pt,
+    width=8\linewidth/10,
+    valign=center,
+}
+

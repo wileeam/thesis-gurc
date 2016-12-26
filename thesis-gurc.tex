@@ -13,251 +13,9 @@
 %
 \listfiles
 
-% has to be loaded before some others (after hyperref gives an error)
-\usepackage{algorithm}
-
-\usepackage{textcomp}
-\usepackage{lmodern}
-
-\usepackage[svgnames]{xcolor}
-
-
-% *** disable reset of footnote counter every chapter
-\usepackage{chngcntr}
-\counterwithout{footnote}{chapter}
-
-
-% *** enables changing the label in enumerate environments directly
-\usepackage{enumitem}
-
-% *** for the boxes in the appendix alfa
-\usepackage{framed}
-
-% *** enables full bibliographic entries within text ***
-\usepackage{bibentry}
-\nobibliography*
-
-% *** citation numbers will be sorted and properly "compressed/ranged" ***
-%\usepackage[noadjust]{cite}
-% *** allowed for \citeauthor and \citeyear commands ***
-\usepackage[numbers, square, sort]{natbib}
-\usepackage{usebib}
-\bibliographystyle{acm}
-\setcitestyle{authoryear,aysep={},open={(},close={)}}
-\bibinput{data/others/bibliography} % <--- the same argument as in \bibliography
-
-\usepackage{lettrine}
-
-\usepackage{multirow}
-
-% \usepackage{adjustbox}
-% \usepackage{pdflscape}
-\usepackage{rotating}
-\usepackage{tabu}
-
-
-\usepackage[many]{tcolorbox}
-
-
-\usepackage{mfirstuc}
-%\usepackage[single, index, hyperref=true]{acro}
-\usepackage[single, index]{utils/acro}
-
-% tocloft is already loaded
-%\usepackage{tocloft}
-% \renewcommand{\cftchapterfont}{\scshape}
-% \renewcommand{\cftsecfont}{\bfseries}
-% \renewcommand{\cftfigfont}{Figure }
-% \renewcommand{\cfttabfont}{Table }
-% \renewcommand{\cftsectionpresnum}{SOMETHING }
-
-\graphicspath{{./images/}}
-\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-
-
-% colored dogear marks
-\usepackage[pages=some,contents={},opacity=1.0,scale=1,angle=90]{background}
-\usepackage{tikz}
-
-\usepackage{hyperxmp}
-
-%%% P2P %%%
-%\usepackage{amssymb}
-%\usepackage[pdftex]{graphicx}
-%\graphicspath{{./images/}}
-%\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-%\usepackage[tight,footnotesize]{subfigure} % old version
-%\usepackage{url}
-%\hyphenation{op-tical net-works semi-conduc-tor log-in}
-%%*** ALIGNMENT PACKAGES ***
-%\usepackage{array}
-%\usepackage{mdwmath}
-%%*** colors ***
-% \usepackage{xcolor,colortbl}
-% \definecolor{colorRowHeader}{rgb}{0.976471,0.976471,0.976471}
-% \definecolor{colorSubLine}{rgb}{0.5,0.5,0.5}
-%*** tables ***
-%\usepackage{multirow}
-\usepackage{booktabs}
-%*** code ***
-%\usepackage{algorithm}
-\usepackage{algpseudocode}
-%%% P2P %%%
-
-%%% EI %%%
-%\RequirePackage[l2tabu, orthodox]{nag}
-%\usepackage{enumitem}
-\usepackage{bold-extra}
-%\usepackage{amssymb}
-%\usepackage{amsmath}
-% \usepackage{amsfonts}
-\usepackage{bm}
-%\usepackage{breqn} %automatic line breaks in formulas. deactivated due to this problem: http://latex-community.org/forum/viewtopic.php?f=46&t=24015&start=10
-%\setcounter{tocdepth}{3}
-%\usepackage[pdftex]{graphicx}
-%\usepackage{url}
-%\usepackage{acro} % caused conflicts
-%\usepackage{glossaries} % caused errors
-%\usepackage{mfirstuc}
-\usepackage{xparse}
-%\usepackage{booktabs}
-%\usepackage{multirow}
-%\usepackage{array}
-\usepackage{colortbl}
-\usepackage{arydshln} % causes pdflatex to hang at umsb.fd
-%\usepackage{tikz}
-\usepackage{mdframed}
-%\usepackage{cleveref} % needs to be loaded after hyperref
-\usepackage{calc}
-%%% EI %%%
-
-%%% DSS %%%
-%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
-\DeclareFontFamily{U}{MnSymbolC}{}
-\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
-\DeclareFontShape{U}{MnSymbolC}{m}{n}{
-    <-6>  MnSymbolC5
-   <6-7>  MnSymbolC6
-   <7-8>  MnSymbolC7
-   <8-9>  MnSymbolC8
-   <9-10> MnSymbolC9
-  <10-12> MnSymbolC10
-  <12->   MnSymbolC12%
-}{}
-\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-
-% \usepackage[american]{babel}
-% \usepackage{graphicx}
-% \usepackage{tikz}
-% \usepackage{mdframed}
-%extended enumerate, such as \begin{compactenum}
-%%%% DEBUG
-% \usepackage{paralist}
-%%%% DEBUG
-%put figures inside a text
-%\usepackage{picins}
-%use
-%\piccaptioninside
-%\piccaption{...}
-%\parpic[r]{\includegraphics ...}
-%Text...
-
-%Sorts the citations in the brackets
-%\usepackage{cite}
-
-%for easy quotations: \enquote{text}
-%%%% DEBUG
-% \usepackage{csquotes}
-%%%% DEBUG
-% \usepackage[T1]{fontenc}
-
-%enable margin kerning
-%%%% DEBUG
-% \usepackage{microtype}
-%%%% DEBUG
-
-%better font, similar to the default springer font
-%%%% DEBUG
-% \usepackage[%
-% rm={oldstyle=false,proportional=true},%
-% sf={oldstyle=false,proportional=true},%
-% tt={oldstyle=false,proportional=true,variable=true},%
-% qt=false%
-% ]{cfr-lm}
-%%%% DEBUG
-%if more space is needed, exchange cfr-lm by mathptmx
-%\usepackage{mathptmx}
-
-% \usepackage{acro}
-% *** capitalisation config for acronyms ***
-% \usepackage{mfirstuc}
-% \acsetup{
-%     page-ref    = paren,% Seitennummer in Klammern
-%     extra-style = comma,% extra-Informationen mit Komma anhängen
-%     only-used   = false,% für das Beispiel auch die nicht verwendeten in die Liste aufnehmen
-%     sort        = true, % Liste sortieren
-%     uc-cmd      = \capitalisewords
-% }
-% \input{./data/acronyms}
-
-%for demonstration purposes only
-%%%% DEBUG
-% \usepackage[math]{blindtext}
-%%%% DEBUG
-
-% \usepackage[
-% pdfauthor={Benjamin Greschbach, Guillermo Rodr\'{i}guez-Cano, Tomas Ericsson and Sonja Buchegger},
-% %pdfsubject={},
-% pdftitle={Design of a Privacy-preserving Document Submission and Grading System},
-% %pdfkeywords={},
-% bookmarks=false,
-% breaklinks=true,
-% colorlinks=true,
-% linkcolor=black,
-% citecolor=black,
-% urlcolor=black,
-% %pdfstartpage=19,
-% pdfpagelayout=SinglePage
-% ]{hyperref}
-%enables correct jumping to figures when referencing
-% \usepackage[all]{hypcap}
-
-% \usepackage[capitalise,nameinlink]{cleveref}
-%Nice formats for \cref
-% \crefname{section}{Sect.}{Sect.}
-% \Crefname{section}{Section}{Sections}
-% \crefname{figure}{Fig.}{Fig.}
-% \Crefname{figure}{Figure}{Figures}
-
-% \usepackage{xspace}
-
-%sequence diagrams
-%\usepackage{tikz}
-%\usetikzlibrary{arrows,shadows}
-%\usepackage[underline=false]{pgf-umlsd}
-
-%msc diagrams
-%\usepackage{utils/msc5}
-\usepackage{utils/msc5}
-%%% DSS %%%
-
-\usepackage[explicit]{titlesec}
-
-% == load hyperref last ==
-% if you only want the page number to be clickable in tock: linktocpage=true
-% make hyperref dumber with hypertexnames=false (http://tex.stackexchange.com/a/6102/120692)
-% \usepackage[colorlinks=true, pagebackref=true, linktocpage=true, hypertexnames=false,hidelinks]{hyperref}
-\usepackage[backref=page]{hyperref}
-\usepackage{bookmark}
-\usepackage{cleveref}
-\crefname{appsec}{appendix}{appendices}
-\crefname{appchp}{appendix}{appendices}
-\crefname{artsec}{article}{articles}
-\crefname{part}{part}{parts}
-\usepackage[all]{hypcap}
-
-
-% *** capitalisation config for acronyms ***
+%%%
+%   CNF: Configuration for acronyms
+%
 \acsetup{
     page-ref    = paren,
     extra-style = comma,
@@ -267,53 +25,25 @@
     list-caps   = true,
     list-heading= none
 }
-
-% *** acronyms file loading ***
+%%%
+%   CNF: Load list of acronyms to be used
+%
 \input{data/others/acronyms}
 
+%%%
+%   CNF: Load thesis meta-data
+%
 \input{data/others/kth-bibl}
 
-\newtcolorbox{ppBox}[1][]{
-    breakable,
-    enhanced,
-    skin=enhancedmiddle,
-    frame hidden,
-    interior hidden,
-    title=#1,
-    arc=0pt,
-    outer arc=0pt,
-    top=0pt,
-    bottom=0pt,
-    boxsep=1mm,
-    borderline={1.5pt}{0mm}{black},
-    fonttitle=\sffamily\footnotesize,
-    fontupper=\sffamily\footnotesize,
-    fontlower=\sffamily\footnotesize,
-    colframe=black,
-    colback=white,
-    colbacktitle=white,
-    coltitle=black,
-    fonttitle=\bfseries,
-    boxrule=0pt,
-    bottomrule=0pt,
-    toprule=0pt,
-  % leftrule=3pt,
-  % rightrule=3pt,
-    titlerule=0pt,
-    width=8\linewidth/10,
-    valign=center,
-}
-
 %%%
-% CONFIG: Meta-data properties for PDF and XMP
-%
-% Notes: Load after kth-bibl (as variables used come from there)
+%   CNF: Meta-data properties for PDF and XMP
+%        Load after kth-bibl (as variables used come from there)
 %
 \hypersetup{
     pdftitle        = {\thesistitle},
     pdfauthor       = {\thesisauthor},
 %    pdfauthortitle={},%
-    pdfsubject      = {Wannabe thesis},
+    pdfsubject      = {Licentiate thesis},
 %    pdfsubject      = {\thesistype~(\degree),~\department,~\university},
     pdfkeywords     = {\thesiskeywords},
     pdfcreator      = {\thesisauthor~(Supervised~by~\thesissupervisor)},
@@ -327,7 +57,7 @@
 %    pdfcontacturl={},
 %    pdfcaptionwriter={},
     pdflang={\thesislanguage},
-%    pdfcopyright    = {\thesiscopyright},
+    pdfcopyright    = {\thesiscopyright},
     pdflicenseurl   = {\thesislicenseurl},
     pdfstartview    = FitB,
     colorlinks=true,
@@ -335,274 +65,33 @@
     linkcolor={blue},
     citecolor={red},
     urlcolor={blue},
-    bookmarks=true,         % show bookmarks bar?
-    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    bookmarks=true, % show bookmarks bar?
+    unicode=false,  % non-Latin characters in Acrobat’s bookmarks
     % hidelinks,
     linktocpage=true,
-    hypertexnames=false    
+    hypertexnames=false
 }
 
-% *** 
+%%%
+%   CNF: Load custom commands 
+%
 \input{configuration/commands}
-% ***
+
+%%%
+%   CNF: List of abbreviations
+%
 \input{data/others/abbreviations}
 
-\makechapterstyle{myell}{%
-  \chapterstyle{veelo}
-  \renewcommand*{\chapnumfont}{\normalfont\huge\bfseries}
-  \renewcommand*{\chaptitlefont}{\normalfont\Huge\bfseries}
-  \settowidth{\chapindent}{\chapnumfont 111}
-  \renewcommand*{\chapterheadstart}{\begingroup
-    \vspace*{\beforechapskip}%
-    \begin{adjustwidth}{}{-\chapindent}%
-    \hrulefill
-    \smash{\rule{0.4pt}{15mm}}
-    \end{adjustwidth}\endgroup}
-  \renewcommand*{\printchaptername}{}
-  \renewcommand*{\chapternamenum}{}
-  \renewcommand*{\printchapternum}{%
-    \begin{adjustwidth}{}{-\chapindent}
-    \hfill
-    \raisebox{10mm}[0pt][0pt]{\chapnumfont \thechapter}%
-                              \hspace*{1em}
-    \end{adjustwidth}\vspace*{-3.0\onelineskip}}
-  \renewcommand*{\printchaptertitle}[1]{%
-    \vskip\onelineskip
-    \raggedleft {\chaptitlefont ##1}\par\nobreak}}
-
-% http://tex.stackexchange.com/questions/254318/chapter-style-with-tcolorbox/254328
-% http://tex.stackexchange.com/questions/301185/modify-fancy-chapter-heading-to-show-chapter-name
-% \definecolor{titlebgdark}{RGB}{0,163,243}
-% \definecolor{titlebglight}{RGB}{191,233,251}
-% \definecolor{titlebgdark}{RGB}{25,84,186}
-\definecolor{titlebgdark}{RGB}{98,146,46}
-% \definecolor{titlebglight}{RGB}{36,160,216}
-\definecolor{titlebglight}{RGB}{176,201,43}
-\titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries}
-  {}
-  {20pt}
-  {%
-    \begin{tcolorbox}[
-      enhanced,
-      colback=titlebgdark,
-      boxrule=0.25cm,
-      colframe=titlebglight,
-      arc=0pt,
-      outer arc=0pt,
-      leftrule=0pt,
-      rightrule=0pt,
-      fontupper=\color{white}\sffamily\bfseries\huge,
-      enlarge left by=-1in-\hoffset-\oddsidemargin, 
-      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
-      % width=\paperwidth,
-      width=\paperwidth+1in,
-      height=0.6cm+0.6cm+3\baselineskip,
-      valign=center,
-      left=1in+\hoffset+\oddsidemargin, 
-      % right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
-      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth+1in,
-      top=0.6cm, 
-      bottom=0.6cm,
-      overlay={
-        \node[
-          fill=titlebgdark,
-          draw=titlebglight,
-          line width=0.15cm,
-          inner sep=0pt,
-          text width=1.7cm,
-          minimum height=1.7cm,
-          align=center,
-          font=\color{white}\sffamily\bfseries\fontsize{30}{36}\selectfont
-        ] 
-        (chapname)
-        % at ([xshift=-1in]frame.north east)
-        at ([xshift=-1in-1in]frame.north east)
-        {\thechapter};
-        \node[font=\small,anchor=south,inner sep=2pt] at (chapname.north)
-        % {\MakeUppercase\chaptertitlename};
-        {};  
-      } 
-    ]
-    #1
-    \end{tcolorbox}%
-  }
-\titleformat{name=\chapter,numberless}[display]
-  {\normalfont\huge\bfseries}
-  {}
-  {20pt}
-  {%
-    \begin{tcolorbox}[
-      enhanced,
-      colback=titlebgdark,
-      boxrule=0.25cm,
-      colframe=titlebglight,
-      arc=0pt,
-      outer arc=0pt,
-      remember as=title,
-      leftrule=0pt,
-      rightrule=0pt,
-      fontupper=\color{white}\sffamily\bfseries\huge,
-      enlarge left by=-1in-\hoffset-\oddsidemargin, 
-      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth+1in,
-      % width=\paperwidth,
-      width=\paperwidth+1in,
-      height=0.6cm+0.6cm+3\baselineskip,
-      valign=center,
-      left=1in+\hoffset+\oddsidemargin, 
-      % right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
-      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth+1in,
-      top=0.6cm, 
-      bottom=0.6cm, 
-    ]
-    #1
-    \end{tcolorbox}%
-  }
-\titlespacing*{\chapter}
-  {0pt}{0pt}{10pt}
-\makeatother
-
-% Make format of TOC heading same as the one used in the chapter
-% http://tex.stackexchange.com/a/19484/120692
-\makeatletter
-\renewcommand\tableofcontents{%
-        \chapter{\contentsname
-        \@mkboth{%
-           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-        \@starttoc{toc}%
-        }
-\makeatother
-
-%\chapterstyle{myell}
-
-% http://tex.stackexchange.com/questions/54115/how-to-let-part-stay-solo-page-and-no-page-number
-% \makeatletter
-% \renewcommand\part{%
-%   \if@openright
-%     \cleardoublepage
-%   \else
-%     \clearpage
-%   \fi
-%   \thispagestyle{empty}%   % Original »plain« replaced by »emptyx
-%   \if@twocolumn
-%     \onecolumn
-%     \@tempswatrue
-%   \else
-%     \@tempswafalse
-%   \fi
-%   \null\vfil
-%   \secdef\@part\@spart}
-% \makeatother
-
-% http://tex.stackexchange.com/questions/159551/customizing-part-style-with-tikz
-% \definecolor{mybluei}{RGB}{0,173,239}
-% \definecolor{mybluei}{RGB}{25,84,186}
-% \definecolor{myblueii}{RGB}{63,200,244}
-% \definecolor{myblueiii}{RGB}{199,234,253}
-% \definecolor{myblueiii}{RGB}{36,160,216}
-\definecolor{bgdark}{RGB}{98,146,46}
-\definecolor{bglight}{RGB}{176,201,43}
-\renewcommand\partnumfont{% font specification for the number
-    % \fontsize{380}{130}\color{myblueii}\selectfont%
-    \fontsize{380}{130}\color{bgdark}\sffamily\selectfont%
-}
-
-\renewcommand\partnamefont{% font specification for the name "PART"
-    % \normalfont\color{white}\scshape\small\bfseries
-    \color{white}\sffamily\bfseries\fontsize{30}{36}\selectfont
-}
-
-\titleformat{\part}
-  {\normalfont\huge\filleft}
-  % {\sffamily\bfseries\normalfont\huge\filleft}
-  {}
-  {20pt}
-  {\begin{tikzpicture}[remember picture,overlay]
-  \fill[bglight] 
-    (current page.north west) rectangle ([yshift=-13cm,xshift=1in]current page.north east);   
-  \node[
-      fill=bgdark,
-      text width=2\paperwidth,
-      rounded corners=6cm,
-      text depth=18cm,
-      anchor=center,
-      inner sep=0pt] at (current page.north east) (parttop)
-    {\thepart};%
-    {};
-  \node[
-      anchor=south east,
-      inner sep=0pt,
-      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south) 
-    {\partnumfont\thepart};
-    % {\partnumfont};
-  \node[
-      anchor=south,
-      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)   
-  % {\partnamefont PART};
-  {\partnamefont};
-  \node[
-      anchor=north east,
-      align=right,
-      inner xsep=10pt] at ([yshift=-1.5cm]partname.east|-partnum.south) 
-  % {\parbox{.7\textwidth}{\raggedleft#1}};
-  {\parbox{.7\textwidth}{\raggedleft\sffamily\bfseries\Huge\selectfont #1}};
-  \end{tikzpicture}%
-  }
-
-
-\makeatletter
-\newcommand*{\greek}[1]{%
-   \expandafter\@greek\csname c@#1\endcsname
-}
-\newcommand*{\@greek}[1]{%
-   $\ifcase#1\or\alpha\or\beta\or\gamma\or\delta\or\varepsilon
-     \or\zeta\or\eta\or\theta\or\iota\or\kappa\or\lambda
-     \or\mu\or\nu\or\xi\or o\or\pi\or\varrho\or\sigma
-     \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
-     \else\@ctrerr\fi$%
-}
-\makeatother
-
-\newcommand\firstToLow[1]{%
- {%
-   \renewcommand{\mfirstucMakeUppercase}{\MakeLowercase}%
-   \makefirstuc{#1}%
- }%
-}
-
-\makeatletter
-\newcommand*{\lcnameref}[1]{%
- \begingroup 
-   \let\label\@gobble
-   \NR@setref{#1}\lc@thirdoffive{#1}%
-  \endgroup
-}
-\newcommand{\lc@thirdoffive}[5]{\firstToLow{#3}}
-\makeatother
-
-% reset footnote counters per chapter (and chapter*)
-\makeatletter
-\pretocmd{\@schapter}{\setcounter{footnote}{0}}{}{}
-\pretocmd{\@chapter}{\setcounter{footnote}{0}}{}{}
-\makeatother
-
-% correct case for namerefs, see http://tex.stackexchange.com/questions/1655/correct-case-in-namerefs
-\newcommand{\lnameref}[1]{%
-\bgroup
-\let\nmu\MakeLowercase
-\nameref{#1}\egroup}
-\newcommand{\fnameref}[1]{%
-\bgroup
-\def\nmu{\let\nmu\MakeLowercase}%
-\nameref{#1}\egroup}
-
-\newcommand{\nmu}{}
-
+%%%
+%   CNF: List of hyphenated words
+%
+\hyphenation{log-in net-works pro-gram sur-veil-lan-ce}
 
 \counterwithin*{chapter}{part}
 
-\hyphenation{log-in net-works pro-gram sur-veil-lan-ce}
-
+%%%
+%   DOC: Beginning of the show... :)
+%
 \begin{document}
 
 %%%
@@ -630,7 +119,6 @@
 \input{data/text/licenses}
 \cleardoublepage
 
-
 %%%
 %   DOC: Dedications page
 %
@@ -640,6 +128,10 @@
 
 \pagenumbering{roman}
 
+%%%
+%   DOC: Abstract(s)
+%        In English, Swedish and Spanish
+%
 \cleardoublepage
 \phantomsection
 \selectlanguage{english}
@@ -734,7 +226,6 @@
 \cleardoublepage
 
 \mainmatter
-%\part*{}
 
 %%%
 %   DOC: Introduction
@@ -895,6 +386,9 @@
 \input{data/text/colophon}
 \clearpage
 
+%%%
+%   DOC: Hasta la vista, baby
+%
 \end{document}
 % \endinput
 

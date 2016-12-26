@@ -216,6 +216,26 @@
         by \Ac{cc}, a global non-profit organization whose mission is to enable the 
         ``sharing and reuse of creativity and knowledge through the provision of 
         free legal tools''.
+        {
+        % redefine the quotation environment to override the default format
+        \renewenvironment{quotation}{%
+            \definecolor{silver}{rgb}{0.83, 0.83, 0.83}
+            \setlength{\parindent}{0pt}
+            \def\FrameCommand{%
+                \hspace{1pt}%
+                %{\color{DarkBlue}\vrule width 2pt}%
+                %{\color{formalshade}\vrule width 4pt}%
+                \colorbox{silver}%
+            }%
+            \MakeFramed{\advance\hsize-\width\FrameRestore}%
+            \noindent\hspace{-4.55pt}% disable indenting first paragraph
+            \begin{adjustwidth}{}{0pt}%
+                \vspace{2pt}\vspace{2pt}%
+        }
+        {%
+            \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+        }
         \doclicenseFullText
+        }
 
 \end{appendices}

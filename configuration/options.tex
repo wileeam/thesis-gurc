@@ -44,6 +44,32 @@
 \usepackage{pifont}
 
 %%%
+%   CNF:  LaTeX support for the Text Companion fonts
+%
+%\usepackage{textcomp}
+\usepackage{lmodern}
+
+%%%
+%   CNF: Use bold small caps and type­writer fonts
+%
+\usepackage{bold-extra}
+
+%%%
+%   CNF: Access bold symbols in maths mode
+%
+\usepackage{bm}
+
+%%%
+%   CNF: Typeset dropped capitals
+%
+\usepackage{lettrine}
+
+%%%
+%   CNF: Uppercase the first letter of a word
+%
+\usepackage{mfirstuc}
+
+%%%
 %   CNF: A collection of (La)TeX and alike logos with bookmark support
 %
 \usepackage{hologo}
@@ -55,8 +81,159 @@
 \usepackage[type={CC}, lang={english}, modifier={by-nd}, version={3.0}]{doclicense}
 
 %%%
+%   CNF: Embed XMP metadata within a LATEX document
+%
+\usepackage{hyperxmp}
+
+%%%
+%   CNF: Driver-independent color extensions for LaTeX and pdfLaTeX
+%
+\usepackage[svgnames]{xcolor}
+
+%%%
+%   CNF: Add colour to LaTeX tables
+%
+\usepackage{colortbl}
+
+%%%
+%   CNF: Coloured boxes, for LaTeX examples and theorems, etc
+%
+\usepackage[many]{tcolorbox}
+
+%%%
+%   CNF: Simple arithmetic in LaTeX commands
+%
+\usepackage{calc}
+
+%%%
 %   CNF: Define commands that appear not to eat spaces
 %        Adds a space unless the macro is followed by certain punctuation characters
 %
 \usepackage{xspace}
+
+%%%
+%   CNF: A generic document command parser
+%
+\usepackage{xparse}
+
+%%%
+%   CNF: Rotation tools, including rotated full-page floats
+%
+\usepackage{rotating}
+
+%%%
+%   CNF: Select alternative section titles
+%
+\usepackage[explicit]{titlesec}
+
+%%%
+%   CNF: Change the resetting of counters
+%        For example... disable reset of the footnote counter at every chapter
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+%%%
+%   CNF: Control layout of itemize, enumerate, description
+%        Enables changing the label in enumerate environments directly
+%
+\usepackage{enumitem}
+
+%%%
+%   CNF: A suite of tools for typesetting algorithms in pseudo-code
+%        It has to be loaded before some others (after hyperref gives an error)
+%
+\usepackage{algorithm}
+
+%%%
+%   CNF: The al­go­rith­mic style you al­ways wanted
+%
+\usepackage{algpseudocode}
+
+%%%
+%   CNF: Framed or shaded regions that can break across pages
+%        Useful for the boxes in the appendices...
+%
+\usepackage{framed}
+
+%%%
+%   CNF: Framed environments that can split at page boundaries
+%
+\usepackage{mdframed}
+
+%%%
+%   CNF: Create tabular cells spanning multiple rows
+%
+\usepackage{multirow}
+
+%%%
+%   CNF: Publication quality tables in LaTeX
+%
+\usepackage{booktabs}
+
+%%%
+%   CNF: Flexible LaTeX tabulars
+%
+\usepackage{tabu}
+
+%%%
+%   CNF: Draw dash-lines in array/tabular
+%        May cause pdfLaTeX to hang at umsb.fd
+%
+\usepackage{arydshln}
+
+%%%
+%   CNF: Draw MSC diagrams
+%
+\usepackage{utils/msc5}
+
+%%%
+%   CNF: Typeset acronyms
+%
+% \usepackage[single, index, hyperref=true]{acro}
+\usepackage[single, index]{utils/acro}
+
+% *** enables full bibliographic entries within text ***
+\usepackage{bibentry}
+\nobibliography*
+
+% *** citation numbers will be sorted and properly "compressed/ranged" ***
+%\usepackage[noadjust]{cite}
+% *** allowed for \citeauthor and \citeyear commands ***
+\usepackage[numbers, square, sort]{natbib}
+\usepackage{usebib}
+\bibliographystyle{acm}
+\setcitestyle{authoryear,aysep={},open={(},close={)}}
+\bibinput{data/others/bibliography} % <--- the same argument as in \bibliography
+
+%%%
+%   CNF: Extensive support for hypertext in LaTeX
+%        Do always load hyperref last
+%        If you only want the page number to be clickable in tock set linktocpage=true
+%        If you want to make hyperref dumber set hypertexnames=false (http://tex.stackexchange.com/a/6102/120692)
+%
+% \usepackage[colorlinks=true, pagebackref=true, linktocpage=true, hypertexnames=false,hidelinks]{hyperref}
+\usepackage[backref=page]{hyperref}
+
+%%%
+%   CNF: A new bookmark (outline) organization for hyperref
+%        Must be loaded after hyperref
+%
+\usepackage{bookmark}
+
+%%%
+%   CNF: Adjusting the anchors of captions
+%        Must be loaded after hyperref
+%
+\usepackage[all]{hypcap}
+
+%%%
+%   CNF: Intelligent cross-referencing
+%        Must be loaded after hyperref
+%
+\usepackage{cleveref}
+\crefname{appsec}{appendix}{appendices}
+\crefname{appchp}{appendix}{appendices}
+\crefname{artsec}{article}{articles}
+\crefname{part}{part}{parts}
+
 
