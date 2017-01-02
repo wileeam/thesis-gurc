@@ -88,8 +88,8 @@ and privacy problems we have presented in the previous \namecrefs{chapter:thesis
 are some examples on how we can actually achieve some compromises to resolve the 
 conflict between the need and value for information and, the cost of personal privacy.
 
-\section{Future directions}
-    \label{section:future-directions}
+\section{Future work}
+    \label{section:thesis:future-work}
 There are many directions in which \acp{cbis} can be developed further in a privacy-preserving 
 manner. From the purely decentralised approach such as \ac{p2p} networks to mixed 
 models where some of the services are supplied --- partially or fully ---- by means 
@@ -99,33 +99,63 @@ services that would need a real identity could rely on to uniquely identify thei
 users.
 
 In the following list we describe some of the possible lines of work we have thought 
-of this thesis to be followed up with ,
-\begin{itemize}
+of this thesis to be followed up with,
+\begin{itemize}[topsep=\parskip, parsep=\parskip, itemsep=\parskip]
     
-    \item stricter formalisation and evaluation of security and privacy properties,\\
-    we have looked at these loosely in isolated scenarios (the functionality itself)
-    but these features would benefit from a deeper evaluation that if formalised (pi-calculus) 
-    would be able to guarantee even more.
-    At the same time, a combination of the security and privacy properties of the 
-    different features that we have looked at may conflict with each other, hence 
-    assessing the compatibility would also be needed (besides, they will come together 
-    anyways)
+    \item stricter formalisation and evaluation of the security and privacy properties.
     
-    \item wider range of functionalities,\\
-    TODO
+    In our work we have evaluated the security and privacy properties of the protocols 
+    we have proposed. However, we have done so in a loosely manner --- pseudo-formally 
+    --- and, up to a certain degree, in isolated scenarios.
     
-    \item expand decentralisation approach to other areas,\\
-    our focus has always been on centralised systems in which there are multiple actors
-    for example, in osns. There are other scenarios where decentralisation could 
-    be interesting, for example, in home care (a nurse transports some personal sensitive data
-    to help a patient and eventually returns with some new data about that patient)
+    Such features would benefit from a stricted formalisation --- for example, by 
+    means of formal systems such as \emph{join}-calculus \cite{FournetG96}, \(\lambda\)-calculus 
+    \cite{Church36} or \(\pi\)-calculus \cite{MilnerPW92} --- and a deeper evaluation 
+    for increased soundness.
     
-    \item privacy-preserving analytics,\\
+    Moreover, combining the features in the same system may reveal inconsistencies 
+    and conflicts between the properties or even uncover new properties. Assessing 
+    the compatibility would be another important task to include when formalising 
+    the properties.
+    
+    \item wider range of functionalities.
+    
+    We have shown some cases of functionalities in centralised and decentralised 
+    \acp{is} with the ideal goal of achieving a fully decentralised \ac{is} using 
+    \acp{osn} as our main scenario. Though we have barely scratched the surface 
+    of the area because there are many open challenges to address in a more privacy-preserving 
+    manner.
+    
+    For example, it is not trivial to retrieve the content of the connections of 
+    a user in such decentralised scenario and it gets more complicated when considering 
+    the question of posting content on someone else's profile or simply commenting. 
+    
+    Another open problem is the realisation of the so called albums (of pictures) 
+    because it is not only a matter of distributed storage of such information but 
+    mostly search and access control of this content --- and other questions such 
+    as allowing the identification of individuals in the stored content.
+    
+    \item expand decentralisation approach to other areas.
+    
+    Although our focus in this work has been on decentralisation of centralised 
+    \acp{is}, such as those where there can be various actors --- for example, in 
+    \acp{osn}, there are also other scenarios where decentralisation could be of 
+    interest
+    
+    For example, in home care --- where a nurse carries some sensitive \ac{pii} 
+    in order to provide the right care to a patient and eventually returns to the 
+    primary care facility with some new personal data about that patient, in 
+    content-sharing or even in public ledging of transactions without a \ac{ttp} 
+    --- such as those happening in the blockchain powering the crypto-currency \Bitcoin.
+    
+    \item privacy-preserving analytics.
+    
     although there are some solutions to do some analysis in a privacy-preserving 
     manner in centralised, there are not simple ways or solutions to do complex ones
     morevoer, moving such analysis in a decentralised scenario, where there it is 
     not easy to have a complete picture of the network at the time of analysis, makes
     it a challenge on its own.
+    
     However, in the coming years, privacy-preserving analytics are going to be key 
     for the success of many business and enterprises as these do not want to risk 
     bad publicity such as the one gained after Snowden, and they may want to minimize 
