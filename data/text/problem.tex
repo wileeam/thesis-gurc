@@ -13,8 +13,8 @@ strategy of most enterprises owning such systems is fundamentally built around c
 For example, \Facebook, which has been accused\footnote{See ``Zuckerberg: Facebook will develop tools to fight fake news'' at \url{https://web.archive.org/web/20161120010511/http://money.cnn.com/2016/11/19/technology/mark-zuckerberg-facebook-fake-news-election/}} 
 recently of not doing enough to prevent fake news in its network, would probably 
 benefit from sharing some details on how its news filtering processes work for the 
-research community to assess, but doing so would likely expose details of its infrastructure 
-to its competitors.
+research community to assess, but doing so would likely expose details of its internal 
+mechanisms to its competitors.
 
 In this thesis we aim at reducing the amount of control that a service provider 
 can do in a centralised \ac{is}. Either by improving the privacy of some steps of 
@@ -25,24 +25,26 @@ instead.
 
 \section{Challenges addressed}
     \label{section:thesis:challenges-addressed}
-Among the wide spectrum of problems and questions that decentralisation poses in 
-centralised \acp{is} such as \acp{osn} we have first focused our efforts on keeping 
-the functionality of some features in decentralised systems as close as possible 
-to what these would be in the centralised scenario.
+Among the wide spectrum of problems and questions that decentralisation of centralised 
+\acp{is} such as \acp{osn} poses, we have first focused our efforts on keeping the 
+functionality of some features in decentralised systems as close as possible to 
+what these would be in the centralised scenario.
 
 In parallel, such decentralisation triggers our second concern in terms of privacy.
-Not only we consider this topic in such setup where the central authority does not 
-exist or it plays a minimal role but also in a more generic fashion for an \ac{is}. 
+Not only do we consider this topic in such a setup where the central authority does 
+not exist or it plays a minimal role but also in a more generic fashion for an \ac{is}. 
 When reducing the tasks of the central authority to the minimum, the users in the 
 system are exposed to some security and privacy threats that should be analysed 
 and addressed.
 
-Each one, decentralisation and privacy, raise so many questions that any thesis 
-or research will ever be able to answer. Therefore, we list the main questions that 
-we believe this thesis answers in the aforementioned domains. There may be additional 
-questions we have not explicitly considered but the reader finds an answer in our 
-work. Moreover, the reader may expect answers to some questions that we have not 
-even thought as of the time of this writing --- though this is the beauty of research.
+Each one, decentralisation and privacy, raise more questions than any thesis or 
+research will ever be able to answer. Therefore, what follows is a list of the main 
+questions that we believe this thesis is answering in the aforementioned domains with 
+the corresponding reference to the articles that we believe shed some light on the 
+answer. There may be additional questions we have not explicitly considered but 
+the reader finds an answer to in our work. Moreover, the reader may expect answers 
+to some questions that we have not even thought of at the time of this writing --- 
+though this is the beauty of research.
 
 \begin{itemize}
     \item Can we decentralize an \ac{is}? If so, how?\\
@@ -63,14 +65,14 @@ in a limited manner or topics that are not considered at all --- because they ar
 out of the scope of this work. We describe them as follows,
 
 \begin{itemize}
-    \item We are not aiming at building, nor we have, a functional system as per 
+    \item We are not aiming at building, nor do we have, a functional system as per 
     the definition of \ac{cbis} in \cref{section:thesis:information-systems-on-the-importance-of-capabilities}.
 
-    \item We do not get into the debate nor analyse in depth the trade-offs of centralised 
-    \vs decentralised \acp{is} --- regardless of our preference towards the later 
-    ones. In fact, we acknowledge that this is an interesting open question that 
-    will likely bring new challenges in the future given the concentration of power 
-    that cloud services providers are experiencing nowadays.
+    \item We do not get into the debate or in depth analyse the trade-offs between 
+    centralised and decentralised \acp{is} --- regardless of our preference towards 
+    the later ones. In fact, we acknowledge that this is an interesting open question 
+    that will likely bring new challenges in the future given the concentration 
+    of power that cloud services providers are experiencing nowadays.
 \end{itemize}
 
 \section{Methodology}
@@ -118,7 +120,7 @@ included in this thesis in \cref{table:papers-methodologies}.
          & \ref{article:thesis:passwords-peer-to-peer} & \ref{article:thesis:events-invitations-dosns} & \ref{article:thesis:document-submission-system} & \\
         \midrule
         Problem identification, motivation & decentralised authentication & decentralised events organisation & anonymous document submission & \\[1em]
-        Definition of objectives & usable, simple & fair, \ac{ttp}-free & correct, fair & \\[1em]
+        Definition of objectives & simple, usable & fair, \ac{ttp}-free & correct, fair & \\[1em]
         Solution design, development & protocols, experimentation & protocols, auditing & security properties, system design & \\[1em]
         Demonstration & - & - & prototype (see \cite{Ericsson15})& \\[1em]
         Evaluation & security, privacy, and performance analysis & security and privacy analysis & security and privacy analysis & \\[1em]
