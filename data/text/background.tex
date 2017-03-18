@@ -443,7 +443,7 @@ provided by the service provider do not exist anymore. All the problems and issu
 become a responsibility of the users in the network because there is not a central 
 authority to rely on as we briefly discussed in the previous \namecref{section:thesis:privacy-a-never-ending-battle}.
 
-The security and privacy trade-offs of decentralisation have been focused on keeping 
+The security and privacy trade-offs of decentralisation have focused on keeping 
 personal data confidential and intact --- by means of cryptographic protocols and 
 algorithms, in line with previous perspectives of privacy, for example, in law \cite{Harvey92} 
 or in healthcare \cite{BarrowsC96}. 
@@ -487,34 +487,78 @@ survey \cite{PaulFS14}.
 mechanisms that allow for services in the network guaranteeing privacy, data integrity 
 and availability \cite{CutilloMS09}. 
 
-Other example of \ac{dosn} leveraging in the social contacts is \Cachet where data 
-availability and secure information retrieval is guaranteed \cite{NilizadehJMBK12}. 
-Confidentiality is achieved by means of \ac{abe}, and data dissemination and availability 
-is possible with an enriched \ac{dht} where users play an important role storing 
-and transmitting to their contacts the recent updates from mutual contacts in the 
-network.
-
-Another \ac{dosn}, \PeerSoN, was built as a two-tiered \ac{p2p} architecture --- one 
-tier as a look-up service to find users and their stored data using a \ac{dht} and, 
-another tier formed by the peers and the users' data --- allowing direct data exchange 
-between the users and providing confidentiality and access control --- via cryptographic 
-protocols --- \cite{BucheggerSVD09}. Similarly, \cite{AielloR10} design a \ac{dht}-based 
-\ac{osn} and implement some modules --- namely, identification, access control, synchronous 
-and asynchronous communication and, search --- supporting social networking services 
-as a ``customizable suite of interoperable, identity-based applications''.
-
-A super-peer based \ac{dosn} approach is taken in \cite{SharmaD12} with \SuperNova. 
-
-Finally, \Persona is another \ac{osn} implementation focusing on data control for the users 
+\Persona is another \ac{osn} implementation focusing on data control for the users 
 and groups of them by means of \ac{abe} --- a public-key encryption scheme where 
 the secret key and the ciphertext depend on some defined attributes. As all content 
 is stored in groups defined by the users, the service provider does not decide who 
 can access the data because it is the group's owner the one deciding who belongs 
 to the group \cite{BadenBSBS09}.
 
-% \DECENT and \Cachet: TODO
-%
-% \Diaspora, \Twister: TODO
+A similar approach to \Persona is taken in \DECENT, a \ac{dosn} combining a \ac{dht} 
+with \ac{abe} to guarantee confidentiality and integrity of the social relations and 
+the users' data \cite{JahidNMBK12}. Unlike \Persona, \DECENT stores the encrypted 
+data and its corresponding encrypting policy in separate locations, reducing the 
+risk of inferences of the user's privacy should the ciphertext is accessed by a 
+third party.
+
+An enhanced version of \DECENT is \Cachet, a \ac{dosn} leveraging in the social 
+contacts overlay to guarantee data availability and secure information retrieval 
+\cite{NilizadehJMBK12}. Confidentiality is achieved by means of \ac{abe}, and data 
+dissemination and availability is possible with an enriched \ac{dht} where users 
+play an important role as storage of the recent updates from mutual contacts in 
+the network, and also acting as relays for such updates to their contacts.
+
+On the realm of \ac{p2p}-based architectures, \PeerSoN, was built as a two-tiered 
+\ac{dosn},  --- with one tier as a look-up service to find users and their stored 
+data using a \ac{dht} and, another tier formed by the peers and the users' data 
+--- allowing direct data exchange between the users and providing confidentiality 
+and access control --- via cryptographic protocols --- \cite{BucheggerSVD09}. Similarly, 
+\cite{AielloR10} design a \ac{dht}-based \ac{osn} and implement some modules --- 
+namely, identification, access control, synchronous and asynchronous communication 
+and, search --- supporting social networking services as a ``customizable suite 
+of interoperable, identity-based applications''.
+
+A self-organizing and super-peer based \ac{dosn} approach is taken in \cite{SharmaD12} 
+with \SuperNova. Users contribute to the network with their resources and gain reputation 
+to become super-peers. Such special nodes realize three key tasks in the network: 
+bootstrapping, users' directory and search functionalities for the users to find 
+other users where to store their content.
+
+\subsection{Deployed systems}
+    \label{subsection:thesis:deployed-systems}
+% TODO: Replace section with a macro call
+Thus far, the aforementioned examples we have highlighted are, for the most part, 
+academic and research projects of privacy-preserving \acp{sn} that have not been 
+fully deployed beyond the experimentation realm. Hence we finalize the current section 
+with a brief description of some large-scale actual deployments of privacy-preserving 
+\acp{osn} and \acp{dosn}.
+
+\diaspora, one of the most popular deployed \acp{dosn}, is formed by a network of 
+independent and federated servers --- called pods --- owned and maintained by contributing 
+users \cite{Diaspora}. With such architecture no individual in the network can have 
+all the personal information of all users and, at best, a subset of them. Though 
+some early studies after the network's inception pointed at a concentration of users 
+around a few servers with high reliability \cite{BielenbergHGSZ12}. Moreover, the 
+distributed design of the network allows for a lack of consistency between pods. 
+For example, when sharing some content between users the replication of the changes 
+on the content's policy may not happen in a timely manner among the network's pods 
+and a user who was refused access to an object she was granted access to in the 
+past may still be able to access to such object by using a pod that is lagging the 
+replication of the events in the network.
+
+\Retroshare is a fully decentralised \ac{osn}, as opposed to the federated approach 
+of \diaspora, using a combination of a web of a trust and anoymous file transfer 
+based on the Turtle protocol\footnote{Turtle is a \ac{p2p} overlay for anonymous 
+communication built on top an existing network of trusted relationships \cite{PopescuCT04}} 
+to provide resiliance against denial of service attacks or node compromises \cite{Retroshare}. 
+
+Lastly, a micro-blogging \ac{p2p} network similar to \Twitter, \Twister, has been 
+developed leveraging on the blockchain technology to bind usernames to cryptographic 
+keys \cite{Twister}. A \ac{dht} is used as a storage, for example, user profiles 
+or messages, and as a directory of the relationships between the users --- note 
+that given the public nature of the platform the relationships are also public as 
+they are in \Twitter.
+
 %
 % \VisVis: TODO
 % The subject of securely establishing stable identities in P2P systems has been previously
