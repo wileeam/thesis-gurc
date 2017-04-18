@@ -13,7 +13,7 @@ such as genomics or astrophysics.
 
 \Acp{sn} can be considered huge processes of information dissemination --- one of 
 the reasons for the varied interest from many domains of knowledge. Such a dissemination 
-process is one of the base when forming relations among individuals and other entities 
+process is one of the bases when forming relations among individuals and other entities 
 --- social structures --- and resulting in a set of social relations that we commonly 
 know as \acp{sn} and \acp{osn} in their digital counterpart form.
 
@@ -119,7 +119,7 @@ context of \acp{osn},
     with information in \cref{section:thesis:conventions} --- that in the context of \ac{cbis}
     is usually stored in an organised manner denominated database --- an efficient 
     collection of files with a distinctive characteristic of making the stored information 
-    easily accessible and fast.\\
+    easily accessible and quickly accesible.\\
     In the context of \acp{osn} content is what drives the growth and evolution 
     of the network. Although the content is of different kinds and sizes, databases 
     are chosen by service providers to make such information available to the users 
@@ -138,7 +138,7 @@ context of \acp{osn},
     
     \item users,\\
     are the individual human beings who use the \ac{cbis} --- and the most important 
-    element in the \ac{is} because their success achieving their goals will imply 
+    element in the \ac{is} because their success in achieving their goals will imply 
     whether the \ac{is} is useful the purpose it was designed for or not. The roles 
     of individuals can vary, they can be either users of the system or personnel 
     who manage, program or maintain the system.\\
@@ -320,8 +320,8 @@ in a dictionary-like fashion.
 Decentralisation, integrity, scalability, fault tolerance and anonymity are among 
 the properties that any \ac{dht} should meet in a \ac{dosn}. As the varying overlay 
 network topologies, routing algorithms, data models, churn management techniques and, 
-security attack resilience are largely vast in the state of the art we direct the 
-reader to a survey on \ac{p2p} content distribution, \cite{Androutsellis-TheotokisSLS10} 
+security attack resilience are vast in the state of the art we direct the reader 
+to a survey on \ac{p2p} content distribution, \cite{Androutsellis-TheotokisSLS10} 
 and another one on \ac{dht} security techniques, \cite{UrdanetaPS11}.
 
 % \textit{Access control policies for the stored data}.
@@ -503,10 +503,11 @@ third party.
 
 An enhanced version of \DECENT is \Cachet, a \ac{dosn} leveraging in the social 
 contacts overlay to guarantee data availability and secure information retrieval 
-\cite{NilizadehJMBK12}. Confidentiality is achieved by means of \ac{abe}, and data 
-dissemination and availability is possible with an enriched \ac{dht} where users 
-play an important role as storage of the recent updates from mutual contacts in 
-the network, and also acting as relays for such updates to their contacts.
+\cite{NilizadehJMBK12}. Such guarantees are confidentiality, which is achieved by 
+means of \ac{abe}, and data dissemination and availability, which is possible with 
+an enriched \ac{dht} where users play an important role as storage of the recent 
+updates from mutual contacts in the network, also acting as relays for such updates 
+for their contacts.
 
 On the realm of \ac{p2p}-based architectures, \PeerSoN, was built as a two-tiered 
 \ac{dosn},  --- with one tier as a look-up service to find users and their stored 
@@ -546,30 +547,22 @@ and a user who was refused access to an object she was granted access to in the
 past may still be able to access to such object by using a pod that is lagging the 
 replication of the events in the network.
 
-\Retroshare is a fully decentralised \ac{osn}, as opposed to the federated approach 
+\VisVis is also based on the idea of federated servers as well. The framework provides 
+decentralisation to \acp{osn} via computer utility services such as those offered 
+by cloud computing service providers with a focus on location-based \acp{osn} \cite{ShakimovLCCLLV11}. 
+The architecture of the network is a hierarchical overlay of some specialised servers 
+that are trusted to store sensitive data among others but preserving the location 
+information of the users of the network.
+
+\RetroShare is a fully decentralised \ac{osn}, as opposed to the federated approach 
 of \diaspora, using a combination of a web of a trust and anoymous file transfer 
 based on the Turtle protocol\footnote{Turtle is a \ac{p2p} overlay for anonymous 
 communication built on top an existing network of trusted relationships \cite{PopescuCT04}} 
-to provide resiliance against denial of service attacks or node compromises \cite{Retroshare}. 
+to provide resiliance against denial of service attacks or node compromises \cite{RetroShare}. 
 
-Lastly, a micro-blogging \ac{p2p} network similar to \Twitter, \Twister, has been 
+Lastly, \Twister, a micro-blogging \ac{p2p} network similar to \Twitter, has been 
 developed leveraging on the blockchain technology to bind usernames to cryptographic 
-keys \cite{Twister}. A \ac{dht} is used as a storage, for example, user profiles 
+keys \cite{Freitas13}. A \ac{dht} is used as a storage, for example, user profiles 
 or messages, and as a directory of the relationships between the users --- note 
 that given the public nature of the platform the relationships are also public as 
 they are in \Twitter.
-
-%
-% \VisVis: TODO
-% The subject of securely establishing stable identities in P2P systems has been previously
-% studied, for instance by Aberer, Datta and Hauswirth (3). The need for identities
-% mainly arose from technical concerns, such as handling dynamic IP address assignment, o
-% r avoiding Sybil attacks (33). Authentication of a node is done via a signature key,
-% automatically generated and stored on the node.
-
-% Here I could talk about Diaspora, Twister, perhaps Ello, but also the works that try to
-% use OSNs in a privacy-preserving manner (that is, using an overlay of encryption
-% or perhaps a link to a third party that is under the user's control?).
-% Vis-a-Vis project
-% Check GreschbachKB12 for citations of Safebook and other projects.
-

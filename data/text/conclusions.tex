@@ -54,10 +54,10 @@ possible to enhance the privacy of a user while keeping the functionality intact
 in a scenario where a trusted central authority is required.
 
 For decentralised \acp{is} we present in \cref{article:thesis:passwords-peer-to-peer} 
-a scheme for usable privacy-preserving user authentication in a similar manner --- 
-via user-password credentials --- than what most \acp{is} use nowadays with key 
-functionality to recover the credentials or even maintain the authentication details 
-stored in a secure manner across devices with a negligible impact on performance.
+a scheme for usable privacy-preserving user authentication in a similar manner than 
+what most \acp{is} use nowadays, by means of user-password credentials. We also 
+design functionality that allows credentials recovery or even maintain authentication 
+details stored in a secure manner across devices with a negligible impact on performance.
 
 In a specific use case of decentralised \acp{is} within the realm of \acp{osn}, 
 \acp{dosn}, we demonstrate how it is possible to have a coordination and cooperation 
@@ -99,7 +99,7 @@ services that would need to know that each user has a verifiable and unique iden
 for the purpose of complying with governmental regulations --- such as tax laws.
 
 In the following list we describe some of the possible lines of work we have thought 
-of this thesis to be followed up with,
+this thesis can be followed up with,
 \begin{itemize}[topsep=\parskip, parsep=\parskip, itemsep=\parskip]
     
     \item stricter formalisation and evaluation of the security and privacy properties.
@@ -142,27 +142,44 @@ of this thesis to be followed up with,
     \acp{osn}, there are also other scenarios where decentralisation could be of 
     interest
     
-    For example, in home care --- where a nurse carries some sensitive \ac{pii} 
-    in order to provide the right care to a patient and eventually returns to the 
-    primary care facility with some new personal data about that patient, in 
-    content-sharing or even in public ledging of transactions without a \ac{ttp} 
+    For example, in home care\footnote{Medical care and safety are some controversial 
+    matters when it comes to ideal privacy. Consider an unsconcious person in a 
+    life threating situation, should her medical history be accessed without her 
+    consent? It would be technologically possible to protect such sensitive personal 
+    data but it simply does not make sense. However, it is clear it would be a privacy 
+    violation allowed in many legislations because the preservation of the human 
+    life is an unquestioned obligation.} --- where a nurse carries some sensitive 
+    \ac{pii} in order to provide the right care to a patient and eventually returns 
+    to the primary care facility with some new personal data about that patient, 
+    in content-sharing or even in public ledging of transactions without a \ac{ttp} 
     --- such as those happening in the blockchain powering the crypto-currency \Bitcoin.
     
     \item privacy-preserving analytics.
     
-    There are some solutions to do simple privacy-preserving centralised analysis, 
+    There are some solutions to do simple privacy-preserving centralised analytics, 
     but there are no straightforward ways or solutions to do complex ones. Moreover, 
-    moving such an analysis to a decentralised scenario, where there it is not easy 
-    to have a complete picture of the network at the time of analysis, makes it 
-    a challenge on its own.
+    doing such analysis in a decentralised scenario, where it is not easy to have 
+    a complete picture of the network at the time of analysis, makes it a challenge 
+    on its own.
     
-    However, in the coming years, privacy-preserving analytics are going to be key 
-    for the success of many businesses and enterprises as these do not want to risk 
-    bad publicity such as the one gained after Snowden revelations. Companies may 
-    want to minimize the data footprint already at the source of it --- the user.
+    However, in the coming years, privacy-preserving analytics not only will be 
+    key for the success of many businesses and enterprises but also a requirement 
+    \cite{LuZLLS14}. Bad publicity and wrong-doing of past actions --- such as the 
+    ones after the Snowden revelations --- are among the reasons for which corporations 
+    may want to minimize the data footprint at its source --- the user --- and 
+    process it in a more privacy-preserving manner. 
     
-    % \item more,\\
-    % TODO
-
 \end{itemize}
 
+Ultimately, information-theoretically secure solutions are the only ones that can 
+guarantee the efectiveness of privacy in whichever system they are implemented because 
+--- by design --- assume an adversary with unbounded computing power. 
+For example, the confidentiality of personal data encrypted with encryption algorithms 
+that are information-theoretically secure is guaranteed to be resilient to any future 
+development in computing power --- for example, quantum computing. 
+
+Some of the information-theoretically secure solutions that exist today and that 
+could be of use to the scenarios we have described in this thesis are either too 
+complex to implement or somewhat computationally inefficient in a distributed scenario. 
+However, any further work must aim at such ideal of information-theoretic secure, 
+usable and performing solutions in a decentralised scenario, and so do we.

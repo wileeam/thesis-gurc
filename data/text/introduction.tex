@@ -106,10 +106,14 @@ and even refusal to the right to be forgotten\footnote{See ``European Court Lets
 Moreover, \acp{osn} service providers, among other major technological companies, 
 have been known to be in the thick of a global surveillance program --- a program 
 known as \Ac{prism}\footnote{See ``NSA Prism program taps in to user data of Apple, Google and others'' at \url{https://web.archive.org/web/20161112033822/https://www.theguardian.com/world/2013/jun/06/us-tech-giants-nsa-data}} --- 
-after the revelations of a former contractor's employee of the \ac{usa} government 
-in 2013. For example, not only \Facebook and \Google, had full knowledge of having 
-their users' privacy breached without their knowledge and consent but also assisted 
-in such violation.
+after the revelations\footnote{Such disclosures should not come as a striking surprise 
+because a former intelligence analyst of the \aca{usa} Navy already testified in 
+the 1970s about the illegal eavesdropping on \aca{usa} citizens \cite{Bamford14}.} 
+of a former contractor's employee of the \ac{usa} government in 2013. For example, 
+not only \Facebook and \Google, had full knowledge of having their users' privacy 
+breached without their knowledge and consent but also assisted in such violation 
+without much legal opposition on the abusive and indiscriminate demands of law enforcement 
+agencies.
 
 The aforementioned scenario certainly pictures a quite pessimistic and probable 
 future as it seems that privacy is pretty much extinct --- if it was somewhat possible 
@@ -225,7 +229,7 @@ who are attending.
 Our mechanism uses standard cryptographic primitives allowing other features such 
 as revealing some event specific information to a group of users --- to those who 
 commit to attend an event --- or even detect any misbehaving party --- for example, 
-an invitee can prove that accepted an invitation and did not get further details 
+an invitee can prove that she accepted an invitation and did not get further details 
 about the event from a malicious organiser.
 
 With our solution we aim at a broader spectrum of privacy-preserving applications 
@@ -281,14 +285,23 @@ user. Not only does not the user possess such data physically but also does not
 control who access it or even if and how it gets transferred to third parties --- 
 in many cases, unauthorised.
 
-Therefore, we aim at improving users' data control as much as it is technologically 
-possible, leaving legal policies such as \ac{tos} or \ac{pp} and, the ethical debate 
-out of the scope of this thesis. We believe that removing the central provider in 
-a centralised \ac{is} such as an \ac{osn} is one of the very first steps towards 
-returning that control of the data back to the user. Although the trade offs of 
-getting rid off such entity, for example, who guarantees that two parties can communicate 
-between each other without a third one overseeing, ought to be identified, analysed, 
-researched and worked out.
+On one hand, we aim at improving users' data control as much as it is technologically possible, 
+leaving legal policies such as \ac{tos} or \ac{pp} and, the ethical debate out of 
+the scope of this thesis. We believe that removing the central provider in a centralised 
+\ac{is} such as an \ac{osn} is one of the very first steps towards returning that 
+control of the data back to the user. Although the trade offs of getting rid off 
+such entity, for example, who guarantees that two parties can communicate between 
+each other without a third one overseeing, ought to be identified, analysed, researched 
+and worked out.
+
+On the other hand, the security and privacy we may achieve by removing such central 
+provider will always be limited to the trust that we put in the machinery that runs 
+any privacy-preserving protocol. For example, the communication application \Signal 
+provides some strong guarantees for secure communication between two or more parties, 
+but the confidence on such assurances --- which have been publicly scrutinised as 
+the source code of the application is available for anyone to look at --- are ultimately 
+dependent on the trust that the user has on the hardware device and the software platform 
+--- particulary when they come from the same vendor.
 
 Finally, we also have the desire to reduce the impact of personal data privacy in 
 people's lives by raising awareness on the topic with our solutions. We want to 
@@ -296,6 +309,62 @@ broaden and deepen the ongoing political debate and legal discussions on the top
 of privacy not only in \acp{osn} but also in many other centralised \acp{is}. However, 
 we reckon there is still a long road ahead on the quest of privacy and this is barely 
 the beginning.
+
+\subsection{The utopia of privacy}
+    \label{subsection:thesis:utopia-of-privacy}
+Our philosphy for privacy should be understood as an ideal that we aim at. Our line 
+of work where the individual exercises as much control as possible on her data can 
+be perceived as an utopia and, to a limited extent, we must agree. Because we can 
+not ignore the reality of living in a law-abiding world and the need for common 
+sense in daily life. 
+
+The same democracy that is giving us the freedom of free speech and allows us to 
+write these lines, accepted to have laws to regulate itself while also setting certain 
+boundaries to freedom. For example, it is common in many jurisdictionas that service 
+providers, such as those operating telecommunication and telephone networks, are 
+legally obliged to help law enforcement in some situations, when the ruling of a 
+court says so, and breach the privacy of one or more suspect individuals --- the 
+so called \ac{li}.
+
+However, our approach in this work aims at providing solutions to reduce the impact 
+of abusive, intrusive and indiscriminate demands for personal information. For example, 
+the surveillance that law enforcement may demand of a specific suspect must be supported 
+with some proof to be presented at a court for a judge to approve is not the same 
+as the demands of laws to make legal for law enforcement to circumvent the courts 
+to wiretap on any individual at will.
+
+It is precisely the court ruling situation that service providers cannot avoid in 
+most cases and we do not dispute nor criticise. In fact, the solution that service 
+providers seem to be taking nowadays is similar to the one we advocate in this 
+work: ``privacy as data control''. Service providers are trying to reduce their 
+liability when it comes to personal data storage. In such cases, they are aiming  
+at becoming information proxies and minimise access capabilities on the personal 
+data of their users that they store, either fully or partially depending on their 
+business model.
+
+Some service providers claim that they cannot access the information they hold of 
+a specific user because such information has been encrypted with a key for which 
+the user is the only holder. Therefore, even in the case of a court requirement 
+to access the personal information of a user, the best the service provider can 
+do is provide a copy of the encrypted data --- hence, complying with the court request 
+--- but rendering the desires of law enforcement to access personal information 
+futile\footnote{Note that the request of laws to forbid encryption mechanisms or even require 
+service providers to keep copies of encryption keys is still a demand of some legislators. 
+Fortunately, such requests encounter heavy criticism from other legislators and 
+freedom of speech and human rights activists because it would render democracy no 
+different than any of the still existing authoritatian modern dictatorships.}. 
+
+Possibly striking and somehwat in conflict with what we advocate in this thesis, 
+we accept the need for vetoing the desires for privacy in some some situations such 
+as those where human life is at risk. For example, advancements in electronics have 
+allowed for the embedment of \ac{gnss} chipsets in modern mobile phones whose capabilities 
+are used every day by emergency services to locate and save people's lives.
+
+We are still far from a digital dystopia where no secret is safe but more work is 
+needed to avoid reaching that frightening point. We aim at providing some privacy-enhancing
+tools so that sharing personal data is possible in the terms of the owner of such 
+data and within the bounds of a democratic society, ethics and common sense. Mass 
+and indiscriminate surveillance will ever be acceptable.
 
 \section{Outline}
     \label{section:thesis:outline}
