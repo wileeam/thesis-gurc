@@ -30,7 +30,7 @@ Until the turn of the 21st century the focus was on the privacy concerns of indi
 as consumers and the policy making in that direction --- see some examples at \cite{MilbergBSK95}, 
 \cite{Rindfleisch97}, \cite{Clarke99} and \cite{NamSPI06}. However, in 2013, the 
 focus shifted to governmental mass surveillance after the disclosures of Edward 
-Snowden --- a former contractor of the \aca{usa} government --- on the existence 
+Snowden --- a former contractor of the \aca{usa} government --- of the existence 
 of a global surveillance apparatus led by the \aca{usa} government \Ac{nsa} in cooperation 
 with other intelligence organisations and in partnership with major technological 
 players such as \Google, \Facebook or \Apple. 
@@ -43,15 +43,15 @@ servers or among all the users of the network in a \ac{p2p} fashion. In other wo
 there are many non-trivial trade-offs to consider which are worth the effort of 
 being looked at.
 
-With this thesis we aim at contributing to the field of centralised \acp{is} by 
-presenting solutions showing that decentralisation is not only possible but also 
-improves the control that a user has over her personal data --- her privacy is enhanced. 
-We specify and design some protocols showing how some common functionality in 
-generic \acp{is} can be mimicked in a decentralised scenario, such as a \ac{p2p} 
-network, or in a more specific one, such as a \ac{dosn}. We also demonstrate how 
-in some conventional processes where privacy is not seen as that important, it is 
-possible to enhance the privacy of a user while keeping the functionality intact 
-in a scenario where a trusted central authority is required.
+With this thesis we aim at contributing to the field of decentralised \acp{is} by 
+presenting solutions showing that decentralisation is possible and improves the 
+control that a user has over her personal data --- her privacy is enhanced. We specify, 
+analyse and design some protocols showing how some common functionality in generic 
+\acp{is} can be mimicked in a decentralised scenario, such as a \ac{p2p} network, 
+or in a more specific one, such as a \ac{dosn}. We also demonstrate how in some 
+conventional processes where privacy is not seen as that important, it is possible 
+to enhance the privacy of a user while keeping the functionality intact in a scenario 
+where a trusted central authority is required.
 
 For decentralised \acp{is} we present in \cref{article:thesis:passwords-peer-to-peer} 
 a scheme for usable privacy-preserving user authentication in a similar manner than 
@@ -61,7 +61,7 @@ details stored in a secure manner across devices with a negligible impact on per
 
 In a specific use case of decentralised \acp{is} within the realm of \acp{osn}, 
 \acp{dosn}, we demonstrate how it is possible to have a coordination and cooperation 
-mechanism such as the organisation of events without the need of a \ac{ttp} in \cref{article:thesis:events-invitations-dosns}. 
+mechanism such as the organisation of events without the need of a \acl{ttp} in \cref{article:thesis:events-invitations-dosns}. 
 Along with standard cryptographic primitives we describe some privacy-enhancing 
 tools that allow storage location indirection --- control of the ability to access 
 an encrypted object and possibly to decrypt it as well, or controlled cipher-text 
@@ -127,7 +127,7 @@ this thesis can be followed up with,
     manner.
     
     For example, it is not trivial to retrieve the content of the connections of 
-    a user in such decentralised scenario and it gets more complicated when considering 
+    a user in such a decentralised scenario and it gets more complicated when considering 
     the question of posting content on someone else's profile or simply commenting. 
     
     Another open problem is the realisation of the so called albums (of pictures) 
@@ -135,7 +135,7 @@ this thesis can be followed up with,
     mostly search and access control of this content --- and other questions such 
     as allowing the identification of individuals in the stored content.
     
-    \item expand decentralisation approach to other areas.
+    \item expansion of the decentralisation approach to other areas.
     
     Although our focus in this work has been on decentralisation of centralised 
     \acp{is}, such as those where there can be various actors --- for example, in 
@@ -149,16 +149,16 @@ this thesis can be followed up with,
     data but it simply does not make sense. However, it is clear it would be a privacy 
     violation allowed in many legislations because the preservation of the human 
     life is an unquestioned obligation.} --- where a nurse carries some sensitive 
-    \ac{pii} in order to provide the right care to a patient and eventually returns 
+    \acl{pii} in order to provide the right care to a patient and eventually returns 
     to the primary care facility with some new personal data about that patient, 
-    in content-sharing or even in public ledging of transactions without a \ac{ttp} 
+    in content-sharing or even in public ledging of transactions without a \acl{ttp} 
     --- such as those happening in the blockchain powering the crypto-currency \Bitcoin.
     
     \item privacy-preserving analytics.
     
     There are some solutions to do simple privacy-preserving centralised analytics, 
     but there are no straightforward ways or solutions to do complex ones. Moreover, 
-    doing such analysis in a decentralised scenario, where it is not easy to have 
+    doing such an analysis in a decentralised scenario, where it is not easy to have 
     a complete picture of the network at the time of analysis, makes it a challenge 
     on its own.
     
@@ -172,14 +172,14 @@ this thesis can be followed up with,
 \end{itemize}
 
 Ultimately, information-theoretically secure solutions are the only ones that can 
-guarantee the efectiveness of privacy in whichever system they are implemented because 
---- by design --- assume an adversary with unbounded computing power. 
+guarantee the effectiveness of privacy in whichever system they are implemented becasue, 
+by design, these solutions assume an adversary with unbounded computing power. 
 For example, the confidentiality of personal data encrypted with encryption algorithms 
 that are information-theoretically secure is guaranteed to be resilient to any future 
-development in computing power --- for example, quantum computing. 
+development in computing power such as quantum computing. 
 
 Some of the information-theoretically secure solutions that exist today and that 
 could be of use to the scenarios we have described in this thesis are either too 
 complex to implement or somewhat computationally inefficient in a distributed scenario. 
-However, any further work must aim at such ideal of information-theoretic secure, 
+However, any further work must aim at such an ideal of information-theoretic secure, 
 usable and performing solutions in a decentralised scenario, and so do we.
