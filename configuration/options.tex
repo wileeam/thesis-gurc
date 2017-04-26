@@ -128,6 +128,14 @@
 \usepackage{rotating}
 
 %%%
+%   CNF: Define style of Table of contents (etc) files
+%.       Can remove the page numbers for parts
+%
+\usepackage{tocstyle}
+\usetocstyle{standard}
+\settocstylefeature[-1]{pagenumberbox}{\csname @gobble\endcsname}
+
+%%%
 %   CNF: Select alternative section titles
 %
 \usepackage[explicit]{titlesec}
@@ -241,5 +249,3 @@
 \crefname{appchp}{appendix}{appendices}
 \crefname{artsec}{article}{articles}
 \crefname{part}{part}{parts}
-
-

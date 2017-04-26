@@ -1,7 +1,6 @@
 % -*- mode: TeX -*-
 % -*- coding: utf-8 -*-
 
-%\immediate\write18{traceroute www.google.com}
 \documentclass[showtrims, oldfontcommands]{kthesis}
 
 %%%
@@ -95,6 +94,7 @@
 \makeatother
 
 \counterwithin*{chapter}{part}
+
 
 %%%
 %   DOC: Beginning of the show... :)
@@ -328,37 +328,16 @@
     \vspace{2pt}\end{adjustwidth}\endMakeFramed%
 }
 
-% \makeatletter
-% \renewcommand{\@chap@pppage}{%
-%   \clear@ppage
-%   \thispagestyle{plain}%
-%   \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
-%   \null\vfil
-%   \markboth{}{}%
-%   {\centering
-%    \interlinepenalty \@M
-%    \normalfont
-%    \MakeUppercase \appendixpagename\par}%
-%   \if@dotoc@pp
-%     \addappheadtotoc
-%   \fi
-%   \vfil\newpage
-%   \if@twoside
-%     \if@openright
-%       \null
-%       \thispagestyle{empty}%
-%       \newpage
-%     \fi
-%   \fi
-%   \if@tempswa
-%     \twocolumn
-%   \fi
-% }
-% \makeatother
-
 %%%
 %   DOC: Appendices
+%.       We emulate \appendixpage as a part (and get the same style as an extra)
 %
+% titlesec recommendation to remove the page number (from part pages in this case)
+\assignpagestyle{\part}{empty}
+\part*{Appendices}
+    \label[part]{part:appendices}
+\thispagestyle{empty}
+\setcounter{chapter}{0}
 \cleardoublepage
 % \phantomsection
 % \appendix
