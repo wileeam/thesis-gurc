@@ -2,7 +2,6 @@
 % -*- coding: utf-8 -*-
 
 %\immediate\write18{traceroute www.google.com}
-
 \documentclass[showtrims, oldfontcommands]{kthesis}
 
 %%%
@@ -89,6 +88,12 @@
 %
 \hyphenation{log-in net-works pro-gram sur-veil-lan-ce}
 
+% reset footnote counters per chapter (and chapter*)
+\makeatletter
+\pretocmd{\@schapter}{\setcounter{footnote}{0}}{}{}
+\pretocmd{\@chapter}{\setcounter{footnote}{0}}{}{}
+\makeatother
+
 \counterwithin*{chapter}{part}
 
 %%%
@@ -124,10 +129,9 @@
 %%%
 %   DOC: Dedications page
 %
-% \clearpage
-% \input{data/text/dedications}
-% \cleardoublepage
-
+\clearpage
+\input{data/text/dedications}
+\cleardoublepage
 \pagenumbering{roman}
 
 %%%
@@ -174,12 +178,12 @@
 %%%
 %   DOC: Acknowledgements
 %
-% \clearpage
-% \phantomsection
-% \addcontentsline{toc}{chapter}{Acknowledgements}
-% \chapter*{Acknowledgements}
-% \input{data/text/acknowledgements}
-% \cleardoublepage
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\chapter*{Acknowledgements}
+\input{data/text/acknowledgements}
+\cleardoublepage
 
 %%%
 %   DOC: Table of contents
