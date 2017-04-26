@@ -182,44 +182,7 @@ Stockholm, Sweden\\
 \DeclareDocumentCommand{\H}{ }{\ensuremath{H}} % hash function
 
 \begin{abstract}
-% 5 questions:
-%
-% What is the problem:
-% Why is it a problem: 
-% Why should we care: 
-% What is our approach: 
-% What are the findings: 
-
-\Acp*{osn} have an infamous history of privacy and security issues. One approach 
-to avoid the massive collection of sensitive data of all users at a central point 
-is a decentralized architecture.
-
-An event invitation feature -- allowing a user to create an event
-and invite other users who then can confirm their attendance --
-is part of the standard functionality of \acsp*{osn}. 
-%
-We formalize security and privacy properties of such a feature 
-like allowing different types
-of information related to the event (\eg how many people are
-invited/attending, who is invited/attending) to be shared with 
-different groups of users (\eg only invited/attending users).
-%or only attending users to see an additional private event description.
-
-Implementing this 
-feature in a Privacy-Preserving \Acl*{dosn} is non-trivial because there is 
-no fully trusted broker to guarantee fairness to all parties involved. 
-%
-We propose a secure decentralized protocol for implementing
-this feature, 
-using tools such as storage location indirection, ciphertext inferences
-and a disclose-secret-if-committed mechanism, derived from standard
-cryptographic primitives.
-
-The results can be applied in the context of Privacy-Preserving \acsp*{dosn}, but 
-might also be useful in other domains that need mechanisms for cooperation and coordination, 
-\eg \Acl*{cwe} and the corresponding collaborative-specific tools, \ie groupware, 
-or \Acl*{cscl}.
-
+    \input{data/papers/abstracts/event-invitations-dosns}
 %\keywords{Event Invitation, Privacy, \Aclp*{dosn}}
 % \begin{center}
 %     Event Invitation, Privacy, \Aclp*{dosn}
@@ -381,7 +344,7 @@ continuous line. They form the group of attendees, denoted with \C.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.73\linewidth]{images/event-invitations-dosns/system-overview}
+  \includegraphics[width=.77\linewidth]{images/event-invitations-dosns/system-overview}
   \caption{Example of one event invitation.}
   \label{figure:event-invitations-dosns:system-overview}
 \end{figure}
@@ -403,7 +366,7 @@ search \cite{GreschbachKB2013} and user messaging \cite{RowstronD2001}.
 We also assume that users are identified by a public key and the ability  
 to verify the identity of other users via some sort of \Ac{pki}, which can 
 be realized in a decentralized manner, \eg a ``Web of Trust'' model or a Bitcoin 
-block-chain binding friendly usernames to public keys \cite{Freitas2013}. 
+block-chain binding friendly usernames to public keys \cite{Freitas13}. 
 %
 Moreover, we rely on a distributed storage
 featuring access right management, \eg that a certain storage object is
@@ -564,7 +527,6 @@ users are allowed to see what information, namely,
 		committed to attend if she has made it possible for \u{} to access
 		the private description \dS{}.
 	\end{propertydef}
-
 }
 
 \section{Implementation}
@@ -640,7 +602,7 @@ user \u{} with her private key \uS{} as follows,
 
 \begin{figure}
   \centering
-  \includegraphics[width=.8\linewidth]{images/event-invitations-dosns/system-implementation}
+  \includegraphics[width=.88\linewidth]{images/event-invitations-dosns/system-implementation}
   \caption{Overview of the actors, system components and their relations.}
   \label{figure:event-invitations-dosns:overview-objects-actions}
 \end{figure}

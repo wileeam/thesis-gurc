@@ -1,0 +1,63 @@
+% -*- mode: TeX -*-
+% -*- coding: utf-8 -*-
+
+
+\section{Clarifications}
+    \label{section:thesis:appendix:dss:clarifications}
+In the following list we try to further explain some words or sentences as published 
+in the original text that otherwise could be misleading or even contradictory,
+\begin{itemize}
+    \item Stylometry\\
+    In \cref{section:document-submission-system:anonymous-document-submission-system} 
+    we assume that an adversary does not have the resources to achieve authorship 
+    attribution by analysis of the linguistic style of writing --- hence, our protocol 
+    does not protect against stylometry.
+    
+    In our scenario, we believe that such an assumption is realistic enough because 
+    our protocol is agnostic to the content of the submitted document. Reducing 
+    the disclosure of information is out of the scope of our solution and a problem 
+    on its own.
+    
+    We believe that the privacy-preserving and anonymisation protocol that we propose 
+    is a necessary first step though we acknowledge that it is not sufficient.
+    
+    \item \Ac{dos} attacks\\
+    There is a possibility for \ac{dos} attacks on the server side while the submission 
+    of documents is in progress because the server does not know who submits what 
+    due to blinding nor from where due to the anonymous communication channel.
+    
+    Although this is future work, there are some solutions to mitigate selective 
+    \ac{dos} attacks in our scenario of anonymous communication channels. For example, 
+    in \cite{DasB13}, or even in \cite{JansenTJS14} a 
+    
+    We have yet to explore mitigating solutions in our scenario of a centralised 
+    storage where the stored files are unidentifiable during a period of time because 
+    the server's storage is subject to flooding in such case.
+    
+    \item Popularity of blind signatures\\
+    Blind signatures are widely used in the academic area of cryptography, for example, 
+    in voting protocols or digital currencies. 
+\end{itemize}
+
+\section{Assumptions}
+    \label{section:thesis:appendix:dss:assumptions}
+In the following list we make explicit some assumptions we implied in the original 
+text as published or supplement some of those we did state in the text,
+\begin{itemize}
+    \item Compromising capabilities of the adversary\\
+    In some of our scenarios, we assume that the adversary has the capability to 
+    compomise the server where the proposed \Ac{adss} is running. However, such 
+    compomising capabilities are limited to the application level where our proposed 
+    solution lies. For example, the adversary cannot affect the functionality or 
+    security of the underlying \ac{os} primitives used by our system such as the 
+    entropy of the \acp{rng}.
+    
+    \item Randomness of the random blinding factors\\
+    It is in the student's best interest to randomly choose the random blinding 
+    factors --- $b_{pass}$ and $b_{fail}$, otherwise a student who is willing to 
+    disclose her identity may choose such factors in a less random manner, for example, 
+    to obtain some more favorable grade.
+    
+\end{itemize}
+
+

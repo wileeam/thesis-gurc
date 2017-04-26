@@ -1,0 +1,40 @@
+% -*- mode: TeX -*-
+% -*- coding: utf-8 -*-
+
+% 5 questions:
+%
+% What is the problem:
+% Why is it a problem: 
+% Why should we care: 
+% What is our approach: 
+% What are the findings: 
+
+\Acp*{osn} have an infamous history of privacy and security issues. One approach 
+to avoid the massive collection of sensitive data of all users at a central point 
+is a decentralized architecture.
+
+An event invitation feature -- allowing a user to create an event
+and invite other users who then can confirm their attendance --
+is part of the standard functionality of \acsp*{osn}. 
+%
+We formalize security and privacy properties of such a feature 
+like allowing different types
+of information related to the event (\eg how many people are
+invited/attending, who is invited/attending) to be shared with 
+different groups of users (\eg only invited/attending users).
+%or only attending users to see an additional private event description.
+
+Implementing this 
+feature in a Privacy-Preserving \Acl*{dosn} is non-trivial because there is 
+no fully trusted broker to guarantee fairness to all parties involved. 
+%
+We propose a secure decentralized protocol for implementing
+this feature, 
+using tools such as storage location indirection, ciphertext inferences
+and a disclose-secret-if-committed mechanism, derived from standard
+cryptographic primitives.
+
+The results can be applied in the context of Privacy-Preserving \acsp*{dosn}, but 
+might also be useful in other domains that need mechanisms for cooperation and coordination, 
+\eg \Acl*{cwe} and the corresponding collaborative-specific tools, \ie groupware, 
+or \Acl*{cscl}.

@@ -206,41 +206,7 @@ Stockholm, Sweden\\
 \end{center}
 
 \begin{abstract}
-% What is the problem: Deficient anonimity and unlinkability in grading 
-% Why is it a problem: Subjective grading 
-% Why should we care: Regain privacy?
-% What is our approach: Protocols based on standard crypto tools: blind digital signatures
-% What are the findings: Anonimity and unlinkability can be achieved with minor trade offs
-
-%Privacy regulations mandate the collection of \Acl*{pii}, \eg full name or date 
-%of birth, to be proportionate and necessary for the purpose of the offered service, 
-%for example, registration at an online e-commerce website. However, in some instances, 
-%the amount and type of such personal data does not match the actual needs nor the intended 
-%usage while in other cases the availability of non-essential information may lead 
-%to undesired biased assessments.
-
-Document submission and grading systems are commonly used in educational institutions.
-They facilitate the hand-in of assignments
-by students, the subsequent grading by the course teachers and the 
-management of the submitted documents and corresponding grades.
-But they might also undermine the privacy of students, especially
-when documents and related data are stored long term with the risk of
-leaking to malicious parties in the future. 
-%
-%Discriminatory
-%judgement can be another issue in these systems when teachers during grading
-%know the identity of the student who authored a certain document.
-%
-We propose a protocol for a privacy-preserving, anonymous document
-submission and grading system based on blind signatures.
-Our solution guarantees the unlinkability of
-a document with the authoring student even after her grade has been
-reported, while the student can prove that she received the grade
-assigned to the document she submitted. 
-%
-We implemented a prototype of the proposed protocol to show its
-feasibility and evaluate its privacy and security properties.
-
+    \input{data/papers/abstracts/document-submission-system}
 \end{abstract}
 
 %\keywords{Anonymity, Blind Signatures, Forward Unlinkability}
@@ -298,7 +264,7 @@ received grade.
 
 \begin{figure}[htbp]
    \centering
-   \includegraphics[width=0.5\textwidth]{images/document-submission-system/user-grade-document.png}
+   \includegraphics[width=0.88\textwidth]{images/document-submission-system/user-grade-document.png}
    \caption{Overview of system entities, their relations and desired properties.}
    \label{figure:document-submission-system:user-grade-document}
 \end{figure}
@@ -399,8 +365,8 @@ our use case.
 
 
 
-% \section{\Acl*{adss}}
-\section{Anonymous Document Submission System}
+\section{\Acl*{adss}}
+% \section{Anonymous Document Submission System}
     \label{section:document-submission-system:anonymous-document-submission-system}
 
 We aim to design a document submission and grading system, 
@@ -488,7 +454,8 @@ signatures on blinded data can still be verified after unblinding
 %
 \Cref{figure:document-submission-system:sequencediagram} shows the sequence of steps in our proposed protocol.
 %
-\begin{figure}[h!]
+\begin{figure}[p]%[!ht]
+    \centering
 	\renewcommand{\msckeyword}{}
 	\scriptsize
 	\begin{msc}{}
