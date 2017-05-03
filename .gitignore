@@ -1,5 +1,6 @@
 ### Project's files ###
-thesis-gurc.pdf
+thesis-gurc*.pdf
+others/
 kthesis.cls
 
 ### LaTeX ###
