@@ -16,7 +16,7 @@ Compilation
 
 Before you can proceed to produce a copy (in PDF) of the document you must clone the repository. Do so as follows,
 ```sh
-git clone git@gitr.sys.kth.se:PeerSoN/thesis-gurc.git
+git clone git@github.com/wileeam/thesis-gurc.git
 ```
 
 Thereafter you can proceed to compile the document with your preferred producer. Enjoy!
